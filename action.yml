@@ -1,0 +1,42 @@
+name: 'Broken Link Checker action'
+description: 'GitHub Actions to test broken links on local files or remote web pages.'
+author: 'ruzickap'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+branding:
+  icon: 'list'
+  color: 'blue'
+inputs:
+  buffer-size:
+    description: 'Set HTTP response buffer size in bytes.'
+    required: false
+    default: '8192'
+  concurrency:
+    description: 'Roughly maximum number of concurrent HTTP connections.'
+    required: false
+    default: '10'
+  exclude:
+    description: 'Exclude URLs matched with given regular expressions.'
+    required: false
+    default: ''
+  muffet_cmd_params:
+    description: 'Muffet command line parametrs.'
+    required: false
+    default: ''
+  pages_path:
+    description: 'Realive path to the directory with local web pages.'
+    required: false
+    default: ''
+  skip-tls-verification:
+    description: 'Skip TLS certificates verification.'
+    required: false
+    default: 'false'
+  run_timeout:
+    description: 'Max number of seconds which URL checker can be running.'
+    required: false
+    default: '300'
+  url:
+    description: 'Check URL for broken links.'
+    required: true
+    default: ''
