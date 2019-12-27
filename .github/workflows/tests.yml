@@ -1,4 +1,4 @@
-name: tests
+name: Tests
 
 on:
   pull_request:
@@ -20,6 +20,7 @@ jobs:
     - name: shellcheck
       run: shellcheck tests/run.sh
 
+  tests:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2

@@ -9,6 +9,8 @@ LABEL "com.github.actions.color"="blue"
 #ENV MUFFET_VERSION="1.3.2"
 ENV MUFFET_VERSION="latest"
 
+SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+
 RUN set -eux && \
     apk add --no-cache bash ca-certificates sudo && \
     if [ "${MUFFET_VERSION}" = "latest" ]; then \
