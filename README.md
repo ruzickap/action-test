@@ -7,12 +7,11 @@
 ![GitHub Actions status](https://github.com/ruzickap/action-broken-link-checker/workflows/docker%20image%20ci/badge.svg)
 [![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/broken-link-checker.svg)](https://hub.docker.com/r/peru/broken-link-checker)
 
-
 This is a GitHub Action to check broken link in your static files or web pages.
 The [muffet](https://github.com/raviqqe/muffet) is used for checking
 the web pages.
 
-See the basic GitHub Action example to run periodic check (weekly)
+See the basic GitHub Action example to run periodic checks (weekly)
 if there are broken links on the [google.com](https://google.com)
 page:
 
@@ -25,7 +24,7 @@ name: Check markdown links
 jobs:
   broken-link-checker:
     name: Check broken links
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
     - name: Check
       uses: ruzickap/action-broken-link-checker@v1
@@ -33,24 +32,23 @@ jobs:
         URL: https://www.google.com
 ```
 
+Here is the screenshot with output:
+
 This deploy action can be combined simply and freely with Static Site
-Generators. (Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.)
+Generators. (Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.). The following
+examples expects to have the web page stored in `./build` directory. There is a
+[caddy](https://caddyserver.com/) started during the tests which is using the
+hostname from the `URL` parameter and serving the web page (see the details in
+[entrypoint.sh](./entrypoint.sh)).
 
 ```yaml
 - name: Check
   uses: ruzickap/action-broken-link-checker@v1
   env:
     URL: https://www.example.com/test123
-    PAGES_PATH: /build/
-```
-
-```yaml
-- name: Check
-  uses: ruzickap/action-broken-link-checker@v1
-  env:
-    URL: https://www.example.com/test123
-    PAGES_PATH: /build/
-    MUFFET_CMD_PARAMS: --limit-redirections=5 --follow-robots-txt --timeout=20
+    PAGES_PATH: ./build
+    MUFFET_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification --limit-redirections=5 --timeout=20  # Specify all necessary muffet parameters
+    RUN_TIMEOUT: 600  # Maximum amount of time to run muffet (default is 300 seconds)
 ```
 
 Do you want to skip the docker build step? OK, the script mode is available.
@@ -58,20 +56,28 @@ Do you want to skip the docker build step? OK, the script mode is available.
 ```yaml
 - name: Check
   env:
-    ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    PUBLISH_BRANCH: gh-pages
-    PUBLISH_DIR: ./public
-    SCRIPT_MODE: true
+    URL: https://www.example.com/test123
+    PAGES_PATH: ./build
+    MUFFET_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification  # Mandatory parameter when using https and "PAGES_PATH"
   run: |
     wget https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh
     bash ./entrypoint.sh
 ```
 
+It's possible to use the script locally. It will install [caddy](https://caddyserver.com/)
+and [muffet](https://github.com/raviqqe/muffet) binaries if they
+are not already installed on your system.
 
+```bash
+export URL="https://google.com"
+export MUFFET_CMD_PARAMS="--buffer-size=8192 --one-page-only --verbose"
+./entrypoint.sh
+```
 
+Full example:
 
 ```yaml
-name: github pages
+name: Checks
 
 on:
   push:
@@ -82,24 +88,40 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
-      with:
-        submodules: true
 
-    - name: Setup Hugo
-      uses: peaceiris/actions-hugo@v2
-      with:
-        hugo-version: '0.60.0'
+      - name: Create web page
+        run: |
+          mkdir -v public
+          cat > public/index.html << EOF
+          <!DOCTYPE html>
+          <html>
+            <head>
+              My page on the my-testing-domain.com domain
+            </head>
+            <body>
+              Links:
+              <ul>
+                <li><a href="https://google.com">https://google.com</a></li>
+                <li><a href="https://my-testing-domain.com">https://my-testing-domain.com</a></li>
+                <li><a href="https://my-testing-domain.com:443">https://my-testing-domain.com:443</a></li>
+              </ul>
+            </body>
+          </html>
+          EOF
 
-    - name: Build
-      run: hugo --minify
-
-
-
-    - name: Deploy
-      uses: peaceiris/actions-gh-pages@v2
-      env:
-        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-        PUBLISH_BRANCH: gh-pages
-        PUBLISH_DIR: ./public
+      - name: Check
+        env:
+          URL: https://my-testing-domain.com
+          PAGES_PATH: ./public
+          MUFFET_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification
+        run: |
+          wget https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh
+          bash ./entrypoint.sh
 ```
+
+## Examples
+
+Few real examples:
+
+* Check [Hugo](https://gohugo.io/) generated web pages using GitHub pages: [https://github.com/ruzickap/xvx.cz/blob/master/.github/workflows/hugo-build.yml](https://github.com/ruzickap/xvx.cz/blob/master/.github/workflows/hugo-build.yml)
+* Check [VuePress](https://vuepress.vuejs.org/) generated web pages: [https://github.com/ruzickap/k8s-harbor/blob/master/.github/workflows/build.yml](https://github.com/ruzickap/k8s-harbor/blob/master/.github/workflows/build.yml)

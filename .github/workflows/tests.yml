@@ -1,0 +1,28 @@
+name: tests
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths-ignore:
+    - '**.md'
+  push:
+    paths-ignore:
+    - '**.md'
+    branches:
+    - master
+
+jobs:
+  shellcheck:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: shellcheck
+      run: shellcheck tests/run.sh
+
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: run tests
+      run: tests/run.sh

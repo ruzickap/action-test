@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-export MUFFET_CMD_PARAMS="${MUFFET_CMD_PARAMS:-}"
+export MUFFET_CMD_PARAMS="${MUFFET_CMD_PARAMS:---buffer-size=8192 --concurrency=10}"
 export PAGES_PATH=${PAGES_PATH:-}
 export URL=${URL:?}
 PAGES_DOMAIN=$( echo "${URL}" | awk -F[/:] '{print $4}' )
@@ -10,8 +10,7 @@ export PAGES_DOMAIN
 PAGES_URI=$( echo "${URL}" | cut -d / -f 1,2,3 )
 export PAGES_URI
 export RUN_TIMEOUT="${RUN_TIMEOUT:-300}"
-export BUFFER_SIZE="8192"
-export CONCURRENCY="10"
+export DEBUG=${DEBUG:-}
 
 function print_error() {
   echo -e "\e[31m*** ERROR: ${1}\e[m"
@@ -21,33 +20,53 @@ function print_info() {
   echo -e "\e[36m*** INFO: ${1}\e[m"
 }
 
+function cleanup()
+{
+  if [ -n "${PAGES_PATH}" ]; then
+    # Manipulation with /etc/hosts using 'sed -i' doesn't work in containers
+    if ! grep -q docker /proc/1/cgroup ; then
+      sudo sed -i "/127.0.0.1 ${PAGES_DOMAIN}  # Created for broken-link-checker/d" /etc/hosts
+    fi
+    CADDY_PID=$(cat "${CADDY_PIDFILE}")
+    [ -s "${CADDY_PIDFILE}" ] && sudo kill "${CADDY_PID}"
+    [ -f "${CADDYFILE}" ] && rm "${CADDYFILE}"
+  fi
+}
 
-if command -v muffet; then
+################
+# Main
+################
+
+trap cleanup ERR
+
+[ -n "${DEBUG}" ] && set -x
+
+if ! hash muffet ; then
   MUFFET_URL=$(wget --quiet https://api.github.com/repos/raviqqe/muffet/releases/latest -O - | grep "browser_download_url.*muffet_.*_Linux_x86_64.tar.gz" | cut -d \" -f 4)
-  wget --quiet "${MUFFET_URL}" -O - | tar xvzf - -C /usr/local/bin/ muffet
+  wget --quiet "${MUFFET_URL}" -O - | sudo tar xvzf - -C /usr/local/bin/ muffet
 fi
 
-if command -v caddy; then
-  wget -qO- https://getcaddy.com | bash -s personal
+if ! hash caddy && [ -n "${PAGES_PATH}" ] ; then
+  wget -qO- https://getcaddy.com | sudo bash -s personal
 fi
 
-if [ -n "${URL}" ]; then
+if [ -z "${PAGES_PATH}" ] ; then
   print_info "Using URL - ${URL}"
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
-elif [ -n "${PAGES_PATH}" ]; then
+else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with uri \"${PAGES_URI}\""
-  echo "127.0.0.1 ${PAGES_DOMAIN}" | sudo tee -a /etc/hosts
+  echo "127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker" | sudo tee -a /etc/hosts
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
+  CADDY_PIDFILE=$( mktemp -u /tmp/Caddy_pidfile.XXXXXX )
   cat > "${CADDYFILE}" << EOF
   ${PAGES_URI}
-  root ${PATH}
+  root ${PAGES_PATH}
   tls self_signed
 EOF
-  sudo caddy -conf "${CADDYFILE}" -quiet &
+  sudo caddy -conf "${CADDYFILE}" -pidfile "${CADDY_PIDFILE}" -quiet &
+  sleep 1
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
-else
-    print_error "Missing URL variable"
-    exit 1
+  cleanup
 fi
