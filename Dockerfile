@@ -1,9 +1,12 @@
 FROM ubuntu:18.04
 
 LABEL maintainer="Petr Ruzicka <petr.ruzicka@gmail.com>"
+LABEL repository="https://github.com/ruzickap/action-broken-link-checker"
+LABEL homepage="https://github.com/ruzickap/action-broken-link-checker"
+
 LABEL "com.github.actions.name"="Broknen Link Checker"
 LABEL "com.github.actions.description"="Check broken links on web pages stored locally or remotely"
-LABEL "com.github.actions.icon"="activity"
+LABEL "com.github.actions.icon"="list"
 LABEL "com.github.actions.color"="blue"
 
 #ENV MUFFET_VERSION="1.3.2"

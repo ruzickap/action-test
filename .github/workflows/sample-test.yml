@@ -1,17 +1,17 @@
 on:
   schedule:
-    - cron: '25 17 * * *'
+    - cron: '28 18 * * *'
 
-name: Check markdown links
+name: Check broken links
 jobs:
   broken-link-checker:
-    name: Check broken links
+    name: Check broken links - google.com
     runs-on: ubuntu-18.04
     steps:
     - name: Check
       uses: ruzickap/action-test@v1
       env:
-        URL: https://www.google.com
+        URL: https://google.com
 
     - uses: actions/checkout@v2
 
