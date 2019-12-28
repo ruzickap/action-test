@@ -4,7 +4,7 @@
 [![license](https://img.shields.io/github/license/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/blob/master/LICENSE)
 [![release](https://img.shields.io/github/release/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/releases/latest)
 [![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/releases)
-![GitHub Actions status](https://github.com/ruzickap/action-broken-link-checker/workflows/docker%20image%20ci/badge.svg)
+![GitHub Actions status](https://github.com/ruzickap/action-broken-link-checker/workflows/docker-image/badge.svg)
 [![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/broken-link-checker.svg)](https://hub.docker.com/r/peru/broken-link-checker)
 
 This is a GitHub Action to check broken link in your static files or web pages.

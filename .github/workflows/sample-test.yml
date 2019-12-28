@@ -1,0 +1,14 @@
+on:
+  schedules:
+    - cron: 10 17 * * *
+
+name: Check markdown links
+jobs:
+  broken-link-checker:
+    name: Check broken links
+    runs-on: ubuntu-18.04
+    steps:
+    - name: Check
+      uses: ruzickap/action-broken-link-checker@v1
+      env:
+        URL: https://www.google.com
