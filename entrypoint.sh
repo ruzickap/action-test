@@ -56,7 +56,7 @@ if [ -z "${PAGES_PATH}" ] ; then
 else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
   if ! grep "${PAGES_DOMAIN}" /etc/hosts ; then
-    echo "127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker" | sudo tee -a /etc/hosts
+    sudo bash -c "echo \"127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker\"" >> /etc/hosts
   fi
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
   CADDY_PIDFILE=$( mktemp -u /tmp/Caddy_pidfile.XXXXXX )
@@ -70,5 +70,6 @@ EOF
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
   cleanup
-  print_info "Checks completed..."
 fi
+
+print_info "Checks completed..."
