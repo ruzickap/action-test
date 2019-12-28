@@ -24,7 +24,7 @@ RUN set -eux && \
     else \
       MUFFET_URL="https://github.com/raviqqe/muffet/releases/download/${MUFFET_VERSION}/muffet_${MUFFET_VERSION}_Linux_x86_64.tar.gz" ; \
     fi && \
-    wget --quiet "${MUFFET_URL}" -O - | tar xvzf - -C /usr/local/bin/ muffet && \
+    wget -qO- "${MUFFET_URL}" | tar xzf - -C /usr/local/bin/ muffet && \
     wget -qO- https://getcaddy.com | bash -s personal
 
 COPY entrypoint.sh /entrypoint.sh

@@ -40,12 +40,12 @@ trap cleanup ERR
 
 [ -n "${DEBUG}" ] && set -x
 
-if ! hash muffet ; then
+if ! hash muffet &> /dev/null ; then
   MUFFET_URL=$(wget --quiet https://api.github.com/repos/raviqqe/muffet/releases/latest -O - | grep "browser_download_url.*muffet_.*_Linux_x86_64.tar.gz" | cut -d \" -f 4)
-  wget --quiet "${MUFFET_URL}" -O - | sudo tar xvzf - -C /usr/local/bin/ muffet
+  wget --quiet "${MUFFET_URL}" -O - | sudo tar xzf - -C /usr/local/bin/ muffet
 fi
 
-if ! hash caddy && [ -n "${PAGES_PATH}" ] ; then
+if ! hash caddy &> /dev/null && [ -n "${PAGES_PATH}" ] ; then
   wget -qO- https://getcaddy.com | sudo bash -s personal
 fi
 
@@ -70,4 +70,5 @@ EOF
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
   cleanup
+  print_info "Checks completed..."
 fi

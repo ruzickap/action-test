@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '30 20 * * *'
+    - cron: '56 20 * * *'
 
 name: Check broken links
 jobs:
@@ -28,6 +28,5 @@ jobs:
         MUFFET_CMD_PARAMS: --skip-tls-verification --verbose
         URL: https://my-testing-domain.com
         PAGES_PATH: ./tests/
-        DEBUG: true
       run:
         wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
