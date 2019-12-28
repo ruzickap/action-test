@@ -1,5 +1,5 @@
 on:
-  schedules:
+  schedule:
     - cron: "18 17 * * *"
 
 name: Check markdown links
