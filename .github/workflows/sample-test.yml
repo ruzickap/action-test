@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '37 21 * * *'
+    - cron: '55 21 * * *'
 
 name: Check broken links
 jobs:
