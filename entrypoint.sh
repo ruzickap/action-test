@@ -27,8 +27,7 @@ function cleanup()
     if ! grep -q docker /proc/1/cgroup ; then
       sudo sed -i "/127.0.0.1 ${PAGES_DOMAIN}  # Created for broken-link-checker/d" /etc/hosts
     fi
-    CADDY_PID=$(cat "${CADDY_PIDFILE}")
-    [ -s "${CADDY_PIDFILE}" ] && sudo kill "${CADDY_PID}"
+    [ -s "${CADDY_PIDFILE}" ] && sudo kill "$(cat "${CADDY_PIDFILE}")"
     [ -f "${CADDYFILE}" ] && rm "${CADDYFILE}"
   fi
 }
@@ -55,8 +54,10 @@ if [ -z "${PAGES_PATH}" ] ; then
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
 else
-  print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with uri \"${PAGES_URI}\""
-  echo "127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker" | sudo tee -a /etc/hosts
+  print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
+  if ! grep "${PAGES_DOMAIN}" /etc/hosts ; then
+    echo "127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker" | sudo tee -a /etc/hosts
+  fi
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
   CADDY_PIDFILE=$( mktemp -u /tmp/Caddy_pidfile.XXXXXX )
   cat > "${CADDYFILE}" << EOF
