@@ -1,6 +1,6 @@
 on:
   schedules:
-    - cron: 15 17 * * *
+    - cron: "18 17 * * *"
 
 name: Check markdown links
 jobs:
