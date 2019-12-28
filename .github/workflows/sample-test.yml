@@ -8,14 +8,22 @@ jobs:
     name: Check broken links - google.com
     runs-on: ubuntu-18.04
     steps:
-    - name: Check
+    - name: Check - container
       uses: ruzickap/action-test@v1
       env:
         URL: https://google.com
 
+    - name: Check - simple
+      uses: ruzickap/action-test@v1
+      env:
+        URL: https://google.com
+      run: |
+        wget https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh
+        bash ./entrypoint.sh
+
     - uses: actions/checkout@v2
 
-    - name: Check simple
+    - name: Check - simple - local pages
       env:
         URL: https://my-testing-domain.com
         PAGES_PATH: ./tests/
