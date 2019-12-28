@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '10 20 * * *'
+    - cron: '23 20 * * *'
 
 name: Check broken links
 jobs:
@@ -19,8 +19,7 @@ jobs:
         MUFFET_CMD_PARAMS: --verbose --ignore-fragments --one-page-only
         URL: https://google.com
       run: |
-        wget https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh
-        bash ./entrypoint.sh
+        wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 
     - uses: actions/checkout@v2
 
@@ -29,6 +28,5 @@ jobs:
         MUFFET_CMD_PARAMS: --skip-tls-verification
         URL: https://my-testing-domain.com
         PAGES_PATH: ./tests/
-      run: |
-        wget https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh
-        bash ./entrypoint.sh
+      run:
+        wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
