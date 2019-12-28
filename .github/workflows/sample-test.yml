@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '28 18 * * *'
+    - cron: '43 18 * * *'
 
 name: Check broken links
 jobs:
@@ -14,7 +14,6 @@ jobs:
         URL: https://google.com
 
     - name: Check - simple
-      uses: ruzickap/action-test@v1
       env:
         URL: https://google.com
       run: |
