@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM ubuntu
 
 LABEL maintainer="Petr Ruzicka <petr.ruzicka@gmail.com>"
 LABEL "com.github.actions.name"="Broknen Link Checker"
@@ -9,10 +9,10 @@ LABEL "com.github.actions.color"="blue"
 #ENV MUFFET_VERSION="1.3.2"
 ENV MUFFET_VERSION="latest"
 
-SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 
 RUN set -eux && \
-    apk add --no-cache bash ca-certificates sudo && \
+    apt-get update && apt-get install -y bash ca-certificates sudo wget && \
     if [ "${MUFFET_VERSION}" = "latest" ]; then \
       MUFFET_URL=$(wget --quiet https://api.github.com/repos/raviqqe/muffet/releases/latest -O - | grep "browser_download_url.*muffet_.*_Linux_x86_64.tar.gz" | cut -d \" -f 4) ; \
     else \

@@ -1,4 +1,4 @@
-name: Markdown-Checks
+name: markdown-checks
 
 on:
   pull_request:

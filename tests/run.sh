@@ -33,9 +33,14 @@ docker build .. -t broken-link-checker-test-img
 
 export MUFFET_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose"
 export URL="https://google.com"
-docker run --rm -e DEBUG -e URL -e MUFFET_CMD_PARAMS broken-link-checker-test-img
+docker run --rm -t -e DEBUG -e URL -e MUFFET_CMD_PARAMS broken-link-checker-test-img
 
 export MUFFET_CMD_PARAMS="--skip-tls-verification --verbose"
 export PAGES_PATH="${PWD}"
+export URL="https://my-testing-domain.com"
+docker run --rm -t -e DEBUG -e URL -e MUFFET_CMD_PARAMS -e PAGES_PATH -v "$PAGES_PATH:$PAGES_PATH" broken-link-checker-test-img
+
+export MUFFET_CMD_PARAMS="--verbose"
+export PAGES_PATH="${PWD}"
 export URL="http://my-testing-domain.com/index2.html"
-docker run --rm -e DEBUG -e URL -e MUFFET_CMD_PARAMS -e PAGES_PATH -v "$PAGES_PATH:$PAGES_PATH" broken-link-checker-test-img
+docker run --rm -t -e DEBUG -e URL -e MUFFET_CMD_PARAMS -e PAGES_PATH -v "$PAGES_PATH:$PAGES_PATH" broken-link-checker-test-img
