@@ -8,12 +8,10 @@
 [![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/broken-link-checker.svg)](https://hub.docker.com/r/peru/broken-link-checker)
 
 This is a GitHub Action to check broken link in your static files or web pages.
-The [muffet](https://github.com/raviqqe/muffet) is used for checking
-the web pages.
+The [muffet](https://github.com/raviqqe/muffet) is used for checking task.
 
 See the basic GitHub Action example to run periodic checks (weekly)
-if there are broken links on the [google.com](https://google.com)
-page:
+against [google.com](https://google.com):
 
 ```yaml
 on:

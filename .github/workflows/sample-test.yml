@@ -1,6 +1,6 @@
 on:
   schedules:
-    - cron: 10 17 * * *
+    - cron: 15 17 * * *
 
 name: Check markdown links
 jobs:
@@ -12,3 +12,14 @@ jobs:
       uses: ruzickap/action-broken-link-checker@v1
       env:
         URL: https://www.google.com
+
+    - uses: actions/checkout@v2
+
+    - name: Check simple
+      env:
+        URL: https://my-testing-domain.com
+        PAGES_PATH: ./tests/
+        MUFFET_CMD_PARAMS: --skip-tls-verification
+      run: |
+        wget https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh
+        bash ./entrypoint.sh
