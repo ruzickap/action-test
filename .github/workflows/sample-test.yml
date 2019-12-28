@@ -1,6 +1,6 @@
 on:
   schedule:
-    - cron: '30 19 * * *'
+    - cron: '10 20 * * *'
 
 name: Check broken links
 jobs:
@@ -11,12 +11,12 @@ jobs:
     - name: Check - container
       uses: ruzickap/action-test@v1
       env:
-        MUFFET_CMD_PARAMS: --verbose --ignore-fragments
+        MUFFET_CMD_PARAMS: --verbose --ignore-fragments --one-page-only
         URL: https://google.com
 
     - name: Check - simple
       env:
-        MUFFET_CMD_PARAMS: --verbose --ignore-fragments
+        MUFFET_CMD_PARAMS: --verbose --ignore-fragments --one-page-only
         URL: https://google.com
       run: |
         wget https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh
