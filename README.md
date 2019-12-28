@@ -15,8 +15,8 @@ against [google.com](https://google.com):
 
 ```yaml
 on:
-  schedules:
-    - cron: 0 0 * * 0
+  schedule:
+    - cron: '0 0 * * 0'
 
 name: Check markdown links
 jobs:
