@@ -46,7 +46,7 @@ if ! hash muffet &> /dev/null ; then
 fi
 
 if ! hash caddy &> /dev/null && [ -n "${PAGES_PATH}" ] ; then
-  wget -qO- https://getcaddy.com | sudo bash -s personal
+  wget -qO- https://getcaddy.com | sudo bash -s personal > /dev/null
 fi
 
 if [ -z "${PAGES_PATH}" ] ; then
