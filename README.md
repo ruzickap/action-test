@@ -183,7 +183,7 @@ jobs:
           </html>
           EOF
 
-      - name: Check
+      - name: Check links
         env:
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./public/
