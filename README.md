@@ -147,11 +147,6 @@ export INPUT_URL="https://my-testing-domain.com"
 docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/action-test
 ```
 
-
-
-
-
-
 ## Full examples
 
 GitHub Action examples:
