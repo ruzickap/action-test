@@ -148,7 +148,7 @@ docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INP
 
 ## Full examples
 
-GitHub Action examples:
+GitHub Action example:
 
 ```yaml
 name: Checks
@@ -185,7 +185,6 @@ jobs:
 
       - name: Check
         env:
-          TERM: xterm  # Colours are allowed in output
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./public/
           INPUT_CMD_PARAMS: "--buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments"
