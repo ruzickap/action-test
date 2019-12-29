@@ -51,3 +51,13 @@ jobs:
 
     - name: "Run mdspell"
       run: mdspell '**/*.md' '!**/node_modules/**/*.md' --ignore-numbers --ignore-acronyms --report --en-gb
+
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Link Checker
+      uses: peter-evans/link-checker@v1
+      with:
+        args: -v -r *
