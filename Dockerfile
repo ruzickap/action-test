@@ -1,8 +1,8 @@
 FROM ubuntu:18.04
 
 LABEL maintainer="Petr Ruzicka <petr.ruzicka@gmail.com>"
-LABEL repository="https://github.com/ruzickap/action-broken-link-checker"
-LABEL homepage="https://github.com/ruzickap/action-broken-link-checker"
+LABEL repository="https://github.com/ruzickap/action-test"
+LABEL homepage="https://github.com/ruzickap/action-test"
 
 LABEL "com.github.actions.name"="Broknen Link Checker"
 LABEL "com.github.actions.description"="Check broken links on web pages stored locally or remotely"

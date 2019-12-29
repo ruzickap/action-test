@@ -1,10 +1,10 @@
 # GitHub Actions for checking broken links ✔
 
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Broken%20Link%20Checker-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/marketplace/actions/broken-link-checker)
-[![license](https://img.shields.io/github/license/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/blob/master/LICENSE)
-[![release](https://img.shields.io/github/release/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/releases/latest)
-[![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/releases)
-![GitHub Actions status](https://github.com/ruzickap/action-broken-link-checker/workflows/docker-image/badge.svg)
+[![license](https://img.shields.io/github/license/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/blob/master/LICENSE)
+[![release](https://img.shields.io/github/release/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases/latest)
+[![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases)
+![GitHub Actions status](https://github.com/ruzickap/action-test/workflows/docker-image/badge.svg)
 [![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/broken-link-checker.svg)](https://hub.docker.com/r/peru/broken-link-checker)
 
 This is a GitHub Action to check broken link in your static files or web pages.
@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Check
-      uses: peru/action-broken-link-checker@v1
+      uses: peru/action-test@v1
       with:
         url: https://www.google.com
         cmd_params: "--one-page-only"  # Check just one page
@@ -39,7 +39,7 @@ and serving the web page (see the details in [entrypoint.sh](./entrypoint.sh)).
 
 ```yaml
 - name: Check
-  uses: peru/action-broken-link-checker@v1
+  uses: peru/action-test@v1
   with:
     url: https://www.example.com/test123
     pages_path: ./build/
