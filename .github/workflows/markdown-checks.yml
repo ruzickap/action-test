@@ -13,9 +13,7 @@ on:
 
 jobs:
   markdown-lint-check:
-    name: "Markdown lint check"
     runs-on: ubuntu-18.04
-
     steps:
       - uses: actions/checkout@v2
 
@@ -35,9 +33,7 @@ jobs:
         run: find . -path ./node_modules -prune -o -name "*.md" -print0 | xargs -t -0 markdownlint -c /tmp/markdownlint_config.json
 
   markdown-spell-check:
-    name: "Markdown spell check"
     runs-on: ubuntu-18.04
-
     steps:
       - uses: actions/checkout@v2
 
@@ -60,4 +56,4 @@ jobs:
       - name: Link Checker
         uses: peter-evans/link-checker@v1
         with:
-          args: -v -r *
+          args: -v -r *.md

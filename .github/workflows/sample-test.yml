@@ -5,9 +5,10 @@ on:
 name: Check broken links
 jobs:
   broken-link-checker:
-    name: Check broken links - google.com
     runs-on: ubuntu-18.04
     steps:
+      - uses: actions/checkout@v2
+
       - name: Check - container
         uses: ruzickap/action-test@v1
         env:
@@ -20,8 +21,6 @@ jobs:
           URL: https://google.com
         run: |
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
-
-      - uses: actions/checkout@v2
 
       - name: Check - simple - local pages
         env:

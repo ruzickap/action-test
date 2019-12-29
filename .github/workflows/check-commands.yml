@@ -13,7 +13,6 @@ on:
 
 jobs:
   command-check:
-    name: Check commands in README.md
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
