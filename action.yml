@@ -28,7 +28,6 @@ inputs:
     description: 'Check URL for broken links.'
     required: true
     default: ''
-
 outputs:
   output:
     description: 'Output of the link checker.'

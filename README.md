@@ -31,12 +31,11 @@ jobs:
         cmd_params: "--one-page-only"  # Check just one page
 ```
 
-This deploy action can be combined simply and freely with Static Site
-Generators. (Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.). The following
-examples expects to have the web page stored in `./build` directory. There is a
-[caddy](https://caddyserver.com/) started during the tests which is using the
-hostname from the `URL` parameter and serving the web page (see the details in
-[entrypoint.sh](./entrypoint.sh)).
+This deploy action can be combined simply and freely with [Static Site Generators](https://www.staticgen.com/).
+(Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.). The following examples expects
+to have the web page stored in `./build` directory. There is a [caddy](https://caddyserver.com/)
+started during the tests which is using the hostname from the `URL` parameter
+and serving the web page (see the details in [entrypoint.sh](./entrypoint.sh)).
 
 ```yaml
 - name: Check
@@ -45,7 +44,7 @@ hostname from the `URL` parameter and serving the web page (see the details in
     url: https://www.example.com/test123
     pages_path: ./build/
     cmd_params: --buffer-size=8192 --concurrency=10 --skip-tls-verification --limit-redirections=5 --timeout=20  # specify all necessary muffet parameters
-    run_timeout: 600  # maximum amount of time to run muffet (default is 300 seconds)
+    run_timeout: 600  # maximum amount of time to run muffet (default is set to 300 seconds)
 ```
 
 Do you want to skip the docker build step? OK, the script mode is available.
@@ -196,6 +195,9 @@ jobs:
 ```
 
 ## Examples
+
+Some other examples of building web pages using [Static Site Generators](https://www.staticgen.com/)
+and GitHub Actions can be found here: [https://github.com/peaceiris/actions-gh-pages/](https://github.com/peaceiris/actions-gh-pages/)
 
 Few real examples:
 
