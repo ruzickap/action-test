@@ -4,37 +4,35 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths-ignore:
-    - '**.md'
+      - '**.md'
   push:
     paths-ignore:
-    - '**.md'
+      - '**.md'
     branches:
-    - master
+      - master
 
 jobs:
   docker-build-test:
     runs-on: ubuntu-18.04
 
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: build
-      env:
-        DOCKER_IMAGE: docker.pkg.github.com/${{ github.repository }}/action:latest
-      run: |
-        docker build . --file Dockerfile --tag ${DOCKER_IMAGE}
+      - name: Build test
+        run: |
+          docker build . --file Dockerfile
 
   shellcheck:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: shellcheck
-      run: shellcheck ./entrypoint.sh
+      - name: shellcheck
+        run: shellcheck ./entrypoint.sh
 
   hadolint:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v2
-    - run: brew install hadolint
-    - run: hadolint ./Dockerfile
+      - uses: actions/checkout@v2
+      - run: brew install hadolint
+      - run: hadolint ./Dockerfile

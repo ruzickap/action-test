@@ -4,27 +4,27 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths-ignore:
-    - '**.md'
+      - '**.md'
   push:
     paths-ignore:
-    - '**.md'
+      - '**.md'
     branches:
-    - master
+      - master
 
 jobs:
   shellcheck:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: shellcheck
-      run: shellcheck tests/run.sh
+      - name: shellcheck
+        run: shellcheck tests/run.sh
 
   tests:
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: run tests
-      run: ./run.sh
-      working-directory: ./tests
+      - name: run tests
+        run: ./run.sh
+        working-directory: ./tests

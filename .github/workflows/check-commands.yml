@@ -4,19 +4,19 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
-    - README.md
+      - README.md
   push:
     paths:
-    - README.md
+      - README.md
     branches:
-    - master
+      - master
 
 jobs:
   command-check:
     name: Check commands in README.md
     runs-on: ubuntu-18.04
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v2
 
-    - name: Check commands in README.md file
-      run: sed -n '/^```bash.*/,/^```$/p' README.md | sed '/^```*/d' | bash
+      - name: Check commands in README.md file
+        run: sed -n '/^```bash.*/,/^```$/p' README.md | sed '/^```*/d' | bash

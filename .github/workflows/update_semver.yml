@@ -4,7 +4,7 @@ on:
   release:
     types: [published]
     tags:
-    - 'v*.*.*'
+      - 'v*.*.*'
 
 jobs:
   update-semver:
