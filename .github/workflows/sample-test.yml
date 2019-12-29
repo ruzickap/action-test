@@ -11,21 +11,21 @@ jobs:
 
       - name: Check - container
         uses: ruzickap/action-test@v1
-        env:
-          MUFFET_CMD_PARAMS: --verbose --ignore-fragments --one-page-only
-          URL: https://google.com
+        with:
+          cmd_params: "--verbose --ignore-fragments --one-page-only"
+          url: https://google.com
 
       - name: Check - simple
         env:
-          MUFFET_CMD_PARAMS: --verbose --ignore-fragments --one-page-only
-          URL: https://google.com
+          INPUT_CMD_PARAMS: "--verbose --ignore-fragments --one-page-only"
+          INPUT_URL: https://google.com
         run: |
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 
       - name: Check - simple - local pages
         env:
-          MUFFET_CMD_PARAMS: --skip-tls-verification --verbose
-          URL: https://my-testing-domain.com
-          PAGES_PATH: ./tests/
+          INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
+          INPUT_URL: https://my-testing-domain.com
+          INPUT_PAGES_PATH: ./tests/
         run:
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash

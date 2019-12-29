@@ -26,9 +26,9 @@ jobs:
     steps:
     - name: Check
       uses: peru/action-broken-link-checker@v1
-      env:
-        URL: https://www.google.com
-        MUFFET_CMD_PARAMS: "--one-page-only"  # Check just one page
+      with:
+        url: https://www.google.com
+        cmd_params: "--one-page-only"  # Check just one page
 ```
 
 This deploy action can be combined simply and freely with Static Site
@@ -41,11 +41,11 @@ hostname from the `URL` parameter and serving the web page (see the details in
 ```yaml
 - name: Check
   uses: peru/action-broken-link-checker@v1
-  env:
-    URL: https://www.example.com/test123
-    PAGES_PATH: ./build/
-    MUFFET_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification --limit-redirections=5 --timeout=20  # Specify all necessary muffet parameters
-    RUN_TIMEOUT: 600  # Maximum amount of time to run muffet (default is 300 seconds)
+  with:
+    url: https://www.example.com/test123
+    pages_path: ./build/
+    cmd_params: --buffer-size=8192 --concurrency=10 --skip-tls-verification --limit-redirections=5 --timeout=20  # specify all necessary muffet parameters
+    run_timeout: 600  # maximum amount of time to run muffet (default is 300 seconds)
 ```
 
 Do you want to skip the docker build step? OK, the script mode is available.
@@ -53,9 +53,9 @@ Do you want to skip the docker build step? OK, the script mode is available.
 ```yaml
 - name: Check
   env:
-    URL: https://www.example.com/test123
-    PAGES_PATH: ./build/
-    MUFFET_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification  # --skip-tls-verification is mandatory parameter when using https and "PAGES_PATH"
+    INPUT_URL: https://www.example.com/test123
+    INPUT_PAGES_PATH: ./build/
+    INPUT_CMD_PARAMS: "--buffer-size=8192 --concurrency=10 --skip-tls-verification"  # --skip-tls-verification is mandatory parameter when using https and "PAGES_PATH"
   run: |
     wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 ```
@@ -67,8 +67,8 @@ and [muffet](https://github.com/raviqqe/muffet) binaries if they
 are not already installed on your system.
 
 ```bash
-export URL="https://google.com"
-export MUFFET_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --verbose"
+export INPUT_URL="https://google.com"
+export INPUT_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --verbose"
 ./entrypoint.sh
 ```
 
@@ -105,19 +105,19 @@ You can also use the advantage of the container to run the checks locally
 without installing anything (except the container image) to your system:
 
 ```bash
-export URL="https://google.com"
-export MUFFET_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --verbose"
-export URL="https://google.com"
-docker run --rm -t -e URL -e MUFFET_CMD_PARAMS peru/action-test
+export INPUT_URL="https://google.com"
+export INPUT_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --verbose"
+export INPUT_URL="https://google.com"
+docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS peru/action-test
 ```
 
 Another example when checking the the web page locally stored on your disk.
 In this case I'm using the web page created in the `./tests/` directory:
 
 ```bash
-export PAGES_PATH="${PWD}/tests/"
-export URL="https://my-testing-domain.com"
-export MUFFET_CMD_PARAMS="--skip-tls-verification --verbose"
+export INPUT_PAGES_PATH="${PWD}/tests/"
+export INPUT_URL="https://my-testing-domain.com"
+export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 ./entrypoint.sh
 ```
 
@@ -141,11 +141,16 @@ https://my-testing-domain.com:443/
 The same example as above, but this time I'm using the container:
 
 ```bash
-export MUFFET_CMD_PARAMS="--skip-tls-verification --verbose"
-export PAGES_PATH="${PWD}/tests/"
-export URL="https://my-testing-domain.com"
-docker run --rm -t -e URL -e MUFFET_CMD_PARAMS -e PAGES_PATH -v "$PAGES_PATH:$PAGES_PATH" peru/action-test
+export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
+export INPUT_PAGES_PATH="${PWD}/tests/"
+export INPUT_URL="https://my-testing-domain.com"
+docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/action-test
 ```
+
+
+
+
+
 
 ## Full examples
 
@@ -186,11 +191,11 @@ jobs:
 
       - name: Check
         env:
-          URL: https://my-testing-domain.com
-          PAGES_PATH: ./public/
-          MUFFET_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments
-          RUN_TIMEOUT: 100
-          DEBUG: true
+          INPUT_URL: https://my-testing-domain.com
+          INPUT_PAGES_PATH: ./public/
+          INPUT_CMD_PARAMS: "--buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments"
+          INPUT_RUN_TIMEOUT: 100
+          INPUT_DEBUG: true
         run: |
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 ```

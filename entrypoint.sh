@@ -2,15 +2,15 @@
 
 set -euo pipefail
 
-export MUFFET_CMD_PARAMS="${MUFFET_CMD_PARAMS:---buffer-size=8192 --concurrency=10}"
-export PAGES_PATH=${PAGES_PATH:-}
-export URL=${URL:?}
+export CMD_PARAMS="${INPUT_CMD_PARAMS:---buffer-size=8192 --concurrency=10}"
+export PAGES_PATH=${INPUT_PAGES_PATH:-}
+export URL=${INPUT_URL:?}
 PAGES_DOMAIN=$( echo "${URL}" | awk -F[/:] '{print $4}' )
 export PAGES_DOMAIN
 PAGES_URI=$( echo "${URL}" | cut -d / -f 1,2,3 )
 export PAGES_URI
-export RUN_TIMEOUT="${RUN_TIMEOUT:-300}"
-export DEBUG=${DEBUG:-}
+export RUN_TIMEOUT="${INPUT_RUN_TIMEOUT:-300}"
+export DEBUG=${INPUT_DEBUG:-}
 
 function print_error() {
   echo -e "\e[31m*** ERROR: ${1}\e[m"
@@ -52,7 +52,7 @@ fi
 if [ -z "${PAGES_PATH}" ] ; then
   print_info "Using URL - ${URL}"
   # shellcheck disable=SC2086
-  timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
+  timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
 else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
   if ! grep -q "${PAGES_DOMAIN}" /etc/hosts ; then
@@ -68,7 +68,7 @@ EOF
   sudo caddy -conf "${CADDYFILE}" -pidfile "${CADDY_PIDFILE}" -quiet &
   sleep 1
   # shellcheck disable=SC2086
-  timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
+  timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
   cleanup
 fi
 

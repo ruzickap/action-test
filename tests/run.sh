@@ -1,46 +1,46 @@
 #!/bin/bash -eux
 
-export DEBUG="true"
+export INPUT_DEBUG="true"
 
 # Test entrypoint.sh script
 
 ## Check differnet URLs types
-export MUFFET_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose --timeout=40"
+export INPUT_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose --timeout=40"
 
-export URL="https://google.com"
+export INPUT_URL="https://google.com"
 ../entrypoint.sh
 
-export URL="https://google.com:443"
+export INPUT_URL="https://google.com:443"
 ../entrypoint.sh
 
-export URL="https://google.com:443/search"
+export INPUT_URL="https://google.com:443/search"
 ../entrypoint.sh
 
 ## Test locally stored web pages (PAGES_PATH)
-export MUFFET_CMD_PARAMS="--skip-tls-verification --verbose"
+export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 
-export PAGES_PATH="${PWD}"
-export URL="http://my-testing-domain.com/index2.html"
+export INPUT_PAGES_PATH="${PWD}"
+export INPUT_URL="http://my-testing-domain.com/index2.html"
 ../entrypoint.sh
 
-export PAGES_PATH="${PWD}"
-export URL="https://my-testing-domain.com"
+export INPUT_PAGES_PATH="${PWD}"
+export INPUT_URL="https://my-testing-domain.com"
 ../entrypoint.sh
 
 ## Test docker image
 
 docker build .. -t broken-link-checker-test-img
 
-export MUFFET_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose"
-export URL="https://google.com"
-docker run --rm -t -e DEBUG -e URL -e MUFFET_CMD_PARAMS broken-link-checker-test-img
+export INPUT_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose"
+export INPUT_URL="https://google.com"
+docker run --rm -t -e INPUT_DEBUG -e INPUT_URL -e INPUT_CMD_PARAMS broken-link-checker-test-img
 
-export MUFFET_CMD_PARAMS="--skip-tls-verification --verbose"
-export PAGES_PATH="${PWD}"
-export URL="https://my-testing-domain.com"
-docker run --rm -t -e DEBUG -e URL -e MUFFET_CMD_PARAMS -e PAGES_PATH -v "$PAGES_PATH:$PAGES_PATH" broken-link-checker-test-img
+export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
+export INPUT_PAGES_PATH="${PWD}"
+export INPUT_URL="https://my-testing-domain.com"
+docker run --rm -t -e INPUT_DEBUG -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" broken-link-checker-test-img
 
-export MUFFET_CMD_PARAMS="--verbose"
-export PAGES_PATH="${PWD}"
-export URL="http://my-testing-domain.com/index2.html"
-docker run --rm -t -e DEBUG -e URL -e MUFFET_CMD_PARAMS -e PAGES_PATH -v "$PAGES_PATH:$PAGES_PATH" broken-link-checker-test-img
+export INPUT_CMD_PARAMS="--verbose"
+export INPUT_PAGES_PATH="${PWD}"
+export INPUT_URL="http://my-testing-domain.com/index2.html"
+docker run --rm -t -e INPUT_DEBUG -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" broken-link-checker-test-img

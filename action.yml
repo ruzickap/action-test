@@ -8,8 +8,12 @@ branding:
   icon: 'list'
   color: 'blue'
 inputs:
-  muffet_cmd_params:
-    description: 'Muffet command line parametrs.'
+  debug:
+    description: 'Debug mode (set -x).'
+    required: false
+    default: ''
+  cmd_params:
+    description: 'Command line parametrs for muffet.'
     required: false
     default: ''
   pages_path:
@@ -24,3 +28,7 @@ inputs:
     description: 'Check URL for broken links.'
     required: true
     default: ''
+
+outputs:
+  output:
+    description: 'Output of the link checker.'
