@@ -185,6 +185,7 @@ jobs:
 
       - name: Check
         env:
+          TERM: xterm  # Colours are allowed in output
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./public/
           INPUT_CMD_PARAMS: "--buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments"
