@@ -55,7 +55,7 @@ if [ -z "${PAGES_PATH}" ] ; then
   timeout "${RUN_TIMEOUT}" muffet ${MUFFET_CMD_PARAMS} "${URL}"
 else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
-  if ! grep "${PAGES_DOMAIN}" /etc/hosts ; then
+  if ! grep -q "${PAGES_DOMAIN}" /etc/hosts ; then
     sudo bash -c "echo \"127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker\" >> /etc/hosts"
   fi
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
