@@ -153,11 +153,11 @@ Environment variables used by `./entrypoint.sh` script.
 
 | Variable            | Default                               | Description                                                                                                                                                               |
 |---------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INPUT_CMD_PARAMS`  | --buffer-size=8192 --concurrency=10   | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
-| `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (set -x)                                                                                                              |
-| `INPUT_PAGES_PATH`  | ''                                    | Relative path to the directory with local web pages                                                                                                                      |
+| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
+| `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (`set -x`)                                                                                                            |
+| `INPUT_PAGES_PATH`  |                                       | Relative path to the directory with local web pages                                                                                                                      |
 | `INPUT_RUN_TIMEOUT` | 600                                   | Max number of seconds which URL checker can be running                                                                                                                   |
-| `INPUT_URL`         | '' (**Required**)                     | URL which will be checked                                                                                                                                                |
+| `INPUT_URL`         | (** Mandatory / Required **)          | URL which will be checked                                                                                                                                                |
 
 ## Full examples
 
@@ -199,7 +199,7 @@ jobs:
         env:
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./public/
-          INPUT_CMD_PARAMS: "--buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments"
+          INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
           INPUT_RUN_TIMEOUT: 100
           INPUT_DEBUG: true
         run: |
@@ -210,7 +210,7 @@ jobs:
         with:
           url: https://my-testing-domain.com
           pages_path: ./public/
-          cmd_params: "--buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments"
+          cmd_params: "--skip-tls-verification --verbose"
           run_timeout: 100
           debug: true
 ```
