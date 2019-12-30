@@ -73,13 +73,13 @@ else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
 
   if [ ! -d "${PAGES_PATH}" ]; then
-    print_error "Path specified as 'INPUT_PAGES_PATH': '${PAGES_PATH}' doesn't exists!"
+    print_error "Path specified as 'INPUT_PAGES_PATH': '${PAGES_PATH}' doesn't exist!"
     exit 1
   fi
 
   # Add domain into /etc/hosts
   if ! grep -q "${PAGES_DOMAIN}" /etc/hosts ; then
-    sudo bash -c "echo \"127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker\" >> /etc/hosts"
+    sudo bash -c "echo \"127.0.0.1 ${PAGES_DOMAIN}  # Created by broken-link-checker\" >> /etc/hosts"
   fi
 
   # Create caddy configuration to run web server using the domain set in /etc/hosts (loop)
