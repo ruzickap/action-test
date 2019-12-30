@@ -217,7 +217,7 @@ docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INP
 
 ## Examples
 
-Some other examples of building anch checking web pages using [Static Site Generators](https://www.staticgen.com/)
+Some other examples of building and checking web pages using [Static Site Generators](https://www.staticgen.com/)
 and GitHub Actions can be found here: [https://github.com/peaceiris/actions-gh-pages/](https://github.com/peaceiris/actions-gh-pages/)
 
 The following links contains real examples of Broken link checker usage:
