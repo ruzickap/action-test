@@ -65,11 +65,16 @@ fi
 
 # Use muffet in case of external URL check is required
 if [ -z "${PAGES_PATH}" ] ; then
-  print_info "Using URL - ${URL}"
-  # TODO: Add "--verbose" to timeout command when Ubuntu 20.04 will be released
+
+  print_info "Using URL: ${URL}"
+
+  # Run check
+  print_info "[$(date +'%F %T')] Start checking: \"${URL}\""
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
+
 else
+
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
 
   if [ ! -d "${PAGES_PATH}" ]; then
@@ -100,6 +105,7 @@ EOF
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
   cleanup
+
 fi
 
 print_info "[$(date +'%F %T')] Checks completed."
