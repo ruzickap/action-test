@@ -1,10 +1,10 @@
 #!/bin/bash -eux
 
+# Test entrypoint.sh script
 export INPUT_DEBUG="true"
 
-# Test entrypoint.sh script
 
-## Check differnet URLs types
+echo -e "\n\nCheck differnet URLs types"
 export INPUT_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose"
 
 export INPUT_URL="https://google.com"
@@ -16,7 +16,8 @@ export INPUT_URL="https://google.com:443"
 export INPUT_URL="https://google.com:443/search"
 ../entrypoint.sh
 
-## Test locally stored web pages (PAGES_PATH)
+
+echo -e "\n\nTest locally stored web pages (PAGES_PATH)"
 export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 
 export INPUT_PAGES_PATH="${PWD}"
@@ -27,8 +28,8 @@ export INPUT_PAGES_PATH="${PWD}"
 export INPUT_URL="https://my-testing-domain.com"
 ../entrypoint.sh
 
-## Test docker image
 
+echo -e "\n\nTest docker image"
 docker build .. -t broken-link-checker-test-img
 
 export INPUT_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose"
