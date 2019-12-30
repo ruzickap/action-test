@@ -90,11 +90,7 @@ else
   # Create caddy configuration to run web server using the domain set in PAGES_DOMAIN + /etc/hosts
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
   CADDY_PIDFILE=$( mktemp -u /tmp/Caddy_pidfile.XXXXXX )
-  cat > "${CADDYFILE}" << EOF
-  ${PAGES_URI}
-  root ${PAGES_PATH}
-  tls self_signed
-EOF
+  echo -e "${PAGES_URI}\n root ${PAGES_PATH}\n tls self_signed" > "${CADDYFILE}"
 
   # Run caddy web server on the background
   sudo caddy -conf "${CADDYFILE}" -pidfile "${CADDY_PIDFILE}" -quiet &
