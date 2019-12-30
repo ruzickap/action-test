@@ -26,7 +26,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Check
-      uses: peru/action-test@v1
+      uses: ruzickap/action-test@v2
       with:
         url: https://www.google.com
         cmd_params: "--one-page-only"  # Check just one page
@@ -40,7 +40,7 @@ and serving the web page (see the details in [entrypoint.sh](./entrypoint.sh)).
 
 ```yaml
 - name: Check
-  uses: peru/action-test@v1
+  uses: ruzickap/action-test@v2
   with:
     url: https://www.example.com/test123
     pages_path: ./build/
@@ -118,7 +118,7 @@ jobs:
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 
       - name: Check links using container
-        uses: ruzickap/action-test@v1
+        uses: ruzickap/action-test@v2
         with:
           url: https://my-testing-domain.com
           pages_path: ./public/
