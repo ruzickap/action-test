@@ -6,12 +6,10 @@ on:
     paths:
       - '**.yml'
       - '**.yaml'
-      - .github/workflows/yamllint-checks.yml
   push:
     paths:
       - '**.yml'
       - '**.yaml'
-      - .github/workflows/yamllint-checks.yml
     branches:
       - master
 

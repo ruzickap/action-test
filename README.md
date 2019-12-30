@@ -1,3 +1,7 @@
+**Do not use this**
+
+Please follow: [https://github.com/ruzickap/action-broken-link-checker](https://github.com/ruzickap/action-broken-link-checker)
+
 # GitHub Actions: Broken link checker ✔
 
 <!-- (https://github.com/marketplace/actions/action-test)  -->
