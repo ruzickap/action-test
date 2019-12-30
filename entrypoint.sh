@@ -41,7 +41,7 @@ function cleanup() {
 
 function error_trap() {
   cleanup
-  print_error "*** Something went wrong - see the errors above..."
+  print_error "[$(date +'%F %T')] Something went wrong - see the errors above..."
 }
 
 ################
@@ -95,10 +95,11 @@ EOF
   sudo caddy -conf "${CADDYFILE}" -pidfile "${CADDY_PIDFILE}" -quiet &
   sleep 1
 
-  # TODO: Add "--verbose" to timeout command when Ubuntu 20.04 will be released
+  # Run check
+  print_info "[$(date +'%F %T')] Start checking: \"${URL}\""
   # shellcheck disable=SC2086
   timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
   cleanup
 fi
 
-print_info "Checks completed..."
+print_info "[$(date +'%F %T')] Checks completed."
