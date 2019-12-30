@@ -74,6 +74,7 @@ else
 
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
 
+  # Die if the specified path which should contain local web pages doesn't exist
   if [ ! -d "${PAGES_PATH}" ]; then
     print_error "Path specified as 'INPUT_PAGES_PATH': '${PAGES_PATH}' doesn't exist!"
     exit 1
