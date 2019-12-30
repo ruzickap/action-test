@@ -1,4 +1,4 @@
-# GitHub Actions for checking broken links ✔
+# GitHub Actions for checking broken links - Broken link checker ✔
 
 <!-- (https://github.com/marketplace/actions/action-test)  -->
 [![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Broken%20Link%20Checker-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/ruzickap/action-test/)
@@ -9,7 +9,7 @@
 [![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/action-test.svg)](https://hub.docker.com/r/peru/action-test)
 
 This is a GitHub Action to check broken link in your static files or web pages.
-The [muffet](https://github.com/raviqqe/muffet) is used for checking task.
+The [muffet](https://github.com/raviqqe/muffet) is used for URL checking task.
 
 See the basic GitHub Action example to run periodic checks (weekly)
 against [google.com](https://google.com):
@@ -32,11 +32,11 @@ jobs:
         cmd_params: "--one-page-only"  # Check just one page
 ```
 
-This deploy action can be combined simply and freely with [Static Site Generators](https://www.staticgen.com/).
+This deploy action can be combined with [Static Site Generators](https://www.staticgen.com/)
 (Hugo, MkDocs, Gatsby, GitBook, mdBook, etc.). The following examples expects
 to have the web page stored in `./build` directory. There is a [caddy](https://caddyserver.com/)
-started during the tests which is using the hostname from the `URL` parameter
-and serving the web page (see the details in [entrypoint.sh](./entrypoint.sh)).
+web server started during the tests which is using the hostname from the `URL`
+parameter and serving the web pages (see the details in [entrypoint.sh](./entrypoint.sh)).
 
 ```yaml
 - name: Check
@@ -44,18 +44,18 @@ and serving the web page (see the details in [entrypoint.sh](./entrypoint.sh)).
   with:
     url: https://www.example.com/test123
     pages_path: ./build/
-    cmd_params: --buffer-size=8192 --concurrency=10 --skip-tls-verification --limit-redirections=5 --timeout=20  # specify all necessary muffet parameters
+    cmd_params: --buffer-size=8192 --concurrency=10 --skip-tls-verification --limit-redirections=5 --timeout=20  # muffet parameters
     run_timeout: 600  # maximum amount of time to run muffet (default is set to 300 seconds)
 ```
 
-Do you want to skip the docker build step? OK, the script mode is available.
+Do you want to skip the docker build step? OK, the script mode is also available:
 
 ```yaml
 - name: Check
   env:
     INPUT_URL: https://www.example.com/test123
     INPUT_PAGES_PATH: ./build/
-    INPUT_CMD_PARAMS: "--buffer-size=8192 --concurrency=10 --skip-tls-verification"  # --skip-tls-verification is mandatory parameter when using https and "PAGES_PATH"
+    INPUT_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification  # --skip-tls-verification is mandatory parameter when using https and "PAGES_PATH"
   run: |
     wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 ```
@@ -64,13 +64,13 @@ Do you want to skip the docker build step? OK, the script mode is available.
 
 Environment variables used by `./entrypoint.sh` script.
 
-| Variable            | Default                               | Description                                                                                                                                                               |
+| Variable            | Default                               | Description                                                                                                                                                              |
 |---------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
+| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) - details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34) |
 | `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (`set -x`)                                                                                                            |
 | `INPUT_PAGES_PATH`  |                                       | Relative path to the directory with local web pages                                                                                                                      |
-| `INPUT_RUN_TIMEOUT` | 600                                   | Max number of seconds which URL checker can be running                                                                                                                   |
-| `INPUT_URL`         | (** Mandatory / Required **)          | URL which will be checked                                                                                                                                                |
+| `INPUT_RUN_TIMEOUT` | 300                                   | Maximum number of seconds that URL checker can be running                                                                                                                |
+| `INPUT_URL`         | (**Mandatory / Required**)            | URL which will be checked                                                                                                                                                |
 
 ## Full example
 
@@ -129,7 +129,7 @@ jobs:
 
 ## Running locally
 
-It's possible to use the script locally. It will install [caddy](https://caddyserver.com/)
+It's possible to use the checking script locally. It will install [caddy](https://caddyserver.com/)
 and [muffet](https://github.com/raviqqe/muffet) binaries if they
 are not already installed on your system.
 
@@ -169,21 +169,21 @@ https://www.google.com/
 ```
 
 You can also use the advantage of the container to run the checks locally
-without installing anything (except the container image) to your system:
+without touching your system:
 
 ```bash
 export INPUT_URL="https://google.com"
 export INPUT_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --verbose"
-export INPUT_URL="https://google.com"
 docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS peru/action-test
 ```
 
 Another example when checking the the web page locally stored on your disk.
-In this case I'm using the web page created in the `./tests/` directory:
+In this case I'm using the web page created in the `./tests/` directory from
+this git repository:
 
 ```bash
-export INPUT_PAGES_PATH="${PWD}/tests/"
 export INPUT_URL="https://my-testing-domain.com"
+export INPUT_PAGES_PATH="${PWD}/tests/"
 export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 ./entrypoint.sh
 ```
@@ -206,21 +206,21 @@ https://my-testing-domain.com:443/
 *** INFO: [2019-12-30 14:54:22] Checks completed...
 ```
 
-The same example as above, but this time I'm using the container:
+The same example as above, but in this case I'm using the container:
 
 ```bash
-export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
-export INPUT_PAGES_PATH="${PWD}/tests/"
 export INPUT_URL="https://my-testing-domain.com"
+export INPUT_PAGES_PATH="${PWD}/tests/"
+export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/action-test
 ```
 
 ## Examples
 
-Some other examples of building web pages using [Static Site Generators](https://www.staticgen.com/)
+Some other examples of building anch checking web pages using [Static Site Generators](https://www.staticgen.com/)
 and GitHub Actions can be found here: [https://github.com/peaceiris/actions-gh-pages/](https://github.com/peaceiris/actions-gh-pages/)
 
-Few real examples:
+The following links contains real examples of using Broken link checker:
 
 * Go to "Actions -> check-broken-links" in this repository
 
