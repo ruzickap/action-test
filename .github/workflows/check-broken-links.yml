@@ -2,7 +2,7 @@ name: check-broken-links
 
 on:
   schedule:
-    - cron: '0 7 * * 0'
+    - cron: '30 10 * * 0'
 
 jobs:
   broken-link-checker:
