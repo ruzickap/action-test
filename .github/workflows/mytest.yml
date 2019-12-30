@@ -26,3 +26,9 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${GITHUB_CONTEXT}"
+
+      - name: Dump GitHub context2
+        env:
+          GITHUB_CONTEXT: ${{ github.event.repository.name }}
+          GITHUB_CONTEXT2: ${{ github.event.repository.owner.name }}
+        run: echo "${GITHUB_CONTEXT} | ${GITHUB_CONTEXT2}"
