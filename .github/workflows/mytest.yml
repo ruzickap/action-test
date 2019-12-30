@@ -15,9 +15,9 @@ jobs:
       - name: Good
         run: echo "${GITHUB_REPOSITORY%/*} | ${GITHUB_REPOSITORY##*/} | ${GITHUB_REPOSITORY}"
 
-      - name: Good
+      - name: Test2
         env:
-          T1: ${GITHUB_REPOSITORY%/*}
-          T2: ${GITHUB_REPOSITORY##*/}
-          T3: ${GITHUB_REPOSITORY}
+          T1: "${GITHUB_REPOSITORY%/*}"
+          T2: "${GITHUB_REPOSITORY##*/}"
+          T3: "${GITHUB_REPOSITORY}"
         run: echo "${T1} | ${T2} | ${T3}"
