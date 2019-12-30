@@ -5,11 +5,13 @@ on:
     types: [opened, synchronize]
     paths:
       - README.md
+      - .github/workflows/check-commands.yml
   push:
     paths:
       - README.md
     branches:
       - master
+      - .github/workflows/check-commands.yml
 
 jobs:
   command-check:
