@@ -1,4 +1,4 @@
-# Do not use this repository...
+# Do not use this repository
 
 Please follow: [https://github.com/ruzickap/action-broken-link-checker](https://github.com/ruzickap/action-broken-link-checker)
 
