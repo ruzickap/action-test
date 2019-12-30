@@ -3,11 +3,19 @@ name: tests
 on:
   pull_request:
     types: [opened, synchronize]
-    paths-ignore:
-      - '**.md'
+    paths:
+      - tests/**
+      - .github/workflows/tests.yml
+      - entrypoint.sh
+      - Dockerfile
+      - .dockerignore
   push:
-    paths-ignore:
-      - '**.md'
+    paths:
+      - tests/**
+      - .github/workflows/tests.yml
+      - entrypoint.sh
+      - Dockerfile
+      - .dockerignore
     branches:
       - master
 

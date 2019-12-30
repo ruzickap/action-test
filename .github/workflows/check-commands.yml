@@ -9,9 +9,9 @@ on:
   push:
     paths:
       - README.md
+      - .github/workflows/check-commands.yml
     branches:
       - master
-      - .github/workflows/check-commands.yml
 
 jobs:
   command-check:

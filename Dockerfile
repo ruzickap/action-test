@@ -27,7 +27,6 @@ RUN set -eux && \
     wget -qO- "${MUFFET_URL}" | tar xzf - -C /usr/local/bin/ muffet && \
     wget -qO- https://getcaddy.com | bash -s personal
 
-COPY LICENSE README.md /
 COPY entrypoint.sh /entrypoint.sh
 
 ENTRYPOINT [ "/entrypoint.sh" ]
