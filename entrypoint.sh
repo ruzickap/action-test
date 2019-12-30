@@ -14,7 +14,7 @@ export PAGES_DOMAIN
 # URI used by caddy to serve locally stored web pages (https://test.example.com)
 PAGES_URI=$( echo "${URL}" | cut -d / -f 1,2,3 )
 export PAGES_URI
-# Maximum number of seconds which URL checker can be running
+# Maximum number of seconds that URL checker can be running
 export RUN_TIMEOUT="${INPUT_RUN_TIMEOUT:-300}"
 # Debug variable - enable by setting non-empty value
 export DEBUG=${INPUT_DEBUG:-}
