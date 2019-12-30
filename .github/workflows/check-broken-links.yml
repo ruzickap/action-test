@@ -13,19 +13,19 @@ jobs:
       - name: Check - container
         uses: ruzickap/action-test@v1
         with:
-          cmd_params: "--verbose --ignore-fragments --one-page-only"
+          cmd_params: --verbose --ignore-fragments --one-page-only
           url: https://google.com
 
       - name: Check - simple
         env:
-          INPUT_CMD_PARAMS: "--verbose --ignore-fragments --one-page-only"
+          INPUT_CMD_PARAMS: --verbose --ignore-fragments --one-page-only
           INPUT_URL: https://google.com
         run: |
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 
       - name: Check - simple - local pages
         env:
-          INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
+          INPUT_CMD_PARAMS: --skip-tls-verification --verbose
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./tests/
         run:
@@ -57,7 +57,7 @@ jobs:
         env:
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./public/
-          INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
+          INPUT_CMD_PARAMS: --skip-tls-verification --verbose
           INPUT_RUN_TIMEOUT: 100
           INPUT_DEBUG: true
         run: |
@@ -68,6 +68,6 @@ jobs:
         with:
           url: https://my-testing-domain.com
           pages_path: ./public/
-          cmd_params: "--skip-tls-verification --verbose"
+          cmd_params: --skip-tls-verification --verbose
           run_timeout: 10
           debug: true
