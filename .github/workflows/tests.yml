@@ -28,6 +28,9 @@ jobs:
       - name: shellcheck
         run: shellcheck tests/*.sh
 
+      - name: path
+        run: which shellcheck
+
   tests:
     runs-on: ubuntu-18.04
     steps:
