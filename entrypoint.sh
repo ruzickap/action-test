@@ -66,8 +66,9 @@ fi
 # Use muffet in case of simple URL check
 if [ -z "${PAGES_PATH}" ] ; then
   print_info "Using URL - ${URL}"
+  # TODO: Add "--verbose" to timeout command when Ubuntu 20.04 will be released
   # shellcheck disable=SC2086
-  timeout --verbose "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
+  timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
 else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
 
@@ -94,8 +95,9 @@ EOF
   sudo caddy -conf "${CADDYFILE}" -pidfile "${CADDY_PIDFILE}" -quiet &
   sleep 1
 
+  # TODO: Add "--verbose" to timeout command when Ubuntu 20.04 will be released
   # shellcheck disable=SC2086
-  timeout --verbose "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
+  timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
   cleanup
 fi
 

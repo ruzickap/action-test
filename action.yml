@@ -17,7 +17,7 @@ inputs:
     required: false
     default: ''
   pages_path:
-    description: 'Realive path to the directory with local web pages'
+    description: 'Relative path to the directory with local web pages'
     required: false
     default: ''
   run_timeout:

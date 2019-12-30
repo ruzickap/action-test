@@ -27,7 +27,7 @@ jobs:
 
       - name: "Create markdownlint configuration file"
         run: |
-          echo "{ MD013: { code_blocks: false } }" > /tmp/markdownlint_config.json
+          echo "{ MD013: { code_blocks: false, tables: false } }" > /tmp/markdownlint_config.json
 
       - name: "Run markdownlint"
         run: find . -path ./node_modules -prune -o -name "*.md" -print0 | xargs -t -0 markdownlint -c /tmp/markdownlint_config.json
