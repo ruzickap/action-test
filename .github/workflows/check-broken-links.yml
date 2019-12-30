@@ -31,7 +31,7 @@ jobs:
         run:
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 
-  build-deploy:
+  build-check:
     runs-on: ubuntu-18.04
     steps:
       - name: Create web page

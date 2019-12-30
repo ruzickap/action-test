@@ -3,11 +3,21 @@ name: docker-image
 on:
   pull_request:
     types: [opened, synchronize]
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - .hadolint.yaml
+      - entrypoint.sh
+      - .github/workflows/docker-image.yml
     paths-ignore:
       - '**.md'
   push:
-    paths-ignore:
-      - '**.md'
+    paths:
+      - Dockerfile
+      - .dockerignore
+      - .hadolint.yaml
+      - entrypoint.sh
+      - .github/workflows/docker-image.yml
     branches:
       - master
 

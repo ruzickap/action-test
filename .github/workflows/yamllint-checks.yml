@@ -1,0 +1,28 @@
+name: yamllint-checks
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - '**.yml'
+      - '**.yaml'
+      - .github/workflows/yamllint-checks.yml
+  push:
+    paths:
+      - '**.yml'
+      - '**.yaml'
+      - .github/workflows/yamllint-checks.yml
+    branches:
+      - master
+
+jobs:
+  yamllint-check:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: markdownlint-cli
+        uses: ibiqlik/action-yamllint@master
+        with:
+          file_or_dir: .
+          config_file: .markdownlint.yml
