@@ -65,9 +65,6 @@ fi
 
 # Use muffet in case of external URL check is required
 if [ -z "${PAGES_PATH}" ] ; then
-
-  print_info "Using URL: ${URL}"
-
   # Run check
   print_info "[$(date +'%F %T')] Start checking: \"${URL}\""
   # shellcheck disable=SC2086
@@ -104,4 +101,4 @@ else
 
 fi
 
-print_info "[$(date +'%F %T')] Checks completed."
+print_info "[$(date +'%F %T')] Checks completed..."

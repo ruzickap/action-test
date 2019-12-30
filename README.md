@@ -142,7 +142,7 @@ export INPUT_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --v
 Output:
 
 ```text
-*** INFO: Using URL - https://google.com
+*** INFO: [2019-12-30 14:53:54] Start checking: "https://google.com"
 https://www.google.com/
         200     http://www.google.cz/history/optout?hl=cs
         200     http://www.google.cz/intl/cs/services/
@@ -160,12 +160,12 @@ https://www.google.com/
         200     https://www.google.com/intl/cs/policies/terms/
         200     https://www.google.com/language_tools?hl=cs&authuser=0
         200     https://www.google.com/preferences?hl=cs
-        200     https://www.google.com/setprefdomain?prefdom=CZ&prev=https://www.google.cz/&sig=K_r4B5zcKfyJMcX_GbP9etD047mEA%3D
+        200     https://www.google.com/setprefdomain?prefdom=CZ&prev=https://www.google.cz/&sig=K_WmKyDZc24PJiXFyTjsUeLLrG-P4%3D
         200     https://www.google.com/textinputassistant/tia.png
         200     https://www.google.cz/imghp?hl=cs&tab=wi
         200     https://www.google.cz/intl/cs/about/products?tab=wh
         200     https://www.youtube.com/?gl=CZ&tab=w1
-*** INFO: Checks completed...
+*** INFO: [2019-12-30 14:53:55] Checks completed...
 ```
 
 You can also use the advantage of the container to run the checks locally
@@ -192,6 +192,7 @@ Output:
 
 ```text
 *** INFO: Using path "/home/pruzicka/git/action-test/tests/" as domain "my-testing-domain.com" with URI "https://my-testing-domain.com"
+*** INFO: [2019-12-30 14:54:22] Start checking: "https://my-testing-domain.com"
 https://my-testing-domain.com/
         200     https://my-testing-domain.com
         200     https://my-testing-domain.com/run_tests.sh
@@ -202,7 +203,7 @@ https://my-testing-domain.com:443/
         200     https://my-testing-domain.com/run_tests.sh
         200     https://my-testing-domain.com:443
         200     https://my-testing-domain.com:443/run_tests.sh
-*** INFO: Checks completed...
+*** INFO: [2019-12-30 14:54:22] Checks completed...
 ```
 
 The same example as above, but this time I'm using the container:
