@@ -1,0 +1,23 @@
+name: mytest
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  mytest:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Test
+        run: echo "${{ github.actor }} | ${{ github.repository }}"
+
+      - name: Good
+        run: echo "${GITHUB_REPOSITORY%/*} | ${GITHUB_REPOSITORY##*/} | ${GITHUB_REPOSITORY}"
+
+      - name: Good
+        env:
+          T1: ${GITHUB_REPOSITORY%/*}
+          T2: ${GITHUB_REPOSITORY##*/}
+          T3: ${GITHUB_REPOSITORY}
+        run: echo "${T1} | ${T2} | ${T3}"
