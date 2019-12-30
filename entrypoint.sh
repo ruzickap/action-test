@@ -63,7 +63,7 @@ if ! hash caddy &> /dev/null && [ -n "${PAGES_PATH}" ] ; then
   wget -qO- https://getcaddy.com | sudo bash -s personal > /dev/null
 fi
 
-# Use muffet in case of simple URL check
+# Use muffet in case of external URL check is required
 if [ -z "${PAGES_PATH}" ] ; then
   print_info "Using URL - ${URL}"
   # TODO: Add "--verbose" to timeout command when Ubuntu 20.04 will be released
