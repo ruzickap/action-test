@@ -1,5 +1,5 @@
-name: 'Broken Link Checker action'
-description: 'GitHub Actions to test broken links on local files or remote web pages.'
+name: 'Broken Link Checker'
+description: 'Broken link checker for web pages located localy or remotely'
 author: 'ruzickap'
 runs:
   using: 'docker'
@@ -9,25 +9,25 @@ branding:
   color: 'blue'
 inputs:
   debug:
-    description: 'Debug mode (set -x).'
+    description: 'Debug mode (set -x)'
     required: false
     default: ''
   cmd_params:
-    description: 'Command line parametrs for muffet.'
+    description: 'Command line parametrs for muffet'
     required: false
     default: ''
   pages_path:
-    description: 'Realive path to the directory with local web pages.'
+    description: 'Realive path to the directory with local web pages'
     required: false
     default: ''
   run_timeout:
-    description: 'Max number of seconds which URL checker can be running.'
+    description: 'Max number of seconds which URL checker can be running'
     required: false
     default: '300'
   url:
-    description: 'Check URL for broken links.'
+    description: 'URL which will be checked'
     required: true
     default: ''
 outputs:
   output:
-    description: 'Output of the link checker.'
+    description: 'Output of the link checker'

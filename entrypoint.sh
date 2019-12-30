@@ -30,9 +30,9 @@ function print_info() {
 # Remove all added files or changed /etc/hosts entry
 function cleanup() {
   if [ -n "${PAGES_PATH}" ]; then
-    # Manipulation with /etc/hosts using 'sed -i' doesn't work in containers
+    # Manipulation with /etc/hosts using 'sed -i' doesn't work inside containers
     if ! grep -q docker /proc/1/cgroup ; then
-      sudo sed -i "/127.0.0.1 ${PAGES_DOMAIN}  # Created for broken-link-checker/d" /etc/hosts
+      sudo sed -i "/127.0.0.1 ${PAGES_DOMAIN}  # Created in \/etc\/hosts for broken-link-checker/d" /etc/hosts
     fi
     [ -s "${CADDY_PIDFILE}" ] && sudo kill "$(cat "${CADDY_PIDFILE}")"
     [ -f "${CADDYFILE}" ] && rm "${CADDYFILE}"
@@ -67,26 +67,35 @@ fi
 if [ -z "${PAGES_PATH}" ] ; then
   print_info "Using URL - ${URL}"
   # shellcheck disable=SC2086
-  timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
+  timeout --verbose "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
 else
   print_info "Using path \"${PAGES_PATH}\" as domain \"${PAGES_DOMAIN}\" with URI \"${PAGES_URI}\""
+
+  if [ ! -d "${PAGES_PATH}" ]; then
+    print_error "Path specified as 'INPUT_PAGES_PATH': '${PAGES_PATH}' doesn't exists!"
+    exit 1
+  fi
+
   # Add domain into /etc/hosts
   if ! grep -q "${PAGES_DOMAIN}" /etc/hosts ; then
     sudo bash -c "echo \"127.0.0.1 ${PAGES_DOMAIN}  # Created in /etc/hosts for broken-link-checker\" >> /etc/hosts"
   fi
+
+  # Create caddy configuration to run web server using the domain set in /etc/hosts (loop)
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
   CADDY_PIDFILE=$( mktemp -u /tmp/Caddy_pidfile.XXXXXX )
-  # Create caddy configuration to run web server using the domain set in /etc/hosts (loop)
   cat > "${CADDYFILE}" << EOF
   ${PAGES_URI}
   root ${PAGES_PATH}
   tls self_signed
 EOF
+
   # Run caddy web server on the background
   sudo caddy -conf "${CADDYFILE}" -pidfile "${CADDY_PIDFILE}" -quiet &
   sleep 1
+
   # shellcheck disable=SC2086
-  timeout "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
+  timeout --verbose "${RUN_TIMEOUT}" muffet ${CMD_PARAMS} "${URL}"
   cleanup
 fi
 

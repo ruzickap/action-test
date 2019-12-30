@@ -5,7 +5,7 @@
 [![release](https://img.shields.io/github/release/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases/latest)
 [![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases)
 ![GitHub Actions status](https://github.com/ruzickap/action-test/workflows/docker-image/badge.svg)
-[![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/broken-link-checker.svg)](https://hub.docker.com/r/peru/broken-link-checker)
+[![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/action-test.svg)](https://hub.docker.com/r/peru/action-test)
 
 This is a GitHub Action to check broken link in your static files or web pages.
 The [muffet](https://github.com/raviqqe/muffet) is used for checking task.
@@ -126,14 +126,14 @@ Output:
 *** INFO: Using path "/home/pruzicka/git/action-test/tests/" as domain "my-testing-domain.com" with URI "https://my-testing-domain.com"
 https://my-testing-domain.com/
         200     https://my-testing-domain.com
-        200     https://my-testing-domain.com/run.sh
+        200     https://my-testing-domain.com/run_tests.sh
         200     https://my-testing-domain.com:443
-        200     https://my-testing-domain.com:443/run.sh
+        200     https://my-testing-domain.com:443/run_tests.sh
 https://my-testing-domain.com:443/
         200     https://my-testing-domain.com
-        200     https://my-testing-domain.com/run.sh
+        200     https://my-testing-domain.com/run_tests.sh
         200     https://my-testing-domain.com:443
-        200     https://my-testing-domain.com:443/run.sh
+        200     https://my-testing-domain.com:443/run_tests.sh
 *** INFO: Checks completed...
 ```
 
@@ -145,6 +145,18 @@ export INPUT_PAGES_PATH="${PWD}/tests/"
 export INPUT_URL="https://my-testing-domain.com"
 docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/action-test
 ```
+
+## Parameters
+
+Environment variables used by `./entrypoint.sh` script.
+
+| Variable            | Default                               | Desciption                                                                                                                                                               |
+|---------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for url checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
+| `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (set -x)                                                                                                              |
+| `INPUT_PAGES_PATH`  | ""                                    | Realive path to the directory with local web pages                                                                                                                       |
+| `INPUT_RUN_TIMEOUT` | 600                                   | Max number of seconds which URL checker can be running                                                                                                                   |
+| `INPUT_URL`         | "" **Required**                       | URL which will be checked                                                                                                                                                |
 
 ## Full examples
 
@@ -170,7 +182,7 @@ jobs:
           <!DOCTYPE html>
           <html>
             <head>
-              My page on the my-testing-domain.com domain
+              My page which will be stored on my-testing-domain.com domain
             </head>
             <body>
               Links:
@@ -183,7 +195,7 @@ jobs:
           </html>
           EOF
 
-      - name: Check links
+      - name: Check links using script
         env:
           INPUT_URL: https://my-testing-domain.com
           INPUT_PAGES_PATH: ./public/
@@ -192,6 +204,15 @@ jobs:
           INPUT_DEBUG: true
         run: |
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
+
+      - name: Check links using container
+        uses: ruzickap/action-test@v1
+        with:
+          url: https://my-testing-domain.com
+          pages_path: ./public/
+          cmd_params: "--buffer-size=8192 --concurrency=10 --skip-tls-verification --ignore-fragments"
+          run_timeout: 100
+          debug: true
 ```
 
 ## Examples

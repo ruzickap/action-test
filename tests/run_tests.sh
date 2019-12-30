@@ -5,7 +5,7 @@ export INPUT_DEBUG="true"
 # Test entrypoint.sh script
 
 ## Check differnet URLs types
-export INPUT_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose --timeout=40"
+export INPUT_CMD_PARAMS="--one-page-only --buffer-size=8192 --concurrency=10 --verbose"
 
 export INPUT_URL="https://google.com"
 ../entrypoint.sh
