@@ -12,7 +12,7 @@ LABEL "com.github.actions.color"="blue"
 #ENV MUFFET_VERSION="1.3.2"
 ENV MUFFET_VERSION="latest"
 
-SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
+SHELL ["/bin/sh", "-eo", "pipefail", "-c"]
 
 RUN set -eux && \
     apk add --no-cache bash ca-certificates sudo wget && \
