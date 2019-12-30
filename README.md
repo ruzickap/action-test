@@ -60,6 +60,73 @@ Do you want to skip the docker build step? OK, the script mode is available.
     wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 ```
 
+## Parameters
+
+Environment variables used by `./entrypoint.sh` script.
+
+| Variable            | Default                               | Description                                                                                                                                                               |
+|---------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
+| `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (`set -x`)                                                                                                            |
+| `INPUT_PAGES_PATH`  |                                       | Relative path to the directory with local web pages                                                                                                                      |
+| `INPUT_RUN_TIMEOUT` | 600                                   | Max number of seconds which URL checker can be running                                                                                                                   |
+| `INPUT_URL`         | (** Mandatory / Required **)          | URL which will be checked                                                                                                                                                |
+
+## Full example
+
+GitHub Action example:
+
+```yaml
+name: Checks
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Create web page
+        run: |
+          mkdir -v public
+          cat > public/index.html << EOF
+          <!DOCTYPE html>
+          <html>
+            <head>
+              My page which will be stored on my-testing-domain.com domain
+            </head>
+            <body>
+              Links:
+              <ul>
+                <li><a href="https://my-testing-domain.com">https://my-testing-domain.com</a></li>
+                <li><a href="https://my-testing-domain.com:443">https://my-testing-domain.com:443</a></li>
+              </ul>
+            </body>
+          </html>
+          EOF
+
+      - name: Check links using script
+        env:
+          INPUT_URL: https://my-testing-domain.com
+          INPUT_PAGES_PATH: ./public/
+          INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
+          INPUT_RUN_TIMEOUT: 100
+          INPUT_DEBUG: true
+        run: |
+          wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
+
+      - name: Check links using container
+        uses: ruzickap/action-test@v1
+        with:
+          url: https://my-testing-domain.com
+          pages_path: ./public/
+          cmd_params: "--skip-tls-verification --verbose"
+          run_timeout: 10
+          debug: true
+```
+
 ## Running locally
 
 It's possible to use the script locally. It will install [caddy](https://caddyserver.com/)
@@ -145,74 +212,6 @@ export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 export INPUT_PAGES_PATH="${PWD}/tests/"
 export INPUT_URL="https://my-testing-domain.com"
 docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/action-test
-```
-
-## Parameters
-
-Environment variables used by `./entrypoint.sh` script.
-
-| Variable            | Default                               | Description                                                                                                                                                               |
-|---------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
-| `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (`set -x`)                                                                                                            |
-| `INPUT_PAGES_PATH`  |                                       | Relative path to the directory with local web pages                                                                                                                      |
-| `INPUT_RUN_TIMEOUT` | 600                                   | Max number of seconds which URL checker can be running                                                                                                                   |
-| `INPUT_URL`         | (** Mandatory / Required **)          | URL which will be checked                                                                                                                                                |
-
-## Full examples
-
-GitHub Action example:
-
-```yaml
-name: Checks
-
-on:
-  push:
-    branches:
-    - master
-
-jobs:
-  build-deploy:
-    runs-on: ubuntu-18.04
-    steps:
-      - name: Create web page
-        run: |
-          mkdir -v public
-          cat > public/index.html << EOF
-          <!DOCTYPE html>
-          <html>
-            <head>
-              My page which will be stored on my-testing-domain.com domain
-            </head>
-            <body>
-              Links:
-              <ul>
-                <li><a href="https://google.com">https://google.com</a></li>
-                <li><a href="https://my-testing-domain.com">https://my-testing-domain.com</a></li>
-                <li><a href="https://my-testing-domain.com:443">https://my-testing-domain.com:443</a></li>
-              </ul>
-            </body>
-          </html>
-          EOF
-
-      - name: Check links using script
-        env:
-          INPUT_URL: https://my-testing-domain.com
-          INPUT_PAGES_PATH: ./public/
-          INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
-          INPUT_RUN_TIMEOUT: 100
-          INPUT_DEBUG: true
-        run: |
-          wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
-
-      - name: Check links using container
-        uses: ruzickap/action-test@v1
-        with:
-          url: https://my-testing-domain.com
-          pages_path: ./public/
-          cmd_params: "--skip-tls-verification --verbose"
-          run_timeout: 100
-          debug: true
 ```
 
 ## Examples
