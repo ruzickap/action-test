@@ -1,4 +1,4 @@
-FROM ubuntu:18.04
+FROM alpine:3.11
 
 LABEL maintainer="Petr Ruzicka <petr.ruzicka@gmail.com>"
 LABEL repository="https://github.com/ruzickap/action-test"
@@ -15,10 +15,7 @@ ENV MUFFET_VERSION="latest"
 SHELL ["/bin/bash", "-eo", "pipefail", "-c"]
 
 RUN set -eux && \
-    apt-get update && \
-    apt-get install -y --no-install-recommends bash ca-certificates sudo wget && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/* && \
+    apk add --no-cache bash ca-certificates sudo wget && \
     if [ "${MUFFET_VERSION}" = "latest" ]; then \
       MUFFET_URL=$(wget -qO- https://api.github.com/repos/raviqqe/muffet/releases/latest | grep "browser_download_url.*muffet_.*_Linux_x86_64.tar.gz" | cut -d \" -f 4) ; \
     else \
