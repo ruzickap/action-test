@@ -82,7 +82,7 @@ else
     sudo bash -c "echo \"127.0.0.1 ${PAGES_DOMAIN}  # Created by broken-link-checker\" >> /etc/hosts"
   fi
 
-  # Create caddy configuration to run web server using the domain set in /etc/hosts (loop)
+  # Create caddy configuration to run web server using the domain set in PAGES_DOMAIN + /etc/hosts
   CADDYFILE=$( mktemp /tmp/Caddyfile.XXXXXX )
   CADDY_PIDFILE=$( mktemp -u /tmp/Caddy_pidfile.XXXXXX )
   cat > "${CADDYFILE}" << EOF
