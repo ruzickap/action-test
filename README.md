@@ -1,7 +1,7 @@
 # GitHub Actions for checking broken links ✔
 
-[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Broken%20Link%20Checker-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/ruzickap/action-test/)
 <!-- (https://github.com/marketplace/actions/action-test)  -->
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Broken%20Link%20Checker-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/ruzickap/action-test/)
 [![license](https://img.shields.io/github/license/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/blob/master/LICENSE)
 [![release](https://img.shields.io/github/release/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases/latest)
 [![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases)
@@ -153,11 +153,11 @@ Environment variables used by `./entrypoint.sh` script.
 
 | Variable            | Default                               | Description                                                                                                                                                               |
 |---------------------|---------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `INPUT_CMD_PARAMS`  | `--buffer-size=8192 --concurrency=10` | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
+| `INPUT_CMD_PARAMS`  | --buffer-size=8192 --concurrency=10   | Command line parameters for URL checker [muffet](https://github.com/raviqqe/muffet) (Details [here](https://github.com/raviqqe/muffet/blob/master/arguments.go#L16-L34)) |
 | `INPUT_DEBUG`       | false                                 | Enable debug mode for the `./entrypoint.sh` script (set -x)                                                                                                              |
-| `INPUT_PAGES_PATH`  | ""                                    | Relative path to the directory with local web pages                                                                                                                      |
+| `INPUT_PAGES_PATH`  | ''                                    | Relative path to the directory with local web pages                                                                                                                      |
 | `INPUT_RUN_TIMEOUT` | 600                                   | Max number of seconds which URL checker can be running                                                                                                                   |
-| `INPUT_URL`         | "" **Required**                       | URL which will be checked                                                                                                                                                |
+| `INPUT_URL`         | '' (**Required**)                     | URL which will be checked                                                                                                                                                |
 
 ## Full examples
 
@@ -175,7 +175,6 @@ jobs:
   build-deploy:
     runs-on: ubuntu-18.04
     steps:
-
       - name: Create web page
         run: |
           mkdir -v public
