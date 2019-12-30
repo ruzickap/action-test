@@ -1,6 +1,8 @@
-# Do not use this repository
+# Do not use this repository - it's obsolete
 
 Please follow: [https://github.com/ruzickap/action-broken-link-checker](https://github.com/ruzickap/action-broken-link-checker)
+
+Everything here is just for **testing**...
 
 ## GitHub Actions: Broken link checker ✔
 
