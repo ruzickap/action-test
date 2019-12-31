@@ -2,7 +2,7 @@ name: env-check
 
 on:
   schedule:
-    - cron: '50 8 * * 2'
+    - cron: '0 9 * * 2'
 
 jobs:
   env-checker:
@@ -22,3 +22,9 @@ jobs:
 
       - name: Env
         run: echo "${GITHUB_REPOSITORY%/*} | ${GITHUB_REPOSITORY##*/} | ${GITHUB_REPOSITORY}"
+
+      - name: Env2
+        run: |
+          export AAA="${GITHUB_REPOSITORY%/*}"
+          export BBB="${GITHUB_REPOSITORY##*/}"
+          echo "${AAA} | ${BBB}"
