@@ -14,3 +14,4 @@ groupBy:
     - "closed"
 template:
   release: "## Test {{release}}\n{{body}}"
+  issue: "- {{name}} [`{{text}}`]({{url}})"
