@@ -1,14 +1,10 @@
 git:
   tagName: v${version}
   commitMessage: Release v${version}
-#  changelog: npx auto-changelog --stdout --commit-limit false --unreleased --template ../changelog.hbs
+  changelog: npx auto-changelog --stdout --commit-limit false --unreleased --template ../changelog.hbs
   requireCommits: true
 github:
   release: true
   releaseName: Broken link checker v${version}
-#hooks:
-#  before:release: npx auto-changelog && git add CHANGELOG.md
-#plugins:
-#  "@release-it/conventional-changelog":
-#    preset: angular
-#    infile: CHANGELOG.md
+hooks:
+  before:release: auto-changelog --commit-limit false --template ../keepachangelog && git add CHANGELOG.md
