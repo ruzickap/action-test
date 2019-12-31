@@ -1,7 +1,7 @@
 git:
   tagName: v${version}
   commitMessage: Release v${version}
-  changelog: npx auto-changelog --stdout --commit-limit false --unreleased --template ../changelog.hbs
+#  changelog: npx auto-changelog --stdout --commit-limit false --unreleased --template ../changelog.hbs
   requireCommits: true
 github:
   release: true

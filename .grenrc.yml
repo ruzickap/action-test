@@ -1,0 +1,16 @@
+dataSource: "prs"
+onlyMilestones: false
+changelogFilename: "CHANGELOG.md"
+ignoreLabels:
+  - "duplicate"
+  - "invalid"
+  - "wontfix"
+groupBy:
+  Bug Fixes:
+    - "bug"
+  Enhancements:
+    - "enhancement"
+  Uncategorised:
+    - "closed"
+template:
+  release: "## Test {{release}}\n{{body}}"
