@@ -1,13 +1,13 @@
 git:
   tagName: v${version}
   commitMessage: Release v${version}
-  changelog: npx auto-changelog --stdout --commit-limit false --unreleased --template ../changelog.hbs
+#  changelog: npx auto-changelog --stdout --commit-limit false --unreleased --template ../changelog.hbs
   requireCommits: true
 github:
   release: true
   releaseName: Broken link checker v${version}
 hooks:
-  before:release: npx auto-changelog && git add CHANGELOG.md
+#  before:release: npx auto-changelog && git add CHANGELOG.md
   after:release: echo "Successfully released ${name} v${version} to ${repo.repository}."
 plugins:
   release-it-lerna-changelog:
