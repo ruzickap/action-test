@@ -2,7 +2,7 @@ name: env-check
 
 on:
   schedule:
-    - cron: '25 8 * * 2'
+    - cron: '40 8 * * 2'
 
 jobs:
   env-checker:
