@@ -2,7 +2,7 @@ name: env-check
 
 on:
   schedule:
-    - cron: '40 8 * * 2'
+    - cron: '50 8 * * 2'
 
 jobs:
   env-checker:
@@ -19,3 +19,6 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: echo "${GITHUB_CONTEXT}"
+
+      - name: Env
+        run: echo "${GITHUB_REPOSITORY%/*} | ${GITHUB_REPOSITORY##*/} | ${GITHUB_REPOSITORY}"
