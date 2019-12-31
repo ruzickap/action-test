@@ -6,8 +6,8 @@ git:
 github:
   release: true
   releaseName: Broken link checker v${version}
-hooks:
-  before:release: npx auto-changelog && git add CHANGELOG.md
+#hooks:
+#  before:release: npx auto-changelog && git add CHANGELOG.md
 plugins:
   "@release-it/conventional-changelog":
     preset: angular
