@@ -5,9 +5,11 @@ on:
     types: [opened, synchronize]
     paths:
       - '**.sh'
+      - .github/workflows/shellcheck.yml
   push:
     paths:
       - '**.sh'
+      - .github/workflows/shellcheck.yml
     branches:
       - master
 
