@@ -32,7 +32,7 @@ function cleanup() {
   if [ -n "${PAGES_PATH}" ]; then
     # Manipulation with /etc/hosts using 'sed -i' doesn't work inside containers
     if ! grep -q docker /proc/1/cgroup ; then
-      sudo sed -i "/127.0.0.1 ${PAGES_DOMAIN}  # Created in \/etc\/hosts for broken-link-checker/d" /etc/hosts
+      sudo sed -i "/127.0.0.1 ${PAGES_DOMAIN}  # Created by broken-link-checker/d" /etc/hosts
     fi
     [ -s "${CADDY_PIDFILE}" ] && sudo kill "$(cat "${CADDY_PIDFILE}")"
     [ -f "${CADDYFILE}" ] && rm "${CADDYFILE}"
