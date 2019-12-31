@@ -6,10 +6,14 @@ on:
     paths:
       - '**.md'
       - .github/workflows/markdown-checks.yml
+    paths-ignore:
+      - CHANGELOG.md
   push:
     paths:
       - '**.md'
       - .github/workflows/markdown-checks.yml
+    paths-ignore:
+      - CHANGELOG.md
     branches:
       - master
 
@@ -24,6 +28,7 @@ jobs:
         with:
           files: .
           config_file: .markdownlint.yml
+          ignore_files: CHANGELOG.md
 
   markdown-spell-check:
     runs-on: ubuntu-18.04
@@ -39,7 +44,7 @@ jobs:
         run: npm install -g markdown-spellcheck
 
       - name: Run mdspell
-        run: mdspell '**.md' --ignore-numbers --ignore-acronyms --report --en-gb
+        run: mdspell '**.md' '!CHANGELOG.md' --ignore-numbers --ignore-acronyms --report --en-gb
 
   markdown-link-check:
     runs-on: ubuntu-latest
