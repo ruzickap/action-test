@@ -6,14 +6,10 @@ on:
     paths:
       - '**.md'
       - .github/workflows/markdown-checks.yml
-    paths-ignore:
-      - CHANGELOG.md
   push:
     paths:
       - '**.md'
       - .github/workflows/markdown-checks.yml
-    paths-ignore:
-      - CHANGELOG.md
     branches:
       - master
 
