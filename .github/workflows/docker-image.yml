@@ -16,8 +16,6 @@ on:
       - .hadolint.yaml
       - entrypoint.sh
       - .github/workflows/docker-image.yml
-    branches:
-      - master
 
 jobs:
   docker-build-test:

@@ -10,8 +10,6 @@ on:
     paths:
       - '**.sh'
       - .github/workflows/shellcheck.yml
-    branches:
-      - master
 
 jobs:
   shellcheck:

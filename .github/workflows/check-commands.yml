@@ -10,8 +10,6 @@ on:
     paths:
       - README.md
       - .github/workflows/check-commands.yml
-    branches:
-      - master
 
 jobs:
   command-check:

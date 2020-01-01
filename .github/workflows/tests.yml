@@ -16,8 +16,6 @@ on:
       - entrypoint.sh
       - Dockerfile
       - .dockerignore
-    branches:
-      - master
 
 jobs:
   shellcheck:
