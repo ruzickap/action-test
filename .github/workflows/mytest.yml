@@ -1,11 +1,9 @@
 name: mytest
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+#  pull_request:
+#    types: [opened, synchronize]
   push:
-    path:
-      - tests/**
 
 jobs:
   mytest:
