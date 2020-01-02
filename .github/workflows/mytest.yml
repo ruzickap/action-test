@@ -1,11 +1,9 @@
 name: mytest
 
 on:
-  pull_request:
-    types: [opened, synchronize]
+#  pull_request:
+#    types: [opened, synchronize]
   push:
-    path:
-      - tests/**
 
 jobs:
   mytest:
@@ -33,7 +31,7 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ github.event.repository.name }}
           GITHUB_CONTEXT2: ${{ github.event.repository.owner.name }}
-        run: echo "${GITHUB_CONTEXT} | ${GITHUB_CONTEXT2}"
+        run: echo "| ${GITHUB_CONTEXT} | ${GITHUB_CONTEXT2}"
 
       - name: Deploy
         if: github.event_name == 'push'
