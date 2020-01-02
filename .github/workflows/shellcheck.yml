@@ -1,11 +1,6 @@
 name: shellcheck
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - '**.sh'
-      - .github/workflows/shellcheck.yml
   push:
     paths:
       - '**.sh'

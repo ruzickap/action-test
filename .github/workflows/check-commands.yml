@@ -1,11 +1,6 @@
 name: command-checks
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - README.md
-      - .github/workflows/check-commands.yml
   push:
     paths:
       - README.md
