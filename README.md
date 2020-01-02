@@ -380,3 +380,5 @@ The following links contains real examples of Broken link checker usage:
   with checked links: [example](https://github.com/ruzickap/k8s-harbor/blob/0c51b62b1ad7d462268443f46c3a07cdab26fbd2/.github/workflows/vuepress-build-check-deploy.yml)
 
 * Test 3
+
+* Test 4
