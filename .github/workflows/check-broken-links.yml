@@ -60,6 +60,7 @@ jobs:
           INPUT_CMD_PARAMS: --skip-tls-verification --verbose
           INPUT_RUN_TIMEOUT: 100
           INPUT_DEBUG: true
+          TERM: xterm-color
         run: |
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
 
