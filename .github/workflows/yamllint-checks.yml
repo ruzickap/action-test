@@ -1,11 +1,6 @@
 name: yamllint-checks
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - '**.yml'
-      - '**.yaml'
   push:
     paths:
       - '**.yml'

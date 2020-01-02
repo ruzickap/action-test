@@ -1,11 +1,6 @@
 name: markdown-checks
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - '**.md'
-      - .github/workflows/markdown-checks.yml
   push:
     paths:
       - '**.md'
