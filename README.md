@@ -6,13 +6,12 @@ Everything here is just for **testing**...
 
 ## GitHub Actions: Broken link checker ✔
 
-<!-- (https://github.com/marketplace/actions/action-test)  -->
-[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Broken%20Link%20Checker-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/ruzickap/action-test/)
-[![license](https://img.shields.io/github/license/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/blob/master/LICENSE)
-[![release](https://img.shields.io/github/release/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases/latest)
-[![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-test.svg)](https://github.com/ruzickap/action-test/releases)
-![GitHub Actions status](https://github.com/ruzickap/action-test/workflows/docker-image/badge.svg)
-[![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/action-test.svg)](https://hub.docker.com/r/peru/action-test)
+[![GitHub Marketplace](https://img.shields.io/badge/Marketplace-Broken%20Link%20Checker-blue.svg?colorA=24292e&colorB=0366d6&style=flat&longCache=true&logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAM6wAADOsB5dZE0gAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAERSURBVCiRhZG/SsMxFEZPfsVJ61jbxaF0cRQRcRJ9hlYn30IHN/+9iquDCOIsblIrOjqKgy5aKoJQj4O3EEtbPwhJbr6Te28CmdSKeqzeqr0YbfVIrTBKakvtOl5dtTkK+v4HfA9PEyBFCY9AGVgCBLaBp1jPAyfAJ/AAdIEG0dNAiyP7+K1qIfMdonZic6+WJoBJvQlvuwDqcXadUuqPA1NKAlexbRTAIMvMOCjTbMwl1LtI/6KWJ5Q6rT6Ht1MA58AX8Apcqqt5r2qhrgAXQC3CZ6i1+KMd9TRu3MvA3aH/fFPnBodb6oe6HM8+lYHrGdRXW8M9bMZtPXUji69lmf5Cmamq7quNLFZXD9Rq7v0Bpc1o/tp0fisAAAAASUVORK5CYII=)](https://github.com/ruzickap/action-broken-link-checker)
+[![license](https://img.shields.io/github/license/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/blob/master/LICENSE)
+[![release](https://img.shields.io/github/release/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/releases/latest)
+[![GitHub release date](https://img.shields.io/github/release-date/ruzickap/action-broken-link-checker.svg)](https://github.com/ruzickap/action-broken-link-checker/releases)
+![GitHub Actions status](https://github.com/ruzickap/action-broken-link-checker/workflows/docker-image/badge.svg)
+[![Docker Hub Build Status](https://img.shields.io/docker/cloud/build/peru/broken-link-checker.svg)](https://hub.docker.com/r/peru/broken-link-checker)
 
 This is a GitHub Action to check broken link in your static files or web pages.
 The [muffet](https://github.com/raviqqe/muffet) is used for URL checking task.
@@ -32,7 +31,7 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Check
-      uses: ruzickap/action-test@v2
+      uses: ruzickap/action-broken-link-checker@v1
       with:
         url: https://www.google.com
         cmd_params: "--one-page-only"  # Check just one page
@@ -46,7 +45,7 @@ parameter and serving the web pages (see the details in [entrypoint.sh](./entryp
 
 ```yaml
 - name: Check
-  uses: ruzickap/action-test@v2
+  uses: ruzickap/action-broken-link-checker@v1
   with:
     url: https://www.example.com/test123
     pages_path: ./build/
@@ -62,8 +61,7 @@ Do you want to skip the docker build step? OK, the script mode is also available
     INPUT_URL: https://www.example.com/test123
     INPUT_PAGES_PATH: ./build/
     INPUT_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification  # --skip-tls-verification is mandatory parameter when using https and "PAGES_PATH"
-  run: |
-    wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
+  run: wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
 ```
 
 ## Parameters
@@ -120,11 +118,10 @@ jobs:
           INPUT_CMD_PARAMS: "--skip-tls-verification --verbose"
           INPUT_RUN_TIMEOUT: 100
           INPUT_DEBUG: true
-        run: |
-          wget -qO- https://raw.githubusercontent.com/ruzickap/action-test/v1/entrypoint.sh | bash
+        run: wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
 
       - name: Check links using container
-        uses: ruzickap/action-test@v2
+        uses: ruzickap/action-broken-link-checker@v1
         with:
           url: https://my-testing-domain.com
           pages_path: ./public/
@@ -132,6 +129,151 @@ jobs:
           run_timeout: 10
           debug: true
 ```
+
+## Best practices
+
+Let's try to automate the creating the web pages as much as possible.
+
+The ideal situation require the repository naming convention, where the name of
+the GitHub repository should match the URL where it will be hosted.
+
+### GitHub Pages with custom domain
+
+The mandatory part is the repository name `awsug.cz` which is the same as the
+domain:
+
+* Repository name: [awsugcz/awsug.cz](https://github.com/awsugcz/awsug.cz) -> Web pages: [https://awsug.cz](https://awsug.cz)
+
+The web pages will be stored as Github Pages on it's [own domain](https://help.github.com/en/github/working-with-github-pages/configuring-a-custom-domain-for-your-github-pages-site).
+
+The GH Action file may looks like:
+
+```yaml
+name: hugo-build
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+
+jobs:
+  hugo-build:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Checkout submodules
+        shell: bash
+        run: |
+          auth_header="$(git config --local --get http.https://github.com/.extraheader)"
+          git submodule sync --recursive
+          git -c "http.extraheader=$auth_header" -c protocol.version=2 submodule update --init --force --recursive --depth=1
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.3.2
+        with:
+          hugo-version: '0.62.0'
+
+      - name: Build
+        run: |
+          hugo --gc
+          cp LICENSE README.md public/
+          echo "${{ github.event.repository.name }}" > public/CNAME
+
+      - name: Check broken links
+        env:
+          INPUT_URL: https://${{ github.event.repository.name }}
+          INPUT_PAGES_PATH: public
+          INPUT_CMD_PARAMS: --verbose --buffer-size=8192 --concurrency=10 --skip-tls-verification --exclude=linkedin.com
+        run: |
+          wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.8.0
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: public
+        with:
+          forceOrphan: true
+```
+
+The example is using [Hugo](https://gohugo.io/).
+
+### GitHub Pages with [github.io](https://github.io) domain
+
+The mandatory part is the repository name `k8s-harbor` which is the directory
+part at the and of `ruzickap.github.io`:
+
+* Repository name: [ruzickap/k8s-harbor](https://github.com/ruzickap/k8s-harbor) -> Web pages: [https://ruzickap.github.io/k8s-harbor](https://ruzickap.github.io/k8s-harbor)
+
+In the example the web pages will be using GitHub's domain [github.io](https://github.io).
+
+```yaml
+name: vuepress-build-check-deploy
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - .github/workflows/vuepress-build-check-deploy.yml
+      - docs/**
+      - package.json
+      - package-lock.json
+  push:
+    paths:
+      - .github/workflows/vuepress-build-check-deploy.yml
+      - docs/**
+      - package.json
+      - package-lock.json
+
+jobs:
+  vuepress-build-check-deploy:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Node.js 12
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install VuePress and build the document
+        run: |
+          npm install
+          npm run build
+          cp LICENSE docs/.vuepress/dist
+          sed -e "s@(part-@(https://github.com/${GITHUB_REPOSITORY}/tree/master/docs/part-@" -e 's@.\/.vuepress\/public\/@./@' docs/README.md > docs/.vuepress/dist/README.md
+
+      - name: Check broken links
+        env:
+          INPUT_URL: https://${{ github.event.repository.owner.name }}.github.io/${{ github.event.repository.name }}
+          INPUT_PAGES_PATH: .
+          INPUT_CMD_PARAMS: --buffer-size=8192 --concurrency=10 --skip-tls-verification
+        run: |
+          ln -s docs/.vuepress/dist ${{ github.event.repository.name }}
+          wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.8.0
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./docs/.vuepress/dist
+        with:
+          forceOrphan: true
+```
+
+In this case I'm using [VuePress](https://vuepress.vuejs.org/) to create my
+page.
+
+---
+
+Both examples can be used as a **generic template**, and you do not need to change them
+for your projects.
+
 
 ## Running locally
 
@@ -180,7 +322,7 @@ without touching your system:
 ```bash
 export INPUT_URL="https://google.com"
 export INPUT_CMD_PARAMS="--ignore-fragments --one-page-only --concurrency=10 --verbose"
-docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS peru/action-test
+docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS peru/broken-link-checker
 ```
 
 Another example when checking the the web page locally stored on your disk.
@@ -197,7 +339,7 @@ export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
 Output:
 
 ```text
-*** INFO: Using path "/home/pruzicka/git/action-test/tests/" as domain "my-testing-domain.com" with URI "https://my-testing-domain.com"
+*** INFO: Using path "/home/pruzicka/git/action-broken-link-checker/tests/" as domain "my-testing-domain.com" with URI "https://my-testing-domain.com"
 *** INFO: [2019-12-30 14:54:22] Start checking: "https://my-testing-domain.com"
 https://my-testing-domain.com/
         200     https://my-testing-domain.com
@@ -218,7 +360,7 @@ The same example as above, but in this case I'm using the container:
 export INPUT_URL="https://my-testing-domain.com"
 export INPUT_PAGES_PATH="${PWD}/tests/"
 export INPUT_CMD_PARAMS="--skip-tls-verification --verbose"
-docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/action-test
+docker run --rm -t -e INPUT_URL -e INPUT_CMD_PARAMS -e INPUT_PAGES_PATH -v "$INPUT_PAGES_PATH:$INPUT_PAGES_PATH" peru/broken-link-checker
 ```
 
 ## Examples
