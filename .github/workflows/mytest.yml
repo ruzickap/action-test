@@ -4,6 +4,18 @@ on:
   push:
 
 jobs:
+  myenv:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Test
+        run: echo "::set-env name=color::yellow"
+
+      - name: Test - shell env
+        run: echo "${color}"
+
+      - name: Test 2 - global env
+        run: echo "${{env.color}}"
+
   mytest:
     runs-on: ubuntu-18.04
     steps:
@@ -18,7 +30,7 @@ jobs:
           T1: "${GITHUB_REPOSITORY%/*}"
           T2: "${GITHUB_REPOSITORY##*/}"
           T3: "${GITHUB_REPOSITORY}"
-        run: echo "${T1} | ${T2} | ${T3}"
+        run: echo "${T1} | ${T2} | ${T3} | ${color} | ${{env.color}}"
 
       - name: Dump GitHub context
         env:
