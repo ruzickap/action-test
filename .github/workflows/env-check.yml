@@ -7,6 +7,7 @@ on:
 jobs:
   env-checker:
     runs-on: ubuntu-18.04
+    needs: mytest
     steps:
       - uses: actions/checkout@v2
 
