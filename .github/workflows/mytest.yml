@@ -18,6 +18,8 @@ jobs:
 
   mytest:
     runs-on: ubuntu-18.04
+    needs:
+      - myenv
     steps:
       - name: Test
         run: echo "${{ github.actor }} | ${{ github.repository }}"
