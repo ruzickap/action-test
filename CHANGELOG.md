@@ -2,6 +2,40 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.10.19](https://github.com/ruzickap/action-test/compare/v2.10.18...v2.10.19) - 2020-01-03
+
+### Merged
+
+- pull_request [`#18`](https://github.com/ruzickap/action-test/pull/18)
+- Pr test - only push: [`#17`](https://github.com/ruzickap/action-test/pull/17)
+- date removed [`#15`](https://github.com/ruzickap/action-test/pull/15)
+
+### Commits
+
+- Adding CHANGELOG.md [`babdb4a`](https://github.com/ruzickap/action-test/commit/babdb4a340947550a3ee1b01a1589ba843f10084)
+- new readme [`bc81a6d`](https://github.com/ruzickap/action-test/commit/bc81a6d95f68b5e27710ace038c516899388ea7c)
+- test.test [`c1feeaf`](https://github.com/ruzickap/action-test/commit/c1feeaf3a61c99c2fd7a10f75efcc3a2a3048d7e)
+- shellcheck [`75989b3`](https://github.com/ruzickap/action-test/commit/75989b35a6a0181070c614b34e1f04506f40b4c5)
+- Adding shellcheck2 [`a0c9db5`](https://github.com/ruzickap/action-test/commit/a0c9db569cf550eb621ff0d4c498d06903085461)
+- fix readme [`bdb2e0c`](https://github.com/ruzickap/action-test/commit/bdb2e0cfa6586bd03782a8368ac9f486bb7af515)
+- Add global variable test [`eb27464`](https://github.com/ruzickap/action-test/commit/eb2746436ef7089e340c14a63a0caccb63037bfb)
+- ignore CHANGELOG.md [`e2141ae`](https://github.com/ruzickap/action-test/commit/e2141ae5af80f30fe3d6b5f1c389bb6b32d330e7)
+- i [`ca985dd`](https://github.com/ruzickap/action-test/commit/ca985dd4159a69fe50e284e833007f1fa0d69474)
+- Fix markdown-checks [`f8d2c2e`](https://github.com/ruzickap/action-test/commit/f8d2c2e11562c253f572ebe014cadca38326c5c4)
+- paths-ignore removed [`c249601`](https://github.com/ruzickap/action-test/commit/c2496017a6475c4e5ac8bbada7d9236fcb991629)
+- needs2 [`2499585`](https://github.com/ruzickap/action-test/commit/2499585ea4dd4c3508fc157b5a1f9bdadbb42470)
+- fix env [`67fd445`](https://github.com/ruzickap/action-test/commit/67fd445146182b979d701b3d416283c592b77dc2)
+- ifix [`9b53510`](https://github.com/ruzickap/action-test/commit/9b535101cd3eac49bc7a262857e1880b63ea45f6)
+- i [`c963166`](https://github.com/ruzickap/action-test/commit/c963166a021517eba463973765e1ec380f341da3)
+- i [`58eac3f`](https://github.com/ruzickap/action-test/commit/58eac3f05e27809b873a592dc210938153401ad8)
+- releaseit [`9e93e0f`](https://github.com/ruzickap/action-test/commit/9e93e0fcd3dfb20fe30efd77626c6763a6aea1e7)
+- Enable push on all branches [`b32a01b`](https://github.com/ruzickap/action-test/commit/b32a01b81c79b7748b644d69d63e4dd12b85eb8b)
+- fix shellcheck [`fa0bd55`](https://github.com/ruzickap/action-test/commit/fa0bd553e1e3ed701e656c4b745efbaec703bb03)
+- need removed [`f9da6e5`](https://github.com/ruzickap/action-test/commit/f9da6e5e8484ffb7405f1fd5e0b00139a380a977)
+- needs [`1954949`](https://github.com/ruzickap/action-test/commit/195494928c8cd6af9af50d0f8c4a05ae437a34c0)
+- fix other md [`d47767f`](https://github.com/ruzickap/action-test/commit/d47767fc2d898dc7eab7bbdd3e8a935a1deeaf36)
+- date2 [`17f32db`](https://github.com/ruzickap/action-test/commit/17f32db46f380ff84bece7b4e075370395765f0c)
+
 ## [v2.10.18](https://github.com/ruzickap/action-test/compare/v2.10.17...v2.10.18) - 2019-12-31
 
 ### Merged
