@@ -6,7 +6,6 @@ on:
 jobs:
   myenv:
     runs-on: ubuntu-18.04
-    needs: shellcheck
     steps:
       - name: Test
         run: echo "::set-env name=color::yellow"
