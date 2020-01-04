@@ -3,7 +3,6 @@ name: mytest
 on:
   issue_comment:
     types: [created]
-  repository_dispatch:
 
 jobs:
   myenv:
