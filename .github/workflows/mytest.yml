@@ -1,11 +1,13 @@
 name: mytest
 
 on:
-  push:
+  issue_comment:
+    types: [created]
 
 jobs:
   myenv:
     runs-on: ubuntu-18.04
+    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/build')
     steps:
       - name: Test
         run: echo "::set-env name=color::yellow"
@@ -48,3 +50,4 @@ jobs:
       - name: Deploy
         if: github.event_name == 'push'
         run: echo "Run only in case of push to master (not PR)"
+
