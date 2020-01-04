@@ -50,4 +50,3 @@ jobs:
       - name: Deploy
         if: github.event_name == 'push'
         run: echo "Run only in case of push to master (not PR)"
-
