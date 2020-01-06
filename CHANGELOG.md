@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.10.20-0](https://github.com/ruzickap/action-test/compare/v2.10.19...v2.10.20-0) - 2020-01-06
+
+### Merged
+
+- Yaml fix [`#19`](https://github.com/ruzickap/action-test/pull/19)
+
+### Commits
+
+- Fix HTML [`b89806a`](https://github.com/ruzickap/action-test/commit/b89806a8b26505f5630cd4487c932effdaafa32b)
+- .release-it.yml removed [`8a51a9c`](https://github.com/ruzickap/action-test/commit/8a51a9ce51a413f9b05ced0aeeffb6c7d6cc0158)
+- i [`9e1f4d7`](https://github.com/ruzickap/action-test/commit/9e1f4d7b916611cc3c42d1102a512fe89ba87ff2)
+- Adding Webhook [`8aa184b`](https://github.com/ruzickap/action-test/commit/8aa184beb0a2a065fdc88b0bc84ddb15727888af)
+- Adding size-label [`97d8984`](https://github.com/ruzickap/action-test/commit/97d89846167b6e9339c8c1b9a6ba9f3a6e5161cb)
+- Adding comment hook [`6d7c96b`](https://github.com/ruzickap/action-test/commit/6d7c96bd0a95ebb725cc3f371f7ca380d587c757)
+- Add .gitignore, deleted .pre-commit-config.yaml and date [`f98433c`](https://github.com/ruzickap/action-test/commit/f98433c8e3647e28fd88d7e480585184db6bba2f)
+- repository_dispatch 3 [`329dbac`](https://github.com/ruzickap/action-test/commit/329dbac0b03c960d7eb4004ea7f85fcb0b72f104)
+- Adding date - bad commit [`8831a77`](https://github.com/ruzickap/action-test/commit/8831a77c99d9af2a4ec34390f3b8481fd2f2305c)
+- repository_dispatch 2 [`52404c0`](https://github.com/ruzickap/action-test/commit/52404c0c05df8baa352a0d35ade6bb6650a3be17)
+
 ## [v2.10.19](https://github.com/ruzickap/action-test/compare/v2.10.18...v2.10.19) - 2020-01-03
 
 ### Merged
@@ -47,6 +66,7 @@ All notable changes to this project will be documented in this file.
 
 ### Commits
 
+- ii [`a05b60f`](https://github.com/ruzickap/action-test/commit/a05b60f6391b52f4d4970513f9ef74819a9eee54)
 - changelog removed [`29fd510`](https://github.com/ruzickap/action-test/commit/29fd5109d974287d1cd6fc4f2ac128ef0a36d9bc)
 - .release-it.yml removed [`a208584`](https://github.com/ruzickap/action-test/commit/a20858429f756bbd116d723442ca497fc5b400b3)
 
