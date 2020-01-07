@@ -1,0 +1,10 @@
+pre-commit:
+  parallel: true
+  commands:
+    yamllint:
+      glob: "*.{yaml,yml}"
+      runner: yamllint .
+    markdownlint-cli:
+      glob: "*.md"
+      exclude: "CHANGELOG.md"
+      runner: markdownlint --ignore CHANGELOG.md .
