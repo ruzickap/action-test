@@ -29,7 +29,8 @@ jobs:
           set -x
           export INPUT_URL="https://ruzickap.github.io/k8s-sockshop"
           export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=($( echo ${EXCLUDE} | tr ' ' '|' ))"
-          echo "${INPUT_CMD_PARAMS}"
+          echo "*** ${INPUT_CMD_PARAMS}"
+          export INPUT_DEBUG=true
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
 
       - name: Broken link checker 2
