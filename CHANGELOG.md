@@ -1,5 +1,11 @@
 # Changelog
 
+## [v2.10.24](https://github.com/ruzickap/action-test/compare/v2.10.23...v2.10.24) (2020-01-07)
+
+- addin g tag file `12345` [`becfcd8`](https://github.com/ruzickap/action-test/commit/becfcd8a3e31ae2eb6fa7b2c3ec8630881884805)
+- Adding .release-it.yml - for release-it [`5839c8e`](https://github.com/ruzickap/action-test/commit/5839c8ec076c2b95c1b69ba5dce97a3f93218a0b)
+- Adding keepachangelog.hbs link [`005bc2b`](https://github.com/ruzickap/action-test/commit/005bc2b1461140092155bfef30eb0079121a9001)
+
 ## [v2.10.23](https://github.com/ruzickap/action-test/compare/v2.10.22...v2.10.23) (2020-01-07)
 
 - Add periodic-broken-links-check.yml [`6172b54`](https://github.com/ruzickap/action-test/commit/6172b544f1748773d23234a0f4fcbae097bd47a3)
