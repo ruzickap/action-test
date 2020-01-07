@@ -28,11 +28,8 @@ jobs:
         run: |
           set -x
           export INPUT_URL="https://ruzickap.github.io/k8s-sockshop"
-          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} |  paste -s -d'|' ))\""
-          echo ${EXCLUDE} |  paste -s -d'|'
-          echo ${EXCLUDE} |  paste -s -d"|"
-          echo ${EXCLUDE} |  paste -s -d";"
-          export INPUT_DEBUG=true
+          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} | tr ' ' '|' ))\""
+          echo "${INPUT_CMD_PARAMS}"
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
 
       - name: Broken link checker 2
@@ -47,7 +44,7 @@ jobs:
             mylabs.dev
         run: |
           export INPUT_URL="https://ruzickap.github.io/k8s-harbor"
-          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} |  paste -s -d'|' ))\""
+          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} | tr ' ' '|' ))\""
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
 
       - name: Broken link checker 3
@@ -62,7 +59,7 @@ jobs:
             mylabs.dev
         run: |
           export INPUT_URL="https://ruzickap.github.io/k8s-flux-istio-gitlab-harbor"
-          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} |  paste -s -d'|' ))\""
+          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} | tr ' ' '|' ))\""
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
 
       - name: Broken link checker 3
@@ -77,5 +74,5 @@ jobs:
             mylabs.dev
         run: |
           export INPUT_URL="https://awsug.cz"
-          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} |  paste -s -d'|' ))\""
+          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --concurrency=10 --exclude=\"($( echo ${EXCLUDE} | tr ' ' '|' ))\""
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-broken-link-checker/v1/entrypoint.sh | bash
