@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [v2.10.20](https://github.com/ruzickap/action-test/compare/v2.10.20-0...v2.10.20) - 2020-01-07
+
+### Commits
+
+- Add lefthook [`b63509f`](https://github.com/ruzickap/action-test/commit/b63509f26395a6d2ab09612d3e7174d538e9253c)
+
 ## [v2.10.20-0](https://github.com/ruzickap/action-test/compare/v2.10.19...v2.10.20-0) - 2020-01-06
 
 ### Merged
