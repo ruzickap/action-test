@@ -47,5 +47,9 @@ jobs:
           set -x
           echo "${TEST}"
           echo "${TEST}" | paste -s -d\|
-          export INPUT_CMD_PARAMS=$( echo ${TEST} |  paste -s -d\| )
-          echo $INPUT_CMD_PARAMS
+          echo "${TEST}" | paste -s -d"|"
+          echo "*** $( echo ${TEST} |  paste -s -d\| )"
+          echo "*** $( echo ${TEST} |  paste -s -d'|' )"
+          echo "*** $( echo ${TEST} |  paste -s -d"|" )"
+          #export INPUT_CMD_PARAMS=$( echo ${TEST} |  paste -s -d\| )
+          #echo $INPUT_CMD_PARAMS
