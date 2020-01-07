@@ -46,6 +46,6 @@ jobs:
         run: |
           set -x
           echo "${TEST}"
-          echo "${TEST}" | paste -s -d'|'
-          export INPUT_CMD_PARAMS="TEST=($( echo ${TEST} |  paste -s -d'|' ))"
+          echo "${TEST}" | paste -s -d\|
+          export INPUT_CMD_PARAMS="TEST=($( echo ${TEST} |  paste -s -d\| ))"
           echo $INPUT_CMD_PARAMS
