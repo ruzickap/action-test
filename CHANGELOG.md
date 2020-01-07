@@ -1,21 +1,22 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+## [v2.10.21](https://github.com/ruzickap/action-test/compare/v2.10.20...v2.10.21) (2020-01-07)
 
-## [v2.10.20](https://github.com/ruzickap/action-test/compare/v2.10.20-0...v2.10.20) - 2020-01-07
+> 7 January 2020
 
-### Commits
+- Testing prettier [`cd8916f`](https://github.com/ruzickap/action-test/commit/cd8916f6ce54fc04271c1218c3ddc28460f6ed69)
+
+## [v2.10.20](https://github.com/ruzickap/action-test/compare/v2.10.20-0...v2.10.20) (2020-01-07)
+
+> 7 January 2020
 
 - Add lefthook [`b63509f`](https://github.com/ruzickap/action-test/commit/b63509f26395a6d2ab09612d3e7174d538e9253c)
 
-## [v2.10.20-0](https://github.com/ruzickap/action-test/compare/v2.10.19...v2.10.20-0) - 2020-01-06
+## [v2.10.20-0](https://github.com/ruzickap/action-test/compare/v2.10.19...v2.10.20-0) (2020-01-06)
 
-### Merged
+> 6 January 2020
 
 - Yaml fix [`#19`](https://github.com/ruzickap/action-test/pull/19)
-
-### Commits
-
 - Fix HTML [`b89806a`](https://github.com/ruzickap/action-test/commit/b89806a8b26505f5630cd4487c932effdaafa32b)
 - .release-it.yml removed [`8a51a9c`](https://github.com/ruzickap/action-test/commit/8a51a9ce51a413f9b05ced0aeeffb6c7d6cc0158)
 - i [`9e1f4d7`](https://github.com/ruzickap/action-test/commit/9e1f4d7b916611cc3c42d1102a512fe89ba87ff2)
@@ -27,16 +28,13 @@ All notable changes to this project will be documented in this file.
 - Adding date - bad commit [`8831a77`](https://github.com/ruzickap/action-test/commit/8831a77c99d9af2a4ec34390f3b8481fd2f2305c)
 - repository_dispatch 2 [`52404c0`](https://github.com/ruzickap/action-test/commit/52404c0c05df8baa352a0d35ade6bb6650a3be17)
 
-## [v2.10.19](https://github.com/ruzickap/action-test/compare/v2.10.18...v2.10.19) - 2020-01-03
+## [v2.10.19](https://github.com/ruzickap/action-test/compare/v2.10.18...v2.10.19) (2020-01-03)
 
-### Merged
+> 3 January 2020
 
 - pull_request [`#18`](https://github.com/ruzickap/action-test/pull/18)
 - Pr test - only push: [`#17`](https://github.com/ruzickap/action-test/pull/17)
 - date removed [`#15`](https://github.com/ruzickap/action-test/pull/15)
-
-### Commits
-
 - Adding CHANGELOG.md [`babdb4a`](https://github.com/ruzickap/action-test/commit/babdb4a340947550a3ee1b01a1589ba843f10084)
 - new readme [`bc81a6d`](https://github.com/ruzickap/action-test/commit/bc81a6d95f68b5e27710ace038c516899388ea7c)
 - test.test [`c1feeaf`](https://github.com/ruzickap/action-test/commit/c1feeaf3a61c99c2fd7a10f75efcc3a2a3048d7e)
@@ -61,78 +59,69 @@ All notable changes to this project will be documented in this file.
 - fix other md [`d47767f`](https://github.com/ruzickap/action-test/commit/d47767fc2d898dc7eab7bbdd3e8a935a1deeaf36)
 - date2 [`17f32db`](https://github.com/ruzickap/action-test/commit/17f32db46f380ff84bece7b4e075370395765f0c)
 
-## [v2.10.18](https://github.com/ruzickap/action-test/compare/v2.10.17...v2.10.18) - 2019-12-31
+## [v2.10.18](https://github.com/ruzickap/action-test/compare/v2.10.17...v2.10.18) (2019-12-31)
 
-### Merged
+> 31 December 2019
 
 - ii [`#11`](https://github.com/ruzickap/action-test/pull/11)
 - ii [`#12`](https://github.com/ruzickap/action-test/pull/12)
 - ii [`#14`](https://github.com/ruzickap/action-test/pull/14)
 - ii [`#13`](https://github.com/ruzickap/action-test/pull/13)
-
-### Commits
-
 - ii [`a05b60f`](https://github.com/ruzickap/action-test/commit/a05b60f6391b52f4d4970513f9ef74819a9eee54)
 - changelog removed [`29fd510`](https://github.com/ruzickap/action-test/commit/29fd5109d974287d1cd6fc4f2ac128ef0a36d9bc)
 - .release-it.yml removed [`a208584`](https://github.com/ruzickap/action-test/commit/a20858429f756bbd116d723442ca497fc5b400b3)
 
-## [v2.10.17](https://github.com/ruzickap/action-test/compare/v2.10.16...v2.10.17) - 2019-12-31
+## [v2.10.17](https://github.com/ruzickap/action-test/compare/v2.10.16...v2.10.17) (2019-12-31)
 
-### Commits
+> 31 December 2019
 
 - iii [`a58a9ed`](https://github.com/ruzickap/action-test/commit/a58a9edd07e9e5f6c127d70c1b78dbad06aca868)
 
-## [v2.10.16](https://github.com/ruzickap/action-test/compare/v2.10.15...v2.10.16) - 2019-12-31
+## [v2.10.16](https://github.com/ruzickap/action-test/compare/v2.10.15...v2.10.16) (2019-12-31)
 
-### Merged
+> 31 December 2019
 
 - done with pr_4 [`#10`](https://github.com/ruzickap/action-test/pull/10)
 - done with pr_3 [`#9`](https://github.com/ruzickap/action-test/pull/9)
 - done with pr_2 [`#8`](https://github.com/ruzickap/action-test/pull/8)
 - done with pr_1 [`#7`](https://github.com/ruzickap/action-test/pull/7)
 
-## [v2.10.15](https://github.com/ruzickap/action-test/compare/v2.10.14...v2.10.15) - 2019-12-31
+## [v2.10.15](https://github.com/ruzickap/action-test/compare/v2.10.14...v2.10.15) (2019-12-31)
 
-### Commits
+> 31 December 2019
 
 - del [`bf85def`](https://github.com/ruzickap/action-test/commit/bf85def45f63a20843cdc29503bb84d788a61e28)
 - ii [`25e77c1`](https://github.com/ruzickap/action-test/commit/25e77c13d18062a7c4082fa846de72b075e11349)
 - ii [`fd20d85`](https://github.com/ruzickap/action-test/commit/fd20d85646ab18ae1e2954ce35ad2ccfeb5917f3)
 - ii [`da5fa81`](https://github.com/ruzickap/action-test/commit/da5fa81d23d8675d171c280c0addb06fd727a112)
 
-## [v2.10.14](https://github.com/ruzickap/action-test/compare/v2.10.13...v2.10.14) - 2019-12-31
+## [v2.10.14](https://github.com/ruzickap/action-test/compare/v2.10.13...v2.10.14) (2019-12-31)
 
-### Commits
+> 31 December 2019
 
 - another [`a12ede0`](https://github.com/ruzickap/action-test/commit/a12ede09da57df0d8886ea1db7787e74000e6894)
 - ii [`45a5ddb`](https://github.com/ruzickap/action-test/commit/45a5ddbb7f3999b6de5dbe6355ce787ce6bb27eb)
 - Release v2.10.14 [`a00c30e`](https://github.com/ruzickap/action-test/commit/a00c30e9e6b9f7a3c91ed1e0f729aaa57629d896)
 
-## [v2.10.13](https://github.com/ruzickap/action-test/compare/v2.10.12...v2.10.13) - 2019-12-31
+## [v2.10.13](https://github.com/ruzickap/action-test/compare/v2.10.12...v2.10.13) (2019-12-31)
 
-### Merged
+> 31 December 2019
 
 - done with feature [`#3`](https://github.com/ruzickap/action-test/pull/3)
-
-### Commits
-
 - Release v2.10.13 [`acf01b3`](https://github.com/ruzickap/action-test/commit/acf01b36e06ce7cf879aff81257827c22d03c7f1)
 
-## [v2.10.12](https://github.com/ruzickap/action-test/compare/v2.10.11...v2.10.12) - 2019-12-31
+## [v2.10.12](https://github.com/ruzickap/action-test/compare/v2.10.11...v2.10.12) (2019-12-31)
 
-### Commits
+> 31 December 2019
 
 - ii [`75e7df5`](https://github.com/ruzickap/action-test/commit/75e7df52224dfb6d94f5acdb213547cf5f78d6ed)
 - ii [`79d0bf7`](https://github.com/ruzickap/action-test/commit/79d0bf7de7835d979bc1c45dd466738b4b9dacc9)
 
-## [v2.10.11](https://github.com/ruzickap/action-test/compare/v2.10.10...v2.10.11) - 2019-12-31
+## [v2.10.11](https://github.com/ruzickap/action-test/compare/v2.10.10...v2.10.11) (2019-12-31)
 
-### Merged
+> 31 December 2019
 
 - Fix /etc/hosts [`#2`](https://github.com/ruzickap/action-test/pull/2)
-
-### Commits
-
 - i [`57bd6d8`](https://github.com/ruzickap/action-test/commit/57bd6d8a598b98e69fdb79fbbb8f4706c03ede9e)
 - ii [`ca746d2`](https://github.com/ruzickap/action-test/commit/ca746d2024bf4c28096b749659be9c2ff5e829b7)
 - ites [`44b9136`](https://github.com/ruzickap/action-test/commit/44b9136f88b1e39dd5e46330ed37f1950648c45b)
@@ -151,9 +140,9 @@ All notable changes to this project will be documented in this file.
 - fix [`8ecb24d`](https://github.com/ruzickap/action-test/commit/8ecb24d360250c0cdcc153845f30fa2fbcd32e30)
 - last 2 [`4e29dbe`](https://github.com/ruzickap/action-test/commit/4e29dbe43713a2f977b23f7fc0dafe2203648084)
 
-## [v2.10.10](https://github.com/ruzickap/action-test/compare/v2.0.10...v2.10.10) - 2019-12-30
+## [v2.10.10](https://github.com/ruzickap/action-test/compare/v2.0.10...v2.10.10) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - ii [`f2de0ca`](https://github.com/ruzickap/action-test/commit/f2de0cabd4ebd33b1ca99919b6b288010f1ed162)
 - ii [`31fefcd`](https://github.com/ruzickap/action-test/commit/31fefcd5870f5c40d6527c7751506789434ba409)
@@ -161,29 +150,29 @@ All notable changes to this project will be documented in this file.
 - i [`b5f0dfe`](https://github.com/ruzickap/action-test/commit/b5f0dfe2da1e6b88eaabd0ce4998719cccc66fc4)
 - ii [`ef28d50`](https://github.com/ruzickap/action-test/commit/ef28d505d16d6e87caf10cb7ff003e1ec552d624)
 
-## [v2.0.10](https://github.com/ruzickap/action-test/compare/v2.0.1...v2.0.10) - 2019-12-30
+## [v2.0.10](https://github.com/ruzickap/action-test/compare/v2.0.1...v2.0.10) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - v2 [`5283b72`](https://github.com/ruzickap/action-test/commit/5283b72037844d4cc02091cc346d75b250fe0cf6)
 - another [`d2023cd`](https://github.com/ruzickap/action-test/commit/d2023cde0105c7fa86aa7afe56ad9f7dcf0412eb)
 - ii [`556129a`](https://github.com/ruzickap/action-test/commit/556129a5aa1f38bc2ab3fee203601ae8e55176c1)
 
-## [v2.0.1](https://github.com/ruzickap/action-test/compare/v1.10.10...v2.0.1) - 2019-12-30
+## [v2.0.1](https://github.com/ruzickap/action-test/compare/v1.10.10...v2.0.1) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - ii [`dff0e4c`](https://github.com/ruzickap/action-test/commit/dff0e4cd502453003e6d7f403cbd729323d59cad)
 
-## [v1.10.10](https://github.com/ruzickap/action-test/compare/v1.0.10...v1.10.10) - 2019-12-30
+## [v1.10.10](https://github.com/ruzickap/action-test/compare/v1.0.10...v1.10.10) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - ii [`b4c4b1b`](https://github.com/ruzickap/action-test/commit/b4c4b1ba921b9361e226503f69b188c9eed80566)
 
-## [v1.0.10](https://github.com/ruzickap/action-test/compare/v1.0.6...v1.0.10) - 2019-12-30
+## [v1.0.10](https://github.com/ruzickap/action-test/compare/v1.0.6...v1.0.10) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - ii [`52fee4b`](https://github.com/ruzickap/action-test/commit/52fee4b855033f1a9ca6889698d34168cf82d199)
 - ii [`bf824f7`](https://github.com/ruzickap/action-test/commit/bf824f7a72f8a762df317a69a19f843d5e3d9a3a)
@@ -204,9 +193,9 @@ All notable changes to this project will be documented in this file.
 - iiii [`7a4caf8`](https://github.com/ruzickap/action-test/commit/7a4caf827dfb899ed3880cb883e50c3809ddaa2a)
 - ii [`fd1d0c9`](https://github.com/ruzickap/action-test/commit/fd1d0c9c9fc211439029daaa2e9895d715ab95da)
 
-## [v1.0.6](https://github.com/ruzickap/action-test/compare/v1.0.5...v1.0.6) - 2019-12-30
+## [v1.0.6](https://github.com/ruzickap/action-test/compare/v1.0.5...v1.0.6) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - i [`016017d`](https://github.com/ruzickap/action-test/commit/016017d6e7b1af29855cff41af9f6c48a9a55777)
 - iii [`8e14c73`](https://github.com/ruzickap/action-test/commit/8e14c739054fd34d5433c7b98b2d9af11fbcc834)
@@ -215,9 +204,9 @@ All notable changes to this project will be documented in this file.
 - i [`5ac8ddd`](https://github.com/ruzickap/action-test/commit/5ac8ddd76e5702e91b6e75d20ad34942562a52dc)
 - ii [`13b722e`](https://github.com/ruzickap/action-test/commit/13b722e75f799745ac06c8e1299860e4daa84c70)
 
-## [v1.0.5](https://github.com/ruzickap/action-test/compare/v1.0.4...v1.0.5) - 2019-12-30
+## [v1.0.5](https://github.com/ruzickap/action-test/compare/v1.0.4...v1.0.5) (2019-12-30)
 
-### Commits
+> 30 December 2019
 
 - iiii [`4d44406`](https://github.com/ruzickap/action-test/commit/4d44406e3a39f8c37f47d312d99d14fd6343f8b2)
 - gh market [`1e074d7`](https://github.com/ruzickap/action-test/commit/1e074d79496e7deb4a909dcfc627b6d845f1fa98)
@@ -230,9 +219,9 @@ All notable changes to this project will be documented in this file.
 - iii [`586ab45`](https://github.com/ruzickap/action-test/commit/586ab45d399fd924c4e2c1cda7c98ec050a54c94)
 - ii [`3009c98`](https://github.com/ruzickap/action-test/commit/3009c9826123fa4a4c5c2e675940aff26a5a5445)
 
-## [v1.0.4](https://github.com/ruzickap/action-test/compare/v1.0.2...v1.0.4) - 2019-12-29
+## [v1.0.4](https://github.com/ruzickap/action-test/compare/v1.0.2...v1.0.4) (2019-12-29)
 
-### Commits
+> 29 December 2019
 
 - ii [`add74d7`](https://github.com/ruzickap/action-test/commit/add74d7aaa70a7873fccf503e4272dcb5fc5cdd7)
 - ii [`27de161`](https://github.com/ruzickap/action-test/commit/27de161a8d4945d5307a4ed6073dd53cc2b574db)
@@ -243,9 +232,9 @@ All notable changes to this project will be documented in this file.
 - release 1.0.4 [`3997e74`](https://github.com/ruzickap/action-test/commit/3997e743660125c7d64d8fd7c2712dc36d2074c6)
 - ii [`3f0b048`](https://github.com/ruzickap/action-test/commit/3f0b048a9ef2f47a22a3041779e150996fc6d505)
 
-## [v1.0.2](https://github.com/ruzickap/action-test/compare/v1.0.1...v1.0.2) - 2019-12-28
+## [v1.0.2](https://github.com/ruzickap/action-test/compare/v1.0.1...v1.0.2) (2019-12-28)
 
-### Commits
+> 28 December 2019
 
 - ii [`aabe495`](https://github.com/ruzickap/action-test/commit/aabe495da6fe6bec275c0588e378996473c9f673)
 - ii [`847cd58`](https://github.com/ruzickap/action-test/commit/847cd58878c37da7b1052d821c426cec7d5d2fa4)
@@ -256,16 +245,16 @@ All notable changes to this project will be documented in this file.
 - release 1.0.2 [`47e4539`](https://github.com/ruzickap/action-test/commit/47e45395c373c4723ae327883c5a195a1408e8f5)
 - i [`820ab16`](https://github.com/ruzickap/action-test/commit/820ab166c39e88469f2ee15628e633f85644f68a)
 
-## [v1.0.1](https://github.com/ruzickap/action-test/compare/v1.0.0...v1.0.1) - 2019-12-28
+## [v1.0.1](https://github.com/ruzickap/action-test/compare/v1.0.0...v1.0.1) (2019-12-28)
 
-### Commits
+> 28 December 2019
 
 - iii [`6e1fb2f`](https://github.com/ruzickap/action-test/commit/6e1fb2fcb20ca74d81775638281445f2237411c8)
 - Release 1.0.1 [`ddc3312`](https://github.com/ruzickap/action-test/commit/ddc3312aafbb7e19634ecac374175f528cea78b8)
 
-## v1.0.0 - 2019-12-28
+## v1.0.0 (2019-12-28)
 
-### Commits
+> 28 December 2019
 
 - test [`8578315`](https://github.com/ruzickap/action-test/commit/85783154d311767e18825d33c819794e93a0fce1)
 - test [`9644b54`](https://github.com/ruzickap/action-test/commit/9644b541e7324855d1cfcbfe099234e0ffe3a017)
