@@ -1,5 +1,24 @@
 # Changelog
 
+## [v2.10.23](https://github.com/ruzickap/action-test/compare/v2.10.22...v2.10.23) (2020-01-07)
+
+- Add periodic-broken-links-check.yml [`6172b54`](https://github.com/ruzickap/action-test/commit/6172b544f1748773d23234a0f4fcbae097bd47a3)
+- hanges to be committed [`1aedf0d`](https://github.com/ruzickap/action-test/commit/1aedf0de156619404308e667fe2fe237772dcb1e)
+- Please enter the commit message for your changes [`1d6a532`](https://github.com/ruzickap/action-test/commit/1d6a532a608acafd93c5a982d807355cd30e2faf)
+- Adding env 3 - test3 [`733a660`](https://github.com/ruzickap/action-test/commit/733a6603fd451882542d1e8fbf3ddf44b664c349)
+- Do not modify or remove the line above [`fe086a6`](https://github.com/ruzickap/action-test/commit/fe086a637bb7d740f544b937789cb9371366a6ad)
+- Please enter the commit message for your changes [`1a22aec`](https://github.com/ruzickap/action-test/commit/1a22aecd1e00b2172116dc0d4e57c45dc2339b81)
+- will be ignored, and an empty message aborts the commit [`dc40d23`](https://github.com/ruzickap/action-test/commit/dc40d232d2c5133d653365e666d079fc00db47a4)
+- Please enter the commit message for your changes [`9733723`](https://github.com/ruzickap/action-test/commit/97337231f045c46d9cb9c221fda6d80581962c14)
+- Everything below it will be ignored [`9270f2d`](https://github.com/ruzickap/action-test/commit/9270f2db52426a37258af12c22ad8ae726aeadbc)
+- one more check 12345 [`5a6dc7c`](https://github.com/ruzickap/action-test/commit/5a6dc7c99412928516921fe74fc2be8bac50636a)
+- Some more examples added [`930e60b`](https://github.com/ruzickap/action-test/commit/930e60b35f6e497b8b6c7e089188f53719f56bb7)
+- Please enter the commit message for your changes [`d80f362`](https://github.com/ruzickap/action-test/commit/d80f362553f3ee23097f6509504b3cb61a87a112)
+- and an empty message aborts the commit [`c403203`](https://github.com/ruzickap/action-test/commit/c403203be9c86e8b271d8759da9ca6908065e99d)
+- Changes not staged for commit [`1ec09e5`](https://github.com/ruzickap/action-test/commit/1ec09e57f6d7f9158aa9378b8ad64219dad6bf1b)
+- more debug 123456789 [`870a1eb`](https://github.com/ruzickap/action-test/commit/870a1eb39822b95355d3b5eff6d785a3f81747e1)
+- testing major_version_tag_only [`b187cea`](https://github.com/ruzickap/action-test/commit/b187cea44b0c8a23bf0bed0bbdba54ca3ba4b9df)
+
 ## [v2.10.22](https://github.com/ruzickap/action-test/compare/v2.10.21...v2.10.22) (2020-01-07)
 
 - Adding keepachangelog.hbs [`1eb709f`](https://github.com/ruzickap/action-test/commit/1eb709faea07a434f637d8b0e978cac5e16f93a7)
