@@ -36,9 +36,13 @@ jobs:
       - name: Env3
         env:
           TEST: |
-            aaa
-            bbb
-            ccc
+            github.com/ruzickap/environment-mylabs-
+            github.com/ruzickap/front-end
+            github.com/ruzickap/k8s-flux-repository
+            linkedin.com
+            localhost
+            myexample.dev
+            mylabs.dev
         run: |
           set -x
           echo "${TEST}"
