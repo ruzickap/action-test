@@ -14,16 +14,16 @@ jobs:
           - libvirt
           - virtualbox
         build_name:
+          - windows-server-2012_r2-standard-x64-eval
+          - my_centos-7-x86_64
           - my_ubuntu-18.04-server-amd64
+          - my_windows-10-enterprise-x64-eval
           - ubuntu-16.04-server-amd64
           - ubuntu-18.04-server-amd64
           - ubuntu-19.04-desktop-amd64
-          - my_centos-7-x86_64
-          - windows-server-2019-datacenter-x64-eval
-          - windows-server-2016-standard-x64-eval
-          - windows-server-2012_r2-standard-x64-eval
-          - my_windows-10-enterprise-x64-eval
           - windows-10-enterprise-x64-eval
+          - windows-server-2016-standard-x64-eval
+          - windows-server-2019-datacenter-x64-eval
 
     steps:
       - name: Build image - ${{ matrix.build_name }}-${{ matrix.virtualization }}
@@ -32,3 +32,4 @@ jobs:
         run: |
           echo "${GITHUB_CONTEXT}"
           echo "*** ${{ matrix.build_name }}-${{ matrix.virtualization }}"
+          sleep 20
