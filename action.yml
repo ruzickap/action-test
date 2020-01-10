@@ -1,4 +1,4 @@
-name: 'Broken Link Checker'
+name: 'My Broken Link Checker'
 description: 'Broken link checker for web pages located localy or remotely'
 author: 'ruzickap'
 runs:
