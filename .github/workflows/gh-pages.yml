@@ -11,6 +11,7 @@ jobs:
       - name: Create web page
         run: |
           mkdir public
+          echo test.xvx.cz > public/CNAME
           echo '<a href="https://xvx.cz/">xvx.cz</a>' > public/index.html
 
       - name: Deploy
