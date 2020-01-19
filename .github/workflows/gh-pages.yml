@@ -15,7 +15,7 @@ jobs:
           echo '<a href="https://xvx.cz/">xvx.cz</a>' > public/index.html
 
       - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.8.0
+        uses: peaceiris/actions-gh-pages@v2
         if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
