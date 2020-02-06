@@ -96,9 +96,9 @@ jobs:
     steps:
       - name: Clean old Boxes versions on the Vagrant Cloud
         run: |
-          for NAME in ubuntu-18.04-desktop-amd64 ubuntu-{18.04,16.04,14.04}-server-amd64 my_ubuntu-18.04-server-amd64 my_centos-7-x86_64 my_windows-10-enterprise-x64-eval windows-{server-{{2016,2012_r2}-standard,2019-datacenter},10-enterprise}-x64-eval; do
-            for VERSION in $(curl -s "https://app.vagrantup.com/api/v1/box/${VAGRANTCLOUD_USER}/${NAME}" | jq '.current_version.version as $current_version | .versions[] | select (.version != $current_version) .version'); do
-              echo "*** Removing previous version: https://vagrantcloud.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION"
-              curl -s "https://app.vagrantup.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION" -X DELETE -d "access_token=VAGRANTCLOUD_TOKEN" -o /dev/null
+          for NAME in ubuntu-18.04-desktop-amd64 ubuntu-{18.04,16.04}-server-amd64 my_ubuntu-18.04-server-amd64 my_centos-7-x86_64 my_windows-10-enterprise-x64-eval windows-{server-{{2016,2012_r2}-standard,2019-datacenter},10-enterprise}-x64-eval; do
+            for VERSION in $(curl -s "https://app.vagrantup.com/api/v1/box/${VAGRANTCLOUD_USER}/${NAME}" | jq -r '.current_version.version as $current_version | .versions[] | select (.version != $current_version) .version'); do
+              echo "*** Removing box version: https://vagrantcloud.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION"
+              curl -s "https://app.vagrantup.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION" -X DELETE -d "access_token=$VAGRANTCLOUD_TOKEN" -o /dev/null
             done
           done

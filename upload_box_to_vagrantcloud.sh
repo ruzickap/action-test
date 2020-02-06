@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-export BOX_VERSION=${BOX_VERSION:-$(date +%Y%m%d).02}
+export BOX_VERSION=${BOX_VERSION:-$(date +%Y%m%d).03}
 export LOGDIR=${LOGDIR:-/var/tmp}
 
 readonly PROGNAME=$(basename "$0")
@@ -157,8 +157,6 @@ cmdline() {
   vagrant cloud publish --force --description "$LONG_DESCRIPTION" --version-description "$LONG_DESCRIPTION" --release  --short-description "${SHORT_DESCRIPTION}" "${VAGRANT_CLOUD_USER}/${NAME}" "${BOX_VERSION}" "${VAGRANT_PROVIDER}" "${VAGRANT_CLOUD_BOX_FILE}"
 }
 
-
-# curl -s "https://app.vagrantup.com/api/v1/box/peru/mytest_windows-10-enterprise-x64-eval" | jq '.current_version.version as $current_version | .versions[] | select (.version != $current_version) .version'
 
 #######
 # Main
