@@ -101,6 +101,6 @@ jobs:
             echo "xxx $OLD_VERSIONS"
             for VERSION in ${OLD_VERSIONS} ; do
               echo "*** Removing box version: https://vagrantcloud.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION"
-              # curl -s "https://app.vagrantup.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION" -X DELETE -d "access_token=$VAGRANTCLOUD_TOKEN" -o /dev/null
+              curl -s "https://app.vagrantup.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION" -X DELETE -d "access_token=$VAGRANTCLOUD_TOKEN" -o /dev/null
             done
           done

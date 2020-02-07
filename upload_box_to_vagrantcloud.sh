@@ -2,7 +2,7 @@
 
 set -o pipefail
 
-export BOX_VERSION=${BOX_VERSION:-$(date +%Y%m%d).03}
+export BOX_VERSION=${BOX_VERSION:-$(date +%Y%m%d).05}
 export LOGDIR=${LOGDIR:-/var/tmp}
 
 readonly PROGNAME=$(basename "$0")
