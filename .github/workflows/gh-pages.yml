@@ -12,7 +12,7 @@ jobs:
         run: |
           mkdir public
           #echo test3.xvx.cz > public/CNAME
-          echo '<a href="https://www.xvx.cz/">https://www.xvx.cz/</a>' > public/index.html
+          echo '<a href="https://xvx.cz/">https://xvx.cz/</a>' > public/index.html
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
