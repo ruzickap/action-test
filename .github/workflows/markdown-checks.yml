@@ -13,11 +13,10 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: markdownlint-cli
-        uses: nosborn/github-action-markdown-cli@v1.1.1
+        uses: avto-dev/markdown-lint@v1
         with:
-          files: .
-          config_file: .markdownlint.yml
-          ignore_files: CHANGELOG.md
+          config: .markdownlint.yml
+          ignore: CHANGELOG.md
 
   markdown-spell-check:
     runs-on: ubuntu-18.04
