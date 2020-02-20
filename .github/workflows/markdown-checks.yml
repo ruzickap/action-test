@@ -17,6 +17,7 @@ jobs:
         with:
           config: .markdownlint.yml
           ignore: CHANGELOG.md
+          args: '**.md'
 
   markdown-spell-check:
     runs-on: ubuntu-18.04
