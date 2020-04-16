@@ -18,8 +18,9 @@ jobs:
         run: |
           install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
           cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
+          chmod 0600 $HOME/.ssh/authorized_keys
           find ~/.ssh -ls
-          id
+          whoami && id
 
       - name: Run ansible
         env:
