@@ -26,7 +26,7 @@
     action_runner_count: 2
 
   roles:
-    - role: ansible-role-my_common_defaults
+    - role: my_common_defaults
     - role: cloudalchemy.node-exporter
       node_exporter_enabled_collectors:
         - diskstats:
