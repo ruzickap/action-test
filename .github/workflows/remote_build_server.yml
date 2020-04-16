@@ -19,10 +19,12 @@ jobs:
           install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
           cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
           find ~/.ssh -ls
+          id
 
       - name: Run ansible
         env:
           REMOTE_IP: 127.0.0.1
         run: |
+          export REMOTE_USER="${USER}"
           cd tools/create_remote_build_server
           ./build_remote_ssh_ubuntu.sh
