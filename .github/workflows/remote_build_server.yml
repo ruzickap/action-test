@@ -21,19 +21,11 @@ jobs:
           install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
           cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
           chmod 0600 $HOME/.ssh/authorized_keys
-          #sudo bash -c "curl https://raw.githubusercontent.com/openssh/openssh-portable/master/sshd_config > /etc/ssh/sshd_config"
-          #sleep 1
-          #sudo bash -c "echo 'AuthorizedKeysFile .ssh/authorized_keys' >> /etc/ssh/sshd_config"
-          sudo systemctl restart sshd
-          #sleep 1
-          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $HOME/.ssh/id_rsa -v ${USER}@localhost uptime || true
-          #sleep 1
-          #sudo tail /var/log/syslog
-          #sudo tail /var/log/auth.log
+          ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${USER}@localhost uptime
 
       - name: Run ansible
         run: |
           export REMOTE_USER="${USER}"
-          export REMOTE_USER="localhost"
+          export REMOTE_IP="localhost"
           cd tools/create_remote_build_server
           ./build_remote_ssh_ubuntu.sh
