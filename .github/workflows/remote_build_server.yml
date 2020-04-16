@@ -22,8 +22,7 @@ jobs:
           chmod 0600 $HOME/.ssh/authorized_keys
           find ~/.ssh -ls
           whoami && id
-          #sudo cat /etc/ssh/sshd_config
-          #sudo cat /etc/ssh/ssh_config
+          sudo systemctl restart sshd
           ssh -o "IdentitiesOnly=yes" -i $HOME/.ssh/id_rsa -v ${USER}@127.0.0.1 uptime
 
       - name: Run ansible
