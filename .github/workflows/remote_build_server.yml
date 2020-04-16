@@ -16,8 +16,8 @@ jobs:
 
       - name: Create ssh key and add it to authorized keys
         run: |
-          find ~/.ssh -ls || true
           install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
+          cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
           find ~/.ssh -ls
 
       - name: Run ansible
