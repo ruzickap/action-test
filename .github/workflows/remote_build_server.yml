@@ -8,11 +8,15 @@ on:
 
 jobs:
   remote_build_server-check:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
 
       - name: Run find
-        run: find . -type d
+        env:
+          REMOTE_IP: 127.0.0.1
+        run: |
+          cd tools/create_remote_build_server
+          ./build_remote_ssh_ubuntu.sh
