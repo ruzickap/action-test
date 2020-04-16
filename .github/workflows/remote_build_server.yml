@@ -23,7 +23,7 @@ jobs:
           find ~/.ssh -ls
           whoami && id
           sudo systemctl restart sshd
-          ssh -o "IdentitiesOnly=yes" -i $HOME/.ssh/id_rsa -v ${USER}@127.0.0.1 uptime
+          ssh -o StrictHostKeyChecking=no -o "IdentitiesOnly=yes" -i $HOME/.ssh/id_rsa -v ${USER}@127.0.0.1 uptime
 
       - name: Run ansible
         env:
