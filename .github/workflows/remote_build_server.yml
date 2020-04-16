@@ -20,9 +20,9 @@ jobs:
           install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
           cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
           chmod 0600 $HOME/.ssh/authorized_keys
-          find ~/.ssh -ls
           sudo bash -c "echo 'AuthorizedKeysFile .ssh/authorized_keys' >> /etc/ssh/sshd_config"
           sudo systemctl restart sshd
+          sleep 1
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $HOME/.ssh/id_rsa -v ${USER}@localhost uptime
 
       - name: Run ansible
