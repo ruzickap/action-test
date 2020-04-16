@@ -16,18 +16,21 @@ jobs:
 
       - name: Create ssh key and add it to authorized keys
         run: |
-          set -x
           chmod 0700 /home/$USER
           install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
           cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
           chmod 0600 $HOME/.ssh/authorized_keys
-          #ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${USER}@localhost uptime
-          ssh -o StrictHostKeyChecking=no ${USER}@localhost uptime
+
+      - name: Install Ansible packages
+        run: |
+          apt update
+          apt install -y python-jmespath
 
       - name: Run ansible
         run: |
           export REMOTE_USER="${USER}"
           export REMOTE_IP="localhost"
-          #export ANSIBLE_HOST_KEY_CHECKING=False
+          export ANSIBLE_TAGS_SKIP=""
+          export TAGS_SKIP=""
           cd tools/create_remote_build_server
           ./build_remote_ssh_ubuntu.sh
