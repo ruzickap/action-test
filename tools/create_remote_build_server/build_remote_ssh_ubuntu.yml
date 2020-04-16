@@ -234,6 +234,7 @@
       environment:
         SUDO_USER: "{{ builder_username }}"
       loop: "{{ range(1, action_runner_count + 1) | list }}"
+      tags: actions-runner_installation
 
   handlers:
     - name: restart systemd-logind
