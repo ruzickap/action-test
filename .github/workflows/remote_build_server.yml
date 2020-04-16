@@ -26,7 +26,9 @@ jobs:
           sudo systemctl restart sshd
           sleep 1
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $HOME/.ssh/id_rsa -v ${USER}@localhost uptime || true
+          sleep 1
           sudo tail /var/log/syslog
+          sudo tail /var/log/auth.log
 
       - name: Run ansible
         env:
