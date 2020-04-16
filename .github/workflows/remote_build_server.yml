@@ -14,7 +14,13 @@ jobs:
         with:
           submodules: true
 
-      - name: Run find
+      - name: Create ssh key and add it to authorized keys
+        run: |
+          find ~/.ssh -ls || true
+          install -m 0700 -d $HOME/.ssh && ssh-keygen -b 2048 -t rsa -f $HOME/.ssh/id_rsa -q -N ""
+          find ~/.ssh -ls
+
+      - name: Run ansible
         env:
           REMOTE_IP: 127.0.0.1
         run: |
