@@ -3,7 +3,7 @@ name: remote_build_server
 on:
   push:
     paths:
-      - tools/create_remote_build_server/
+      - tools/create_remote_build_server/**
       - .github/workflows/remote_build_server.yml
 
 jobs:
