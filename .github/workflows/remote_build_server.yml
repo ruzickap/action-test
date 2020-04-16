@@ -31,8 +31,6 @@ jobs:
           export REMOTE_USER="${USER}"
           export REMOTE_IP="localhost"
           export ANSIBLE_HOST_KEY_CHECKING=False
-          # export ANSIBLE_TAGS_SKIP="actions-runner_registration"
-          export ANSIBLE_SKIP_TAGS="actions-runner_registration"
-          # export TAGS_SKIP="actions-runner_registration"
+          export ANSIBLE_SKIP_TAGS="actions-runner_registration,actions-runner_installation"
           cd tools/create_remote_build_server
           ./build_remote_ssh_ubuntu.sh
