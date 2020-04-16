@@ -24,12 +24,13 @@ jobs:
       - name: Install Ansible packages
         run: |
           sudo apt update
-          sudo apt install -y python-jmespath
+          sudo apt install -y ansible python-jmespath
 
       - name: Run ansible
         run: |
           export REMOTE_USER="${USER}"
           export REMOTE_IP="localhost"
+          export ANSIBLE_HOST_KEY_CHECKING=False
           export ANSIBLE_TAGS_SKIP="actions-runner_registration"
           export TAGS_SKIP="actions-runner_registration"
           cd tools/create_remote_build_server
