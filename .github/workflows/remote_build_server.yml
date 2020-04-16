@@ -21,7 +21,8 @@ jobs:
           cp $HOME/.ssh/id_rsa.pub $HOME/.ssh/authorized_keys
           chmod 0600 $HOME/.ssh/authorized_keys
           find ~/.ssh -ls
-          #sudo systemctl restart sshd
+          sudo -c bash "echo "AuthorizedKeysFile .ssh/authorized_keys" >> /etc/ssh/sshd_config"
+          sudo systemctl restart sshd
           ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -i $HOME/.ssh/id_rsa -v ${USER}@localhost uptime
 
       - name: Run ansible
