@@ -23,6 +23,7 @@ jobs:
           find ~/.ssh -ls
           whoami && id
           sudo cat /etc/ssh/sshd_config
+          sudo cat /etc/ssh/ssh_config
           ssh -i $HOME/.ssh/id_rsa -v ${USER}@127.0.0.1 uptime
 
       - name: Run ansible
