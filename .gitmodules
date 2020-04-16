@@ -1,0 +1,12 @@
+[submodule "tools/create_remote_build_server/roles/cloudalchemy.grafana"]
+	path = tools/create_remote_build_server/roles/cloudalchemy.grafana
+	url = https://github.com/cloudalchemy/ansible-grafana.git
+[submodule "tools/create_remote_build_server/roles/cloudalchemy.node-exporter"]
+	path = tools/create_remote_build_server/roles/cloudalchemy.node-exporter
+	url = https://github.com/cloudalchemy/ansible-node-exporter.git
+[submodule "tools/create_remote_build_server/roles/cloudalchemy.prometheus"]
+	path = tools/create_remote_build_server/roles/cloudalchemy.prometheus
+	url = https://github.com/cloudalchemy/ansible-prometheus.git
+[submodule "tools/create_remote_build_server/roles/my_common_defaults"]
+	path = tools/create_remote_build_server/roles/my_common_defaults
+	url = https://github.com/ruzickap/ansible-role-my_common_defaults
