@@ -9,7 +9,7 @@ env:
   PACKER_CACHE_DIR: /var/tmp/packer_cache
   LOGDIR: /var/tmp/packer-templates-logs
   VAGRANT_CLOUD_USER: peru
-  TEST_SECRET: ${{ secrets.test_secret }}
+  TEST_SECRET: "${{ secrets.test_secret }}"
 
 jobs:
 
@@ -60,4 +60,4 @@ jobs:
         run: |
           echo "test 1234"
           echo $PACKER_IMAGES_OUTPUT_DIR
-          echo $TEST_SECRET
+          echo "$TEST_SECRET" | cat
