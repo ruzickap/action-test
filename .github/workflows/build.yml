@@ -60,3 +60,4 @@ jobs:
         run: |
           echo "test 1234"
           echo $PACKER_IMAGES_OUTPUT_DIR
+          echo $TEST_SECRET
