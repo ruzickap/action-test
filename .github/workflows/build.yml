@@ -19,7 +19,6 @@ jobs:
   build-libvirt:
     name: "*"
     runs-on: ubuntu-latest
-    env:
     strategy:
       max-parallel: 2
       matrix:
