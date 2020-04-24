@@ -1,8 +1,9 @@
 name: mytest
 
 on:
-  issue_comment:
-    types: [created]
+  push:
+#  issue_comment:
+#    types: [created]
 
 env:
   test: "12345"
@@ -11,7 +12,7 @@ env:
 jobs:
   myenv:
     runs-on: ubuntu-18.04
-    if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/build')
+    # if: github.event.issue.pull_request != '' && contains(github.event.comment.body, '/build')
     steps:
       - name: Test
         run: echo "::set-env name=color::yellow"
