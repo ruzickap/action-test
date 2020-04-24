@@ -9,7 +9,7 @@ env:
   PACKER_CACHE_DIR: /var/tmp/packer_cache
   LOGDIR: /var/tmp/packer-templates-logs
   VAGRANT_CLOUD_USER: peru
-  TEST_SECRET: ${{ secret.test_secret }}
+  TEST_SECRET: ${{ secrets.test_secret }}
 
 jobs:
 
