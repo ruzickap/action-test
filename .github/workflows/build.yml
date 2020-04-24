@@ -50,7 +50,7 @@ jobs:
           fi
 
       - name: Date ${{ matrix.stage }}
-        if: env.skip != true
+        if: env.skip != 'true'
         run: |
           date
           echo $PACKER_IMAGES_OUTPUT_DIR
