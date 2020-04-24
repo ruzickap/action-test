@@ -56,7 +56,7 @@ jobs:
           echo $PACKER_IMAGES_OUTPUT_DIR
 
       - name: Test ${{ matrix.stage }}
-        if: not env.skip
+        if: ! env.skip
         run: |
           echo "test 1234"
           echo $PACKER_IMAGES_OUTPUT_DIR
