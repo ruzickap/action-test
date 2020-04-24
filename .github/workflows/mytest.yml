@@ -4,6 +4,10 @@ on:
   issue_comment:
     types: [created]
 
+env:
+  test: "12345"
+
+
 jobs:
   myenv:
     runs-on: ubuntu-18.04
@@ -17,6 +21,11 @@ jobs:
 
       - name: Test 2 - global env
         run: echo "${{env.color}}"
+
+      - name: Test ENV
+        env:
+          MYENV: ${{ env.test }}
+        run: echo "$MYENV"
 
   mytest:
     runs-on: ubuntu-18.04
@@ -50,3 +59,8 @@ jobs:
       - name: Deploy
         if: github.event_name == 'push'
         run: echo "Run only in case of push to master (not PR)"
+
+      - name: Test ENV 22
+        env:
+          MYENV: ${{ env.test }}
+        run: echo "222 - $MYENV"
