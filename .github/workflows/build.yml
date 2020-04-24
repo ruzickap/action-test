@@ -9,6 +9,7 @@ env:
   PACKER_CACHE_DIR: /var/tmp/packer_cache
   LOGDIR: /var/tmp/packer-templates-logs
   VAGRANT_CLOUD_USER: peru
+  TEST_SECRET: ${{ secret.test_secret }}
 
 jobs:
 
@@ -52,6 +53,7 @@ jobs:
         run: |
           date
           echo $PACKER_IMAGES_OUTPUT_DIR
+          echo $TEST_SECRET
 
       - name: Test ${{ matrix.stage }}
         if: env.skip
