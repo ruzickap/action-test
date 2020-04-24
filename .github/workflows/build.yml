@@ -42,7 +42,7 @@ jobs:
           BUILD="${{ matrix.stage }}"
           PACKER_VAGRANT_PROVIDER="${BUILD##*-}"
           NAME="${BUILD%-*}"
-          BOX_VERSION="$(date +%Y%m%d).01"
+          BOX_VERSION="$(date +%Y%m%d).02"
           echo "*** https://vagrantcloud.com/${VAGRANT_CLOUD_USER}/boxes/${NAME}/versions/${BOX_VERSION}/providers/${PACKER_VAGRANT_PROVIDER}.box"
           if curl -L --fail --silent --head --output /dev/null "https://vagrantcloud.com/${VAGRANT_CLOUD_USER}/boxes/${NAME}/versions/${BOX_VERSION}/providers/${PACKER_VAGRANT_PROVIDER}.box"; then
             echo "*** ${BUILD} exists on Vagrant Cloud"
