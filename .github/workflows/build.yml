@@ -43,6 +43,7 @@ jobs:
           PACKER_VAGRANT_PROVIDER="${BUILD##*-}"
           NAME="${BUILD%-*}"
           BOX_VERSION="$(date +%Y%m%d).01"
+          echo "*** https://vagrantcloud.com/${VAGRANT_CLOUD_USER}/boxes/${NAME}/versions/${BOX_VERSION}/providers/${PACKER_VAGRANT_PROVIDER}.box"
           if curl -L --fail --silent --head --output /dev/null "https://vagrantcloud.com/${VAGRANT_CLOUD_USER}/boxes/${NAME}/versions/${BOX_VERSION}/providers/${PACKER_VAGRANT_PROVIDER}.box"; then
             echo "*** ${BUILD} doesn't exist on Vagrant Cloud"
             echo "::set-env name=skip::false"
@@ -53,14 +54,10 @@ jobs:
         run: |
           date
           echo $PACKER_IMAGES_OUTPUT_DIR
-          echo $TEST_SECRET
 
       - name: Test ${{ matrix.stage }}
         if: env.skip
-        env:
-          MY_SECRET: ${{ secrets.test_secret }}
         run: |
           echo "test 1234"
           echo $PACKER_IMAGES_OUTPUT_DIR
-          echo "$TEST_SECRET" | base64
-          echo $MY_SECRET
+          echo $TEST_SECRET
