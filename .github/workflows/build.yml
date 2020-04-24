@@ -1,8 +1,14 @@
 name: build - vagrantcloud
 
 on:
-  # push:
-  repository_dispatch:
+  push:
+  # repository_dispatch:
+
+env:
+  PACKER_IMAGES_OUTPUT_DIR: /var/tmp/packer-templates-images
+  PACKER_CACHE_DIR: /var/tmp/packer_cache
+  LOGDIR: /var/tmp/packer-templates-logs
+  VAGRANT_CLOUD_USER: peru
 
 jobs:
 
@@ -12,10 +18,13 @@ jobs:
 
   build-libvirt:
     name: "*"
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
-      VAGRANTUP_USER: action-test
-      VAGRANTCLOUD_TOKEN: ${{ secrets.VAGRANTCLOUD_TOKEN }}
+      PACKER_IMAGES_OUTPUT_DIR: ${{ env.PACKER_IMAGES_OUTPUT_DIR }}
+      PACKER_CACHE_DIR: ${{ env.PACKER_CACHE_DIR }}
+      LOGDIR: ${{ env.LOGDIR }}
+      VAGRANT_CLOUD_USER: ${{ env.VAGRANT_CLOUD_USER }}
+      VAGRANT_CLOUD_TOKEN: ${{ secrets.VAGRANT_CLOUD_TOKEN }}
     strategy:
       max-parallel: 2
       matrix:
@@ -33,75 +42,23 @@ jobs:
           - windows-server-2019-datacenter-x64-eval-libvirt
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: Build image - ${{ matrix.stage }}
+      - name: Check if image is not already built
         run: |
-          sudo apt update
-          wget https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb -O /tmp/vagrant_x86_64.deb
-          sudo apt install -y /tmp/vagrant_x86_64.deb
-          date > /tmp/${{ matrix.stage }}.box
+          BUILD="${{ matrix.stage }}"
+          PACKER_VAGRANT_PROVIDER="${BUILD##*-}"
+          NAME="${BUILD%-*}"
+          BOX_VERSION="$(date +%Y%m%d).01"
+          if curl -L --fail --silent --head --output /dev/null "https://vagrantcloud.com/${VAGRANT_CLOUD_USER}/boxes/${NAME}/versions/${BOX_VERSION}/providers/${PACKER_VAGRANT_PROVIDER}.box"; then
+            echo "*** ${BUILD} doesn't exist on Vagrant Cloud"
+            echo "::set-env name=skip::false"
+          fi
 
-      - name: Upload box to Vagrant Cloud - ${{ matrix.stage }}
+      - name: Date ${{ matrix.stage }}
+        if: env.skip == false
         run: |
-          ./upload_box_to_vagrantcloud.sh ${VAGRANTUP_USER}@/tmp/${{ matrix.stage }}.box
+          date
 
-##############
-# VirtualBox
-##############
-
-  build-virtualbox:
-    name: "*"
-    runs-on: ubuntu-18.04
-    needs: build-libvirt
-    env:
-      VAGRANTUP_USER: action-test
-      VAGRANTCLOUD_TOKEN: ${{ secrets.VAGRANTCLOUD_TOKEN }}
-    strategy:
-      max-parallel: 2
-      matrix:
-        stage:
-          - windows-server-2012_r2-standard-x64-eval-virtualbox
-          - my_centos-7-x86_64-virtualbox
-          - my_ubuntu-18.04-server-amd64-virtualbox
-          - ubuntu-16.04-server-amd64-virtualbox
-          - ubuntu-18.04-server-amd64-virtualbox
-          - ubuntu-19.10-desktop-amd64-virtualbox
-          - ubuntu-18.04-desktop-amd64-virtualbox
-          - my_windows-10-enterprise-x64-eval-virtualbox
-          - windows-10-enterprise-x64-eval-virtualbox
-          - windows-server-2016-standard-x64-eval-virtualbox
-          - windows-server-2019-datacenter-x64-eval-virtualbox
-
-    steps:
-      - uses: actions/checkout@v2
-
-      - name: Build image - ${{ matrix.stage }}
+      - name: Test ${{ matrix.stage }}
+        if: env.skip
         run: |
-          sudo apt update
-          wget https://releases.hashicorp.com/vagrant/2.2.7/vagrant_2.2.7_x86_64.deb -O /tmp/vagrant_x86_64.deb
-          sudo apt install -y /tmp/vagrant_x86_64.deb
-          date > /tmp/${{ matrix.stage }}.box
-
-      - name: Upload box to Vagrant Cloud - ${{ matrix.stage }}
-        run: |
-          ./upload_box_to_vagrantcloud.sh ${VAGRANTUP_USER}@/tmp/${{ matrix.stage }}.box
-
-  clean_old_versions:
-    needs: build-virtualbox
-    name: Clean old Boxes versions on the Vagrant Cloud
-    runs-on: ubuntu-18.04
-    env:
-      VAGRANTCLOUD_USER: action-test
-      VAGRANTCLOUD_TOKEN: ${{ secrets.VAGRANTCLOUD_TOKEN }}
-    steps:
-      - name: Clean old Boxes versions on the Vagrant Cloud
-        run: |
-          for NAME in ubuntu-18.04-desktop-amd64 ubuntu-{18.04,16.04}-server-amd64 my_ubuntu-18.04-server-amd64 my_centos-7-x86_64 my_windows-10-enterprise-x64-eval windows-{server-{{2016,2012_r2}-standard,2019-datacenter},10-enterprise}-x64-eval; do
-            OLD_VERSIONS=$(curl -s "https://app.vagrantup.com/api/v1/box/${VAGRANTCLOUD_USER}/${NAME}" | jq -r '.current_version.version as $current_version | .versions[] | select (.version != $current_version) .version')
-            echo "xxx $OLD_VERSIONS"
-            for VERSION in ${OLD_VERSIONS} ; do
-              echo "*** Removing box version: https://vagrantcloud.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION"
-              curl -s "https://app.vagrantup.com/api/v1/box/$VAGRANTCLOUD_USER/$NAME/version/$VERSION" -X DELETE -d "access_token=$VAGRANTCLOUD_TOKEN" -o /dev/null
-            done
-          done
+          echo "test 1234"
