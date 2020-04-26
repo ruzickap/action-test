@@ -1,8 +1,11 @@
 name: build - artifacts
 
 on:
-  # push:
-  repository_dispatch:
+  push:
+  # repository_dispatch:
+
+env:
+  MYTMP: /tmp
 
 jobs:
 
@@ -25,26 +28,26 @@ jobs:
         run: |
           echo "`date` ${{ matrix.stage }}" >> /tmp/${{ matrix.stage }}.log
 
-      - name: Upload math result for job 1
+      - name: Upload ${{ env.MYTMP }}/${{ matrix.stage }}.log
         uses: actions/upload-artifact@v1
         with:
           name: ${{ matrix.stage }}.log
-          path: /tmp/${{ matrix.stage }}.log
+          path: ${{ env.MYTMP }}/${{ matrix.stage }}.log
 
       - name: Check if image is not already built
-        run: rm -v /tmp/${{ matrix.stage }}.log
+        run: rm -v ${{ env.MYTMP }}/${{ matrix.stage }}.log
 
       - name: Download math result for job 2
         uses: actions/download-artifact@v1
         with:
           name: ${{ matrix.stage }}.log
-          path: /tmp/
+          path: ${{ env.MYTMP }}
 
       - name: Print the final result
         shell: bash
-        run: cat /tmp/${{ matrix.stage }}.log
+        run: cat ${{ env.MYTMP }}/${{ matrix.stage }}.log
 
-      - name: Download non-existing
+      - name: Download non-existing ${{ env. }}
         uses: actions/download-artifact@v1
         with:
           name: does_not_exist.log
