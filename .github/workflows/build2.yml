@@ -1,0 +1,45 @@
+name: build - artifacts
+
+on:
+  push:
+  # repository_dispatch:
+
+jobs:
+
+##############
+# libvirt
+##############
+
+  build-libvirt:
+    name: "*"
+    runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 4
+      matrix:
+        stage:
+          - windows-server-2012_r2-standard-x64-eval-libvirt
+          - my_centos-7-x86_64-libvirt
+
+    steps:
+      - name: Check if image is not already built
+        run: |
+          echo "`date` ${{ matrix.stage }}" >> /tmp/${{ matrix.stage }}.log
+
+      - name: Upload math result for job 1
+        uses: actions/upload-artifact@v1
+        with:
+          name: ${{ matrix.stage }}.log
+          path: /tmp/${{ matrix.stage }}.log
+
+      - name: Check if image is not already built
+        run: rm -v /tmp/${{ matrix.stage }}.log
+
+      - name: Download math result for job 2
+        uses: actions/download-artifact@v1
+        with:
+          name: ${{ matrix.stage }}.log
+          path: /tmp/
+
+      - name: Print the final result
+        shell: bash
+        run: cat /tmp/${{ matrix.stage }}.log

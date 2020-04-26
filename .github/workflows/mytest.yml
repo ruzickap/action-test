@@ -1,7 +1,8 @@
 name: mytest
 
 on:
-  push:
+#  push:
+  repository_dispatch:
 #  issue_comment:
 #    types: [created]
 
