@@ -43,3 +43,9 @@ jobs:
       - name: Print the final result
         shell: bash
         run: cat /tmp/${{ matrix.stage }}.log
+
+      - name: Download non-existing
+        uses: actions/download-artifact@v1
+        with:
+          name: does_not_exist.log
+          path: /tmp/
