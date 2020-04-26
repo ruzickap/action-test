@@ -22,7 +22,10 @@ jobs:
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJson(github) }}
-        run: echo "${GITHUB_CONTEXT}"
+        run: |
+          set -x
+          echo "${GITHUB_CONTEXT}"
+          env
 
       - name: Env
         run: echo "${GITHUB_REPOSITORY%/*} | ${GITHUB_REPOSITORY##*/} | ${GITHUB_REPOSITORY}"
