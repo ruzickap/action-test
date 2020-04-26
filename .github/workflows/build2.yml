@@ -47,7 +47,7 @@ jobs:
         shell: bash
         run: cat ${{ env.MYTMP }}/${{ matrix.stage }}.log
 
-      - name: Download non-existing ${{ env. }}
+      - name: Download non-existing ${{ env.MYTMP }}
         uses: actions/download-artifact@v1
         with:
           name: does_not_exist.log
