@@ -1,10 +1,11 @@
 name: markdown-checks
 
 on:
-  push:
-    paths:
-      - '**.md'
-      - .github/workflows/markdown-checks.yml
+  repository_dispatch:
+  # push:
+  #   paths:
+  #     - '**.md'
+  #     - .github/workflows/markdown-checks.yml
 
 jobs:
   markdownlint-check:

@@ -47,7 +47,6 @@ jobs:
             mylabs.dev
         run: |
           set -x
-          exit 1
           #echo "${TEST}"
           #echo "${TEST}" | paste -s -d\|
           #echo "${TEST}" | paste -s -d"|"
