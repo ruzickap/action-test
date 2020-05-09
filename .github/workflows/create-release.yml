@@ -12,6 +12,21 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: test123
+          release_name: Release test123
+          draft: false
+          prerelease: false
+
+      - name: debug
+        run: |
+          echo "${{ steps.create_release.outputs.upload_url }}"
+
       - name: Upload Release Asset - pdf
         id: upload-release-asset-pdf
         uses: actions/upload-release-asset@v1
