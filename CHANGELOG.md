@@ -1,5 +1,11 @@
 # Changelog
 
+## [v2.11.1](https://github.com/ruzickap/action-test/compare/v2.11.0...v2.11.1) (2020-05-09)
+
+- Update changelog [`#23`](https://github.com/ruzickap/action-test/pull/23)
+- CHANGELOG file update [`#22`](https://github.com/ruzickap/action-test/pull/22)
+- gitignore [`b73e8a2`](https://github.com/ruzickap/action-test/commit/b73e8a2ce89894b8a470ef69537352a079c69fbe)
+
 ## [v2.11.0](https://github.com/ruzickap/action-test/compare/v2.10.25...v2.11.0) (2020-05-09)
 
 - Fix build [`7d4f387`](https://github.com/ruzickap/action-test/commit/7d4f387badcd0b405c8cced25905bd6712a70e8c)
