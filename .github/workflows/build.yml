@@ -1,6 +1,7 @@
 name: build - vagrantcloud
 
 on:
+  # push:
   repository_dispatch:
 
 env:

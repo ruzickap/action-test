@@ -1,7 +1,6 @@
 name: env-check
 
 on:
-  # repository_dispatch:
   # schedule:
   #   - cron: '0 9 * * 2'
   push:
@@ -24,7 +23,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           set -x
-          echo "${GITHUB_CONTEXT}"
+          echo "${GITHUB_CONTEXT}" | jq
           env
 
       - name: Env
