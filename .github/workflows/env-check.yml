@@ -23,7 +23,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJson(github) }}
         run: |
           set -x
-          echo "${GITHUB_CONTEXT}" | jq
+          echo "${GITHUB_CONTEXT}"
           env
 
       - name: Env
