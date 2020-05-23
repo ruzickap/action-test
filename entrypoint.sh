@@ -1,10 +1,10 @@
 #!/bin/bash
 
-echo "* $*"
-
 export EXCLUDE="${INPUT_EXCLUDE}"
 
-echo "*** $EXCLUDE"
+for i in ${EXCLUDE}; do
+  echo "* ${i}"
+done
 
 exit
 
