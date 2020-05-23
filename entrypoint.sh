@@ -7,15 +7,15 @@ for i in "${EXCLUDE[@]}"; do
   FIND_EXCLUDE+=(' -not' '-path' \'"${i}"\')
 done
 
-printf "**** %s\n" "${FIND_EXCLUDE[@]}"
-
 FILE_EXTENSION="*.sh"
 
 set -x
 
-FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" '-exec' 'ls' '-la' '{}')
+FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" "${FIND_EXCLUDE[@]}" '-exec' 'ls' '-la' '{}')
 
 FIND_CALL+=(';')
+
+echo "aaa ${FIND_CALL[*]}"
 
 "${FIND_CALL[@]}"
 
