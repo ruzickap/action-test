@@ -2,6 +2,8 @@
 
 export EXCLUDE="${INPUT_EXCLUDE}"
 
+IFS=$'\n'
+
 FIND_EXCLUDE=('-not' '-path' './node_modules/*')
 for i in ${EXCLUDE[*]}; do
   echo "bbb ${i}"
