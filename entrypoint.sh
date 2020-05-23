@@ -6,11 +6,11 @@ for i in "${EXCLUDE[@]}"; do
   FIND_EXCLUDE+=('-not' '-path' \'${i}\')
 done
 
-echo "* $FIND_EXCLUDE"
+echo "**** $FIND_EXCLUDE"
 
 FILE_EXTENSION="*.sh"
 
-FIND_CALL=('find' "." '-name' '*'"${FILE_EXTENSION}" '-exec' 'ls' '-la' '{}')
+FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" '-exec' 'ls' '-la' '{}')
 
 set -x
 
