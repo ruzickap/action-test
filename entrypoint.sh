@@ -2,8 +2,9 @@
 
 export EXCLUDE="${INPUT_EXCLUDE}"
 
+FIND_EXCLUDE="-not -path ./node_modules/*"
 for i in "${EXCLUDE[@]}"; do
-  FIND_EXCLUDE+=('-not' '-path' \'"${i}"\')
+  FIND_EXCLUDE+=(' -not' '-path' \'"${i}"\')
 done
 
 printf "**** %s\n" "${FIND_EXCLUDE[@]}"
