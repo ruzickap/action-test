@@ -4,7 +4,8 @@ export EXCLUDE="${INPUT_EXCLUDE}"
 
 FIND_EXCLUDE="-not -path ./node_modules/*"
 for i in "${EXCLUDE[@]}"; do
-  FIND_EXCLUDE+=(' -not' '-path' \'"${i}"\')
+  echo "bbb ${i}"
+  FIND_EXCLUDE+=('-not' '-path' "${i}")
 done
 
 FILE_EXTENSION="*.sh"

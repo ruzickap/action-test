@@ -14,6 +14,8 @@ ENV MUFFET_VERSION="latest"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
+RUN apk add --no-cache bash>5.0.16-r0
+
 # set up nsswitch.conf for Go's "netgo" implementation (which Docker explicitly uses)
 # - https://github.com/docker/docker-ce/blob/v17.09.0-ce/components/engine/hack/make.sh#L149
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
