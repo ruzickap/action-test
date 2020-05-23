@@ -1,13 +1,14 @@
 name: docker-image
 
 on:
-  push:
-    paths:
-      - Dockerfile
-      - .dockerignore
-      - .hadolint.yaml
-      - entrypoint.sh
-      - .github/workflows/docker-image.yml
+  repository_dispatch:
+#  push:
+#    paths:
+#      - Dockerfile
+#      - .dockerignore
+#      - .hadolint.yaml
+#      - entrypoint.sh
+#      - .github/workflows/docker-image.yml
 
 jobs:
   docker-build-test:
