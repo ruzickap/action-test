@@ -13,6 +13,5 @@ jobs:
       - uses: ruzickap/action-test@master
         with:
           exclude: |
-            test12
-            test345
-            test567
+            ./entrypoint.sh
+            */tests/*

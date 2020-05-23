@@ -3,10 +3,10 @@
 export EXCLUDE="${INPUT_EXCLUDE}"
 
 for i in "${EXCLUDE[@]}"; do
-  FIND_EXCLUDE+=('-not' '-path' \'${i}\')
+  FIND_EXCLUDE+=('-not' '-path' \'"${i}"\')
 done
 
-echo "**** $FIND_EXCLUDE"
+printf "**** %s" "${FIND_EXCLUDE[@]}"
 
 FILE_EXTENSION="*.sh"
 
