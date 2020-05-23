@@ -17,3 +17,4 @@ jobs:
           exclude: |
             ./create_pr.sh
             */tests/*
+            ./mezery aaa/test.sh
