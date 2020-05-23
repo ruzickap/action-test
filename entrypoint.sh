@@ -1,6 +1,12 @@
 #!/bin/bash
 
-set -euo pipefail
+echo "* $*"
+
+export EXCLUDE="${INPUT_EXCLUDE}"
+
+echo "*** $EXCLUDE"
+
+exit
 
 # Command line parameters for muffet
 export CMD_PARAMS="${INPUT_CMD_PARAMS:---buffer-size=8192 --concurrency=10}"

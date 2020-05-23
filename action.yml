@@ -28,6 +28,10 @@ inputs:
     description: 'URL which will be checked'
     required: true
     default: ''
+  exclude:
+    description: 'Exclude files/(sub)directories from beeing checked'
+    required: false
+
 outputs:
   output:
     description: 'Output of the link checker'
