@@ -12,10 +12,6 @@ FILE_EXTENSION="*.sh"
 
 set -x
 
-pwd
-
-ls -la
-
 FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" '-exec' 'ls' '-la' '{}')
 
 FIND_CALL+=(';')
