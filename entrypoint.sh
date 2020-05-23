@@ -18,6 +18,10 @@ FIND_CALL+=(';')
 
 echo "aaa ${FIND_CALL[*]}"
 
+find . -name "*.sh" -ls
+
+echo "xxxxxxxx"
+
 "${FIND_CALL[@]}"
 
 exit
