@@ -6,7 +6,7 @@ for i in "${EXCLUDE[@]}"; do
   FIND_EXCLUDE+=('-not' '-path' \'"${i}"\')
 done
 
-printf "**** %s" "${FIND_EXCLUDE[@]}"
+printf "**** %s\n" "${FIND_EXCLUDE[@]}"
 
 FILE_EXTENSION="*.sh"
 
