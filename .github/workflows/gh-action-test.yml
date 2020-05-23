@@ -15,5 +15,5 @@ jobs:
       - uses: ruzickap/action-test@master
         with:
           exclude: |
-            ./entrypoint.sh
+            ./create_pr.sh
             */tests/*
