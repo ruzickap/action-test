@@ -10,9 +10,11 @@ echo "**** $FIND_EXCLUDE"
 
 FILE_EXTENSION="*.sh"
 
+set -x
+
 FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" '-exec' 'ls' '-la' '{}')
 
-set -x
+FIND_CALL+=(';')
 
 "${FIND_CALL[@]}"
 
