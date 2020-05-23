@@ -1,10 +1,13 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 export EXCLUDE="${INPUT_EXCLUDE}"
 
 echo "111 $EXCLUDE"
 
 echo "$EXCLUDE" | xxd
+
+IFS="
+"
 
 FIND_EXCLUDE="-not -path ./node_modules/*"
 for i in "${EXCLUDE[@]}"; do
