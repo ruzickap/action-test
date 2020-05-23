@@ -14,7 +14,4 @@ jobs:
           submodules: true
       - uses: ruzickap/action-test@master
         with:
-          exclude: |
-            ./create_pr.sh
-            */tests/*
-            ./mezery aaa/test.sh
+          exclude: ./create_pr.sh
