@@ -2,10 +2,10 @@
 
 export EXCLUDE="${INPUT_EXCLUDE}"
 
-FIND_EXCLUDE='-not -path "./node_modules/*"'
+FIND_EXCLUDE=('-not' '-path' '"./node_modules/*"')
 for i in ${EXCLUDE[*]}; do
   echo "bbb ${i}"
-  FIND_EXCLUDE+=('-not' '-path' \""${i}"\")
+  FIND_EXCLUDE+=('-not' '-path' "\"${i}\"")
 done
 
 FILE_EXTENSION="*.sh"
@@ -20,6 +20,7 @@ echo "aaa ${FIND_CALL[*]}"
 
 "${FIND_CALL[@]}"
 
+exit
 
 # Command line parameters for muffet
 export CMD_PARAMS="${INPUT_CMD_PARAMS:---buffer-size=8192 --concurrency=10}"
