@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM node:alpine
 
 LABEL maintainer="Petr Ruzicka <petr.ruzicka@gmail.com>"
 LABEL repository="https://github.com/ruzickap/action-test"
@@ -14,8 +14,6 @@ ENV MUFFET_VERSION="latest"
 
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
-RUN apk add --no-cache bash>5.0.16-r0
-
 # set up nsswitch.conf for Go's "netgo" implementation (which Docker explicitly uses)
 # - https://github.com/docker/docker-ce/blob/v17.09.0-ce/components/engine/hack/make.sh#L149
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
@@ -23,7 +21,7 @@ RUN apk add --no-cache bash>5.0.16-r0
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 RUN set -eux && \
-    apk add --no-cache bash ca-certificates sudo wget && \
+    apk add --no-cache bash>5.0.16-r0 ca-certificates sudo wget && \
     if [ "${MUFFET_VERSION}" = "latest" ]; then \
       MUFFET_URL=$(wget -qO- https://api.github.com/repos/raviqqe/muffet/releases/latest | grep "browser_download_url.*muffet_.*_Linux_x86_64.tar.gz" | cut -d \" -f 4) ; \
     else \
