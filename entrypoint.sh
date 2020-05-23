@@ -4,7 +4,7 @@ export EXCLUDE="${INPUT_EXCLUDE}"
 
 echo "111 $EXCLUDE"
 
-IFS=$'\n'
+echo "$EXCLUDE" | xxd
 
 FIND_EXCLUDE="-not -path ./node_modules/*"
 for i in "${EXCLUDE[@]}"; do
