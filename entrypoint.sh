@@ -18,8 +18,6 @@ FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" "${FIND_EXCLUDE[@]}" '-exec
 
 FIND_CALL+=(';')
 
-echo "aaa ${FIND_CALL[@]}"
-
 find . -name "*.sh" -ls
 
 "${FIND_CALL[@]}"
