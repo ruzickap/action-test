@@ -1,13 +1,14 @@
 name: tests
 
 on:
-  push:
-    paths:
-      - tests/**
-      - .github/workflows/tests.yml
-      - entrypoint.sh
-      - Dockerfile
-      - .dockerignore
+  repository_dispatch:
+#  push:
+#    paths:
+#      - tests/**
+#      - .github/workflows/tests.yml
+#      - entrypoint.sh
+#      - Dockerfile
+#      - .dockerignore
 
 jobs:
   shellcheck:

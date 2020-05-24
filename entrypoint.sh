@@ -1,6 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-set -euo pipefail
+export EXCLUDE="${INPUT_EXCLUDE}"
+
+IFS=$'\n'
+
+FIND_EXCLUDE=('-not' '-path' './node_modules/*')
+for i in ${EXCLUDE[*]}; do
+  echo "bbb ${i}"
+  FIND_EXCLUDE+=('-not' '-path' "${i}")
+done
+
+FILE_EXTENSION="*.sh"
+
+set -x
+
+FIND_CALL=('find' '.' '-name' '*'"${FILE_EXTENSION}" "${FIND_EXCLUDE[@]}" '-exec' 'ls' '-la' '{}')
+
+FIND_CALL+=(';')
+
+echo "aaa ${FIND_CALL[@]}"
+
+find . -name "*.sh" -ls
+
+"${FIND_CALL[@]}"
+
+exit
 
 # Command line parameters for muffet
 export CMD_PARAMS="${INPUT_CMD_PARAMS:---buffer-size=8192 --concurrency=10}"

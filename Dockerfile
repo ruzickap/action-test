@@ -1,4 +1,4 @@
-FROM alpine:3.11
+FROM node:alpine
 
 LABEL maintainer="Petr Ruzicka <petr.ruzicka@gmail.com>"
 LABEL repository="https://github.com/ruzickap/action-test"
@@ -21,7 +21,7 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 
 RUN set -eux && \
-    apk add --no-cache bash ca-certificates sudo wget && \
+    apk add --no-cache bash findutils ca-certificates sudo wget && \
     if [ "${MUFFET_VERSION}" = "latest" ]; then \
       MUFFET_URL=$(wget -qO- https://api.github.com/repos/raviqqe/muffet/releases/latest | grep "browser_download_url.*muffet_.*_Linux_x86_64.tar.gz" | cut -d \" -f 4) ; \
     else \

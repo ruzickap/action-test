@@ -1,0 +1,17 @@
+name: gh-action-test
+
+on:
+  push:
+  # repository_dispatch:
+
+jobs:
+  gh-action-test:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: ruzickap/action-test@master
+        with:
+          exclude: ./create_pr.sh
