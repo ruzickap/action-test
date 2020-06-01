@@ -24,7 +24,7 @@ jobs:
       - name: Install Ansible packages
         run: |
           sudo apt update
-          sudo apt install -y ansible python-jmespath
+          sudo apt install -y ansible python-jmespath python3-apt
 
       - name: Run Ansible
         run: |
