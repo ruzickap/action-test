@@ -1,9 +1,12 @@
 ---
-- name: Update repositories for Debian based distros
-  apt:
-    force_apt_get: yes
-    update_cache: yes
-  when: ansible_os_family == 'Debian'
-  changed_when: false
-  tags:
-    - packages
+- hosts: all
+
+  tasks:
+    - name: Update repositories for Debian based distros
+      apt:
+        force_apt_get: yes
+        update_cache: yes
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+      tags:
+        - packages
