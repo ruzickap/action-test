@@ -1,5 +1,6 @@
 ---
 - hosts: all
+  become: yes
 
   tasks:
     - name: Update repositories for Debian based distros
