@@ -23,7 +23,6 @@ jobs:
 
       - name: Install Ansible packages
         run: |
-          set -x
           sudo rm /etc/apt/sources.list.d/*
           sudo apt update
           sudo apt install -y ansible python-jmespath python3-apt
@@ -34,4 +33,5 @@ jobs:
           export REMOTE_IP="localhost"
           export ANSIBLE_HOST_KEY_CHECKING=False
           export ANSIBLE_SKIP_TAGS="actions-runner_registration,actions-runner_installation"
-          ansible-playbook -i "$REMOTE_IP," -e "ansible_python_interpreter=/usr/bin/python3 ansible_sudo_pass=$USER_PASSWORD" --user "$REMOTE_USER" ansible/main.yml
+          export ANSIBLE_PYTHON_INTERPRETER="/usr/bin/python3"
+          ansible-playbook -i "$REMOTE_IP," -e "ansible_sudo_pass=$USER_PASSWORD" --user "$REMOTE_USER" ansible/main.yml
