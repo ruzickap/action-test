@@ -24,11 +24,9 @@ jobs:
       - name: Install Ansible packages
         run: |
           set -x
+          sudo rm /etc/apt/sources.list.d/*
           sudo apt update
           sudo apt install -y ansible python-jmespath python3-apt
-          grep -v ^# /etc/apt/sources.list | uniq
-          ls -la /etc/apt/sources.list.d
-          cat /etc/apt/sources.list.d/*
 
       - name: Run Ansible
         run: |
