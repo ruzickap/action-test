@@ -1,15 +1,16 @@
 name: virt-check
 
 on:
-  pull_request:
-    types: [opened, synchronize]
-    paths:
-      - .github/workflows/virt-check.yml
-  push:
-    branches:
-      - master
-    paths:
-      - .github/workflows/virt-check.yml
+  repository_dispatch:
+  # pull_request:
+  #   types: [opened, synchronize]
+  #   paths:
+  #     - .github/workflows/virt-check.yml
+  # push:
+  #   branches:
+  #     - master
+  #   paths:
+  #     - .github/workflows/virt-check.yml
 
 jobs:
   virt-check-ubuntu:
@@ -26,10 +27,9 @@ jobs:
   virt-check-mac:
     runs-on: macos-latest
     steps:
-      - name: lscpu
+      - name: sysctl
         run: |
           set -x
           sysctl kern.hv_support
           sysctl -a | grep machdep.cpu.features
           sysctl -a | grep -o VMX
-

@@ -1,0 +1,59 @@
+- hosts: all
+  force_handlers: True
+
+  vars_files:
+    - vars/{{ ansible_system }}
+
+  tasks:
+    - name: Add {{ ansible_user_id }} to sudoers to become root easily
+      lineinfile:
+        dest: /etc/sudoers.d/01_{{ ansible_user_id }}
+        create: yes
+        regexp: '^{{ ansible_user_id }} ALL='
+        line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD:ALL'
+        validate: 'visudo -cf %s'
+      become: yes
+
+    - include: tasks/{{ ansible_distribution }}.yml
+
+    - include: tasks/common.yml
+
+  handlers:
+    - name: grub2 config
+      command: grub2-mkconfig -o /boot/grub2/grub.cfg
+      become: true
+
+    - name: newaliases
+      command: newaliases
+      become: true
+
+    - name: plymouth rebuild initrd
+      command: plymouth-set-default-theme {{ plymouth_theme }} --rebuild-initrd
+      become: true
+
+    - name: Generate sasl_passwd.db from /etc/postfix/sasl_passwd
+      command: postmap /etc/postfix/sasl_passwd
+      become: true
+
+    - name: reload systemctl
+      systemd:
+        daemon_reload: yes
+      become: true
+
+    - name: Restart Finder
+      command: killall Finder
+      ignore_errors: yes
+      listen: Refresh UI
+
+    - name: Restart Dock
+      command: killall Dock
+      ignore_errors: yes
+
+    - name: Restart UIServer
+      command: killall SystemUIServer
+      ignore_errors: yes
+      listen: Refresh UI
+
+    - name: Restart Dock
+      command: killall Dock
+      ignore_errors: yes
