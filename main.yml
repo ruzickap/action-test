@@ -16,8 +16,6 @@
 
     - include: tasks/{{ ansible_distribution }}.yml
 
-    - include: tasks/common.yml
-
   handlers:
     - name: grub2 config
       command: grub2-mkconfig -o /boot/grub2/grub.cfg
