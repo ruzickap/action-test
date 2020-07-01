@@ -45,7 +45,7 @@ homebrew:
   # - exa
   # - fdupes                                       # pcre2
   - fzf
-  - gh
+  # - gh
   # - git-crypt                                    # openssl@1.1
   # - gnu-sed
   # - gpg                                          # adns, gettext, gmp, libunistring, libidn2, libtasn1, nettle, libffi, p11-kit, openssl@1.1, libevent, unbound, gnutls, libgpg-error, libassuan, libgcrypt, libksba, libusb, npth and pinentry
@@ -72,7 +72,7 @@ homebrew:
   # - rclone
   # - restic
   # - rhash
-  # - romkatv/powerlevel10k/powerlevel10k          # ncurses, pcre and zsh
+  - romkatv/powerlevel10k/powerlevel10k          # ncurses, pcre and zsh
   # - shellcheck
   # - speedtest-cli
   # - syncthing
