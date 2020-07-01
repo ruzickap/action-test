@@ -520,13 +520,13 @@
       type: bool
       value: 'false'
 
-- name: Start screensaver after 3 mins
-  osx_defaults:
-    host: currentHost
-    domain: com.apple.screensaver
-    key: idleTime
-    type: int
-    value: 300
+#- name: Start screensaver after 3 mins
+#  osx_defaults:
+#    host: currentHost
+#    domain: com.apple.screensaver
+#    key: idleTime
+#    type: int
+#    value: 300
 
 - name: Configure Aerial
   osx_defaults:
