@@ -394,7 +394,6 @@
       value: 0
     - key: com.ragingmenace.MenuMeterDisk
       value: 0
-    - key: SUHasLaunchedBefore
 
 - name: Configure KeepingYouAwake
   osx_defaults:
