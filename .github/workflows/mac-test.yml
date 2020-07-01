@@ -19,8 +19,6 @@ jobs:
 
       - name: Install Ansible packages
         run: |
-          which python3
-          env
           pip3 install --user ansible
           ln -s /Users/runner/Library/Python/3.7/bin/ansible /usr/local/bin/ansible
           ln -s /Users/runner/Library/Python/3.7/bin/ansible-playbook /usr/local/bin/ansible-playbook

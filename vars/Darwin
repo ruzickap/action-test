@@ -44,7 +44,7 @@ homebrew:
   # - dockutil                                     # Command line tool for managing dock items
   # - exa
   # - fdupes                                       # pcre2
-  # - fzf
+  - fzf
   - gh
   # - git-crypt                                    # openssl@1.1
   # - gnu-sed
