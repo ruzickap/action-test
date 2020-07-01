@@ -19,11 +19,12 @@ jobs:
 
       - name: Install Ansible packages
         run: |
-          pip install --user ansible
-          pip install pywinrm
+          pip3 install --user ansible
+          pip3 install pywinrm
+          /usr/local/bin/python3 --version
+          ls -la /Users/runner/Library/Python/
           ln -s /Users/runner/Library/Python/2.7/bin/ansible /usr/local/bin/ansible
           ln -s /Users/runner/Library/Python/2.7/bin/ansible-playbook /usr/local/bin/ansible-playbook
-          which python3
 
       - name: Run Ansible
         run: |
