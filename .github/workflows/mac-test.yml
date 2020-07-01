@@ -4,11 +4,13 @@ on:
   pull_request:
     types: [opened, synchronize]
     paths:
+      - tasks
       - .github/workflows/mac-test.yml
   push:
     branches:
       - master
     paths:
+      - tasks
       - .github/workflows/mac-test.yml
 
 jobs:
