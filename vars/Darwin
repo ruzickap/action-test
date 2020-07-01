@@ -1,4 +1,4 @@
-login_picture_url: https://cdn.mirantis.com/wp-content/uploads/2020/04/mirantis-logo-2color-white-rgb-transparent.png
+login_picture_url: https://www.gravatar.com/avatar/{{ 'petr.ruzicka@gmail.com' | hash('md5') }}?s=500
 hostname: MyMac
 
 # Items to add to the dock

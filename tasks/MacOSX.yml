@@ -288,7 +288,7 @@
 - name: Download Picture which will be used as login "Picture"
   get_url:
     url: "{{ login_picture_url }}"
-    dest: ~/Pictures/login_picture.png
+    dest: ~/Pictures/login_picture.jpg
 
 # https://www.alansiu.net/2019/09/20/scripting-changing-the-user-picture-in-macos/
 - name: Set login picture
@@ -296,7 +296,7 @@
     dest: /Library/Caches/{{ ansible_user_id }}.picture.dsimport
     content: |
       0x0A 0x5C 0x3A 0x2C dsRecTypeStandard:Users 2 dsAttrTypeStandard:RecordName externalbinary:dsAttrTypeStandard:JPEGPhoto
-      {{ ansible_user_id }}:{{ ansible_user_dir }}/Pictures/login_picture.png
+      {{ ansible_user_id }}:{{ ansible_user_dir }}/Pictures/login_picture.jpg
 
 - name: Set login picture 2
   shell: |
