@@ -1,0 +1,32 @@
+name: virt-check
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - .github/workflows/virt-check.yml
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/virt-check.yml
+
+jobs:
+  virt-check-ubuntu:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: lspcu
+        run: |
+          lscpu
+
+  virt-check-mac:
+    runs-on: macos-latest
+    steps:
+      - name: lscpu
+        run: |
+          set -x
+          sysctl kern.hv_support
+          sysctl -a | grep machdep.cpu.features
+          sysctl -a | grep -o VMX
+          wmic cpu get VirtualizationFirmwareEnabled
+
