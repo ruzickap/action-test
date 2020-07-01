@@ -17,7 +17,11 @@ jobs:
     steps:
       - name: lspcu
         run: |
+          set -x
           lscpu
+          egrep -o '(vmx|svm)' /proc/cpuinfo | sort | uniq
+          egrep -wo 'vmx|lm|aes' /proc/cpuinfo  | sort | uniq | sed -e 's/aes/Hardware encryption=Yes (&)/g' -e 's/lm/64 bit cpu=Yes (&)/g' -e 's/vmx/Intel hardware virtualization=Yes (&)/g'
+
 
   virt-check-mac:
     runs-on: macos-latest
@@ -28,5 +32,4 @@ jobs:
           sysctl kern.hv_support
           sysctl -a | grep machdep.cpu.features
           sysctl -a | grep -o VMX
-          wmic cpu get VirtualizationFirmwareEnabled
 
