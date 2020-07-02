@@ -12,6 +12,8 @@ on:
       - .github/workflows/mac-fedora.yml
 
 env:
+  MYUSER: pruzicka
+  PASSWORD: xxxx
   ANSIBLE_HOST_KEY_CHECKING: False
   ANSIBLE_REMOTE_PORT: 2222
 
