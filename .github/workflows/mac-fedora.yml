@@ -19,7 +19,7 @@ jobs:
 
       - name: Checks
         run: |
-          free -h
+          top -l 1 -s 0 | grep PhysMem
           df -h
 
       - name: Install Ansible packages
