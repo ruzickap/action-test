@@ -36,7 +36,7 @@ jobs:
         run: |
           set -x
           vagrant init fedora/32-cloud-base
-          sed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
+          gsed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
           vagrant up
 
       - name: Add main user to Fedora VirtualBox VM
@@ -46,3 +46,7 @@ jobs:
       - name: Ansible
         run: |
           ansible-playbook --user="${MYUSER}" --extra-vars "ansible_password=${PASSWORD} ansible_become_password=${PASSWORD} ansible_port=2222" main.yml -i "127.0.0.1,"
+
+      - name: Destroy VM
+        run: |
+          vagrant destroy --force
