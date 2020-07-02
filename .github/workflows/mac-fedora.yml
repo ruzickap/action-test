@@ -17,26 +17,22 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      # - name: Checks
-      #   run: |
-      #     set -x
-      #     top -l 1 -s 0 | grep PhysMem
-      #     df -h .
+      - name: Checks
+        run: |
+          set -x
+          top -l 1 -s 0 | grep PhysMem
+          df -h .
 
       - name: Install Ansible packages
         run: |
-          brew install ansible gnu-sed
-          # pip3 install --user ansible
-          # ln -s /Users/runner/Library/Python/3.7/bin/ansible /usr/local/bin/ansible
-          # ln -s /Users/runner/Library/Python/3.7/bin/ansible-playbook /usr/local/bin/ansible-playbook
+          brew install ansible gnu-sed hudochenkov/sshpass/sshpass
 
-      - name: Stat Fedora VirtualBox VM
+          - name: Stat Fedora VirtualBox VM
         env:
           RAM: 4096
         run: |
-          set -x
           vagrant init fedora/32-cloud-base
-          gsed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
+          sed -i "/Vagrant.configure(\"2\") do |config|/a \ \ config.vm.provider \"virtualbox\" do |vb|\n \ \ \ \ vb.memory = \"${RAM}\"\n \ end" Vagrantfile
           vagrant up
 
       - name: Add main user to Fedora VirtualBox VM
