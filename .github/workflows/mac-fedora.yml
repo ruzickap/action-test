@@ -25,7 +25,7 @@ jobs:
 
       - name: Install Ansible packages
         run: |
-          brews install ansible gnu-sed
+          brew install ansible gnu-sed
           # pip3 install --user ansible
           # ln -s /Users/runner/Library/Python/3.7/bin/ansible /usr/local/bin/ansible
           # ln -s /Users/runner/Library/Python/3.7/bin/ansible-playbook /usr/local/bin/ansible-playbook
@@ -39,10 +39,10 @@ jobs:
           sed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
           vagrant up
 
-      # - name: Add main user to Fedora VirtualBox VM
-      #   run: |
-      #     ansible --become --user vagrant --extra-vars "ansible_password=vagrant ansible_port=2222" -m user -a "name=${MYUSER} password={{ \"${PASSWORD}\" | password_hash('sha512') }} append=yes groups=wheel" -i "127.0.0.1," 127.0.0.1
+      - name: Add main user to Fedora VirtualBox VM
+        run: |
+          ansible --become --user vagrant --extra-vars "ansible_password=vagrant ansible_port=2222" -m user -a "name=${MYUSER} password={{ \"${PASSWORD}\" | password_hash('sha512') }} append=yes groups=wheel" -i "127.0.0.1," 127.0.0.1
 
-      # - name: Ansible
-      #   run: |
-      #     ansible-playbook --user="${MYUSER}" --extra-vars "ansible_password=${PASSWORD} ansible_become_password=${PASSWORD} ansible_port=2222" main.yml -i "127.0.0.1,"
+      - name: Ansible
+        run: |
+          ansible-playbook --user="${MYUSER}" --extra-vars "ansible_password=${PASSWORD} ansible_become_password=${PASSWORD} ansible_port=2222" main.yml -i "127.0.0.1,"
