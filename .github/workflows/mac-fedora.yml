@@ -5,11 +5,15 @@ on:
     types: [opened, synchronize]
     paths:
       - .github/workflows/mac-fedora.yml
+      - vars/**
+      - tasks/**
   push:
     branches:
       - master
     paths:
       - .github/workflows/mac-fedora.yml
+      - vars/**
+      - tasks/**
 
 env:
   MYUSER: pruzicka

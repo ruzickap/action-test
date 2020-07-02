@@ -1,0 +1,101 @@
+###############################
+# Run as root
+###############################
+
+- name: Run tasks as root
+  block:
+    - name: Change hostname
+      hostname:
+        name: "{{ my_hostname }}"
+
+    - name: Set fact about primary disk device used by KDE Plasma
+      shell: |
+        set -o pipefail
+        lsblk -o NAME,MAJ:MIN,TYPE | sed -n 's/^\([^ ]*\) *\([^:]*\):\([^ ]*\).*disk$/\1_(\2%3A\3)/p'
+      changed_when: false
+      register: primary_disk_device_number_kde_plasma
+
+    - name: Disable weak dependencies
+      ini_file:
+        path: /etc/dnf/dnf.conf
+        section: main
+        option: install_weak_deps
+        value: 'false'
+
+    - name: Upgrade all packages
+      dnf:
+        name: '*'
+        state: latest
+
+    - name: Install packages
+      dnf:
+        name: "{{ dnf_packages + dnf_kde_packages + dnf_qt_packages + dnf_graphical_packages + dnf_gtk3_packages + dnf_gtk2_packages}}"
+
+    - name: Install rpmfusion repositories
+      dnf:
+        name: "{{ rpmfusion_repositories }}"
+
+    - name: Import key for Codium repository
+      rpm_key:
+        key: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+
+    - name: Add Codium repository
+      yum_repository:
+        name: gitlab.com_paulcarroty_vscodium_repo
+        description: gitlab.com_paulcarroty_vscodium_repo
+        baseurl: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/repos/rpms/
+        gpgcheck: yes
+        gpgkey: https://gitlab.com/paulcarroty/vscodium-deb-rpm-repo/raw/master/pub.gpg
+
+    - name: Add gbt repository
+      yum_repository:
+        name: gbt_release
+        description: gbt
+        baseurl: https://packagecloud.io/gbt/release/el/7/$basearch
+        repo_gpgcheck: yes
+        gpgcheck: yes
+        gpgkey: "https://packagecloud.io/gbt/release/gpgkey https://packagecloud.io/gbt/release/gpgkey/gbt-release-4C6E79EFF45439B6.pub.gpg"
+
+    - name: Install additional packages
+      dnf:
+        name: "{{ dnf_additional_packages }}"
+
+    - name: Get package facts
+      package_facts:
+
+    - name: Switch to runlevel 5 by default (graphical.target)
+      file:
+        src: /lib/systemd/system/graphical.target
+        dest: /etc/systemd/system/default.target
+        state: link
+        force: yes
+
+
+  become: true
+
+###############################
+# Run as {{ ansible_user_id }}
+###############################
+
+- name: Install Homebrew
+  shell: echo | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+  args:
+    creates: /home/linuxbrew/.linuxbrew/bin/brew
+
+- name: Install Homebrew taps
+  homebrew_tap:
+    name: "{{ homebrew_taps | join(',') }}"
+  environment:
+    PATH: /home/linuxbrew/.linuxbrew/bin/:{{ ansible_env.PATH }}
+
+- name: Upgrade all Homebrew packages
+  homebrew:
+    update_homebrew: yes
+    upgrade_all: yes
+    path: /home/linuxbrew/.linuxbrew/bin
+
+- name: Install Homebrew packages
+  homebrew:
+    name: "{{ homebrew + homebrew_additional_packages }}"
+    path: /home/linuxbrew/.linuxbrew/bin
+
