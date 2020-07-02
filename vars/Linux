@@ -2,6 +2,8 @@
 
 plymouth_theme: spinner
 
+my_hostname: peru.xvx.cz
+
 # # kops_url: https://github.com/kubernetes/kops/releases/download/1.15.0/kops-linux-amd64
 
 # enable_boot_services:
