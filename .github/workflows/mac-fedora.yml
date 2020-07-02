@@ -34,7 +34,7 @@ jobs:
         run: |
           set -x
           vagrant init fedora/32-cloud-base
-          sed -i '/Vagrant.configure("2") do |config|/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
+          sed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
           vagrant up
 
       - name: Add main user to Fedora VirtualBox VM
