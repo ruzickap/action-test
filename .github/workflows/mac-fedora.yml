@@ -19,8 +19,9 @@ jobs:
 
       - name: Checks
         run: |
+          set -x
           top -l 1 -s 0 | grep PhysMem
-          df -h
+          df -h .
 
       - name: Install Ansible packages
         run: |
@@ -34,7 +35,8 @@ jobs:
         run: |
           set -x
           vagrant init fedora/32-cloud-base
-          sed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
+          "sed -i '/^Vagrant.configure/a \ \ config.vm.provider "virtualbox" do |vb|\n \ \ \ \ vb.memory = "4096"\n \ end' Vagrantfile
+          sed -i "/^Vagrant.configure/a test" Vagrantfile
           vagrant up
 
       - name: Add main user to Fedora VirtualBox VM
