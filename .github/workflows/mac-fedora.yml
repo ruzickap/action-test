@@ -32,7 +32,6 @@ jobs:
           set -x
           top -l 1 -s 0 | grep PhysMem
           df -h .
-          which python3
 
       - name: Install packages
         run: |
