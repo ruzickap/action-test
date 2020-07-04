@@ -98,4 +98,3 @@
   homebrew:
     name: "{{ homebrew + homebrew_additional_packages }}"
     path: /home/linuxbrew/.linuxbrew/bin
-
