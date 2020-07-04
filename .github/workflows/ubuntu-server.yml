@@ -28,14 +28,30 @@ on:
 jobs:
   ubuntu-server:
     runs-on: macos-latest
+    strategy:
+      matrix:
+        stage:
+          - ubuntu-20.04-server-amd64-virtualbox
+          - ubuntu-18.04-server-amd64-virtualbox
+          - ubuntu-16.04-server-amd64-virtualbox
     steps:
       - uses: actions/checkout@v2
 
       - name: Install packages
         run: |
           brew install ansible coreutils gnu-sed packer
-          # md5sha1sum
+          echo $PATH
 
-      - name: Build
+      - name: Build image - ${{ matrix.stage }}
         run: |
-          PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH} ./build.sh ubuntu-20.04-server-amd64-virtualbox
+          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          ./build.sh ${{ matrix.stage }}
+
+      - name: Check the created box image - ${{ matrix.stage }}
+        run: |
+        export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+        ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
+
+      - name: Check /var/tmp/packer-templates-images
+        run: |
+          ls -la /var/tmp/packer-templates-images/
