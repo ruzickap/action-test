@@ -5,15 +5,25 @@ on:
     types: [opened, synchronize]
     paths:
       - .github/workflows/ubuntu-server.yml
-      - vars/**
-      - tasks/**
+      - ubuntu-server.json
+      - Vagrantfile-linux.template
+      - build.sh
+      - templates/ubuntu.md
+      - scripts/ubuntu/**
+      - scripts/linux-common/**
+      - http/ubuntu-server/**
   push:
     branches:
       - master
     paths:
       - .github/workflows/ubuntu-server.yml
-      - vars/**
-      - tasks/**
+      - ubuntu-server.json
+      - Vagrantfile-linux.template
+      - build.sh
+      - templates/ubuntu.md
+      - scripts/ubuntu/**
+      - scripts/linux-common/**
+      - http/ubuntu-server/**
 
 jobs:
   ubuntu-server:
@@ -23,8 +33,9 @@ jobs:
 
       - name: Install packages
         run: |
-          brew install ansible gnu-sed packer
+          brew install ansible coreutils gnu-sed packer
+          # md5sha1sum
 
       - name: Build
         run: |
-          ./build.sh ubuntu-20.04-server-amd64-virtualbox
+          PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH} ./build.sh ubuntu-20.04-server-amd64-virtualbox
