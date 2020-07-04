@@ -1,0 +1,36 @@
+---
+name: molecule
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+  push:
+    branches:
+      - master
+
+jobs:
+  molecule-checks:
+    name: Molecule checks
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        env:
+          - MOLECULE_DISTRO: centos7
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Update repositories
+        run: sudo apt update
+
+      - name: Install Setuptools
+        run: sudo apt-get install -y python3-setuptools
+
+      - name: Install test dependencies
+        run: sudo -H pip3 install ansible-lint molecule docker yamllint
+
+      - name: Run tests
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+        run: molecule test

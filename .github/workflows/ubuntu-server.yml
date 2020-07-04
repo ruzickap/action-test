@@ -1,0 +1,30 @@
+name: ubuntu-server
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - .github/workflows/ubuntu-server.yml
+      - vars/**
+      - tasks/**
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/ubuntu-server.yml
+      - vars/**
+      - tasks/**
+
+jobs:
+  ubuntu-server:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install packages
+        run: |
+          brew install ansible gnu-sed packer
+
+      - name: Build
+        run: |
+          ./build.sh ubuntu-20.04-server-amd64-virtualbox
