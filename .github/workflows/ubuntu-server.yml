@@ -47,7 +47,7 @@ jobs:
       - name: Build image - ${{ matrix.stage }}
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-          ./build.sh ${{ matrix.stage }}
+          PACKER_LOG=1 ./build.sh ${{ matrix.stage }}
 
       # - name: Check the created box image - ${{ matrix.stage }}
       #   run: |
