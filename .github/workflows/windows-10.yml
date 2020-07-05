@@ -27,6 +27,11 @@ on:
       - win_iso.sha256
       - windows.json
 
+env:
+  ACCELERATOR: hvf
+  # https://github.com/ansible/ansible/issues/32499
+  OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
+  
 jobs:
   windows-10:
     name: "*"
@@ -36,6 +41,7 @@ jobs:
       matrix:
         stage:
           - windows-10-enterprise-x64-eval-virtualbox
+          - windows-10-enterprise-x64-eval-libvirt
     steps:
       - uses: actions/checkout@v2
         with:
@@ -47,8 +53,6 @@ jobs:
           pip3 install pywinrm
 
       - name: Build image - ${{ matrix.stage }}
-        env:
-          OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}

@@ -25,6 +25,9 @@ on:
       - scripts/linux-common/**
       - http/ubuntu-server/**
 
+env:
+  ACCELERATOR: hvf
+
 jobs:
   ubuntu-server:
     name: "*"
@@ -45,8 +48,6 @@ jobs:
           brew install coreutils gnu-sed packer qemu
 
       - name: Build image - ${{ matrix.stage }}
-        env:
-          ACCELERATOR=hvf
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}
