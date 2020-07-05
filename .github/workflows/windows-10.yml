@@ -47,9 +47,11 @@ jobs:
           pip3 install pywinrm
 
       - name: Build image - ${{ matrix.stage }}
+        env:
+          OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-          PACKER_LOG=1 ./build.sh ${{ matrix.stage }}
+          ./build.sh ${{ matrix.stage }}
 
       - name: Check the created box image - ${{ matrix.stage }}
         run: |

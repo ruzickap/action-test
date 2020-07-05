@@ -47,7 +47,6 @@ jobs:
       - name: Build image - ${{ matrix.stage }}
         env:
           ACCELERATOR=hvf
-          OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}
