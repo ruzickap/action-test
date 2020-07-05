@@ -44,6 +44,7 @@ jobs:
       - name: Install packages
         run: |
           brew install ansible coreutils gnu-sed packer
+          pip3 install pywinrm
 
       - name: Build image - ${{ matrix.stage }}
         run: |
