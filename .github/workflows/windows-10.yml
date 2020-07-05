@@ -40,7 +40,7 @@ jobs:
       fail-fast: false
       matrix:
         stage:
-          # - windows-10-enterprise-x64-eval-virtualbox
+          - windows-10-enterprise-x64-eval-virtualbox
           - windows-10-enterprise-x64-eval-libvirt
     steps:
       - uses: actions/checkout@v2
@@ -55,9 +55,9 @@ jobs:
       - name: Build image - ${{ matrix.stage }}
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-          PACKER_LOG=1 ./build.sh ${{ matrix.stage }}
+          ./build.sh ${{ matrix.stage }}
 
-      - name: Check the created box image - ${{ matrix.stage }}
-        run: |
-          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-          ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
+      # - name: Check the created box image - ${{ matrix.stage }}
+      #   run: |
+      #     export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+      #     ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
