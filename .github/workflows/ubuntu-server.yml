@@ -52,7 +52,7 @@ jobs:
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}
 
-      # - name: Check the created box image - ${{ matrix.stage }}
-      #   run: |
-      #     export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-      #     ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
+      - name: Check the created box image - ${{ matrix.stage }}
+        run: |
+          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
