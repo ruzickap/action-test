@@ -1,0 +1,61 @@
+name: windows-2012
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - .github/workflows/windows-2012.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
+      - build.sh
+      - http/windows-2012/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - windows.json
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/windows-2012.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
+      - build.sh
+      - http/windows-2012/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - windows.json
+
+env:
+  # https://github.com/ansible/ansible/issues/32499
+  OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
+
+jobs:
+  windows-2012:
+    name: "*"
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        stage:
+          - windows-server-2012_r2-standard-x64-eval-virtualbox
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Install packages
+        run: |
+          brew install ansible coreutils gnu-sed packer
+          pip3 install pywinrm
+
+      - name: Build image - ${{ matrix.stage }}
+        run: |
+          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          ./build.sh ${{ matrix.stage }}
+
+      - name: Check the created box image - ${{ matrix.stage }}
+        run: |
+          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box

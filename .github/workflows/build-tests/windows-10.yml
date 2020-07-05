@@ -1,45 +1,45 @@
-name: my_ubuntu-server
+name: windows-10
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/my_ubuntu-server.yml
-      - my_ubuntu-server.json
-      - Vagrantfile-linux.template
+      - .github/workflows/windows-10.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
       - build.sh
-      - templates/my_ubuntu.md
-      - scripts/ubuntu/**
-      - scripts/linux-common/**
-      - http/ubuntu-server/**
-      - ansible/site.yml
-      - ansible/roles/ansible-role-my_common_defaults/**
+      - http/windows-10/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - windows.json
   push:
     branches:
       - master
     paths:
-      - .github/workflows/my_ubuntu-server.yml
-      - my_ubuntu-server.json
-      - Vagrantfile-linux.template
+      - .github/workflows/windows-10.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
       - build.sh
-      - templates/ubuntu.md
-      - scripts/ubuntu/**
-      - scripts/linux-common/**
-      - http/ubuntu-server/**
-      - ansible/site.yml
-      - ansible/roles/ansible-role-my_common_defaults/**
+      - http/windows-10/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - windows.json
+
+env:
+  # https://github.com/ansible/ansible/issues/32499
+  OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
 
 jobs:
-  my_ubuntu-server:
+  windows-10:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
-          - my_ubuntu-20.04-server-amd64-virtualbox
-          - my_ubuntu-18.04-server-amd64-virtualbox
-          - my_ubuntu-16.04-server-amd64-virtualbox
+          - windows-10-enterprise-x64-eval-virtualbox
     steps:
       - uses: actions/checkout@v2
         with:
@@ -48,6 +48,7 @@ jobs:
       - name: Install packages
         run: |
           brew install ansible coreutils gnu-sed packer
+          pip3 install pywinrm
 
       - name: Build image - ${{ matrix.stage }}
         run: |

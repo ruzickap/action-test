@@ -5,25 +5,28 @@ on:
     types: [opened, synchronize]
     paths:
       - .github/workflows/ubuntu-desktop.yml
-      - ubuntu-desktop.json
-      - Vagrantfile-linux.template
       - build.sh
-      - templates/ubuntu.md
-      - scripts/ubuntu/**
-      - scripts/linux-common/**
       - http/ubuntu-desktop/**
+      - scripts/linux-common/**
+      - scripts/ubuntu/**
+      - ubuntu-desktop.json
+      - vagrant_init_destroy_boxes.sh
+      - Vagrantfile-linux.template
   push:
     branches:
       - master
     paths:
       - .github/workflows/ubuntu-desktop.yml
-      - ubuntu-desktop.json
-      - Vagrantfile-linux.template
       - build.sh
-      - templates/ubuntu.md
-      - scripts/ubuntu/**
-      - scripts/linux-common/**
       - http/ubuntu-desktop/**
+      - scripts/linux-common/**
+      - scripts/ubuntu/**
+      - ubuntu-desktop.json
+      - vagrant_init_destroy_boxes.sh
+      - Vagrantfile-linux.template
+
+env:
+  ACCELERATOR: hvf
 
 jobs:
   ubuntu-desktop:
@@ -35,19 +38,21 @@ jobs:
         stage:
           - ubuntu-20.04-desktop-amd64-virtualbox
           - ubuntu-18.04-desktop-amd64-virtualbox
+          - ubuntu-20.04-desktop-amd64-libvirt
+          - ubuntu-18.04-desktop-amd64-libvirt
     steps:
       - uses: actions/checkout@v2
 
       - name: Install packages
         run: |
-          brew install ansible coreutils gnu-sed packer
+          brew install coreutils gnu-sed packer qemu
 
       - name: Build image - ${{ matrix.stage }}
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}
 
-      - name: Check the created box image - ${{ matrix.stage }}
-        run: |
-          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-          ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
+      # - name: Check the created box image - ${{ matrix.stage }}
+      #   run: |
+      #     export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+      #     ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
