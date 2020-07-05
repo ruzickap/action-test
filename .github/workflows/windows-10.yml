@@ -1,39 +1,41 @@
-name: my_centos
+name: windows-10
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/my_centos.yml
-      - my_centos-7.json
-      - Vagrantfile-linux.template
+      - .github/workflows/windows-10.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
       - build.sh
-      - templates/my_centos.md
-      - scripts/linux-common/**
-      - ansible/site.yml
-      - ansible/roles/ansible-role-my_common_defaults/**
+      - http/ubuntu-server/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - windows.json
   push:
     branches:
       - master
     paths:
-      - .github/workflows/my_centos.yml
-      - my_centos-7.json
-      - Vagrantfile-linux.template
+      - .github/workflows/windows-10.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
       - build.sh
-      - templates/my_centos.md
-      - scripts/linux-common/**
-      - ansible/site.yml
-      - ansible/roles/ansible-role-my_common_defaults/**
+      - http/ubuntu-server/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - windows.json
 
 jobs:
-  my_centos:
+  windows-10:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
-          - my_centos-7-x86_64-virtualbox
+          - windows-10-enterprise-x64-eval-virtualbox
     steps:
       - uses: actions/checkout@v2
         with:
