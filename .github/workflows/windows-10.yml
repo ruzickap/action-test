@@ -31,7 +31,7 @@ env:
   ACCELERATOR: hvf
   # https://github.com/ansible/ansible/issues/32499
   OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
-  
+
 jobs:
   windows-10:
     name: "*"
@@ -49,7 +49,7 @@ jobs:
 
       - name: Install packages
         run: |
-          brew install ansible coreutils gnu-sed packer
+          brew install ansible coreutils gnu-sed packer qemu
           pip3 install pywinrm
 
       - name: Build image - ${{ matrix.stage }}
