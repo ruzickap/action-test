@@ -1,41 +1,39 @@
-name: ubuntu-server
+name: my_centos
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/ubuntu-server.yml
-      - ubuntu-server.json
+      - .github/workflows/my_centos.yml
+      - my_centos-7.json
       - Vagrantfile-linux.template
       - build.sh
-      - templates/ubuntu.md
-      - scripts/ubuntu/**
+      - templates/my_centos.md
       - scripts/linux-common/**
-      - http/ubuntu-server/**
+      - ansible/site.yml
+      - ansible/roles/ansible-role-my_common_defaults/**
   push:
     branches:
       - master
     paths:
-      - .github/workflows/ubuntu-server.yml
-      - ubuntu-server.json
+      - .github/workflows/my_centos.yml
+      - my_centos-7.json
       - Vagrantfile-linux.template
       - build.sh
-      - templates/ubuntu.md
-      - scripts/ubuntu/**
+      - templates/my_centos.md
       - scripts/linux-common/**
-      - http/ubuntu-server/**
+      - ansible/site.yml
+      - ansible/roles/ansible-role-my_common_defaults/**
 
 jobs:
-  ubuntu-server:
+  my_centos:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
-          - ubuntu-20.04-server-amd64-virtualbox
-          - ubuntu-18.04-server-amd64-virtualbox
-          - ubuntu-16.04-server-amd64-virtualbox
+          - my_centos-7-x86_64-virtualbox
     steps:
       - uses: actions/checkout@v2
 

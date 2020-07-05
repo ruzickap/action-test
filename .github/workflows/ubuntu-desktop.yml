@@ -1,41 +1,40 @@
-name: ubuntu-server
+name: ubuntu-desktop
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/ubuntu-server.yml
-      - ubuntu-server.json
+      - .github/workflows/ubuntu-desktop.yml
+      - ubuntu-desktop.json
       - Vagrantfile-linux.template
       - build.sh
       - templates/ubuntu.md
       - scripts/ubuntu/**
       - scripts/linux-common/**
-      - http/ubuntu-server/**
+      - http/ubuntu-desktop/**
   push:
     branches:
       - master
     paths:
-      - .github/workflows/ubuntu-server.yml
-      - ubuntu-server.json
+      - .github/workflows/ubuntu-desktop.yml
+      - ubuntu-desktop.json
       - Vagrantfile-linux.template
       - build.sh
       - templates/ubuntu.md
       - scripts/ubuntu/**
       - scripts/linux-common/**
-      - http/ubuntu-server/**
+      - http/ubuntu-desktop/**
 
 jobs:
-  ubuntu-server:
+  ubuntu-desktop:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
-          - ubuntu-20.04-server-amd64-virtualbox
-          - ubuntu-18.04-server-amd64-virtualbox
-          - ubuntu-16.04-server-amd64-virtualbox
+          - ubuntu-20.04-desktop-amd64-virtualbox
+          - ubuntu-18.04-desktop-amd64-virtualbox
     steps:
       - uses: actions/checkout@v2
 

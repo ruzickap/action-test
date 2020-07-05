@@ -1,43 +1,49 @@
-name: ubuntu-server
+name: my_ubuntu-server
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/ubuntu-server.yml
-      - ubuntu-server.json
+      - .github/workflows/my_ubuntu-server.yml
+      - my_ubuntu-server.json
       - Vagrantfile-linux.template
       - build.sh
-      - templates/ubuntu.md
+      - templates/my_ubuntu.md
       - scripts/ubuntu/**
       - scripts/linux-common/**
       - http/ubuntu-server/**
+      - ansible/site.yml
+      - ansible/roles/ansible-role-my_common_defaults/**
   push:
     branches:
       - master
     paths:
-      - .github/workflows/ubuntu-server.yml
-      - ubuntu-server.json
+      - .github/workflows/my_ubuntu-server.yml
+      - my_ubuntu-server.json
       - Vagrantfile-linux.template
       - build.sh
       - templates/ubuntu.md
       - scripts/ubuntu/**
       - scripts/linux-common/**
       - http/ubuntu-server/**
+      - ansible/site.yml
+      - ansible/roles/ansible-role-my_common_defaults/**
 
 jobs:
-  ubuntu-server:
+  my_ubuntu-server:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
-          - ubuntu-20.04-server-amd64-virtualbox
-          - ubuntu-18.04-server-amd64-virtualbox
-          - ubuntu-16.04-server-amd64-virtualbox
+          - my_ubuntu-20.04-server-amd64-virtualbox
+          - my_ubuntu-18.04-server-amd64-virtualbox
+          - my_ubuntu-16.04-server-amd64-virtualbox
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Install packages
         run: |
