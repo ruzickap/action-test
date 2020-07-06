@@ -64,3 +64,9 @@ jobs:
       #   run: |
       #     export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
       #     ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
+
+      - name: Show all logs
+        if: ${{ always() }}
+        run: |
+          cat /var/tmp/*.init.log
+          cat /var/tmp/packer-templates-images/*.packer.log
