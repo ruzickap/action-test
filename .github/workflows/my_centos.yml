@@ -25,6 +25,9 @@ on:
       - vagrant_init_destroy_boxes.sh
       - Vagrantfile-linux.template
 
+env:
+  ACCELERATOR: hvf
+
 jobs:
   my_centos:
     name: "*"
@@ -49,13 +52,8 @@ jobs:
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}
 
-      # - name: Check the created box image - ${{ matrix.stage }}
-      #   run: |
-      #     export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
-      #     ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
-
-      - name: Show all logs
-        if: ${{ always() }}
+      - name: Check the created box image - ${{ matrix.stage }}
+        if: ${{ contains( matirx.stage, 'virtualbox' ) }}
         run: |
-          cat /var/tmp/*.init.log
-          cat /var/tmp/packer-templates-images/*.packer.log
+          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
