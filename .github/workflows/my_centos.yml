@@ -53,7 +53,7 @@ jobs:
           ./build.sh ${{ matrix.stage }}
 
       - name: Check the created box image - ${{ matrix.stage }}
-        if: ${{ contains( matirx.stage, 'virtualbox' ) }}
+        if: ${{ contains( matrix.stage, 'virtualbox' ) }}
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
