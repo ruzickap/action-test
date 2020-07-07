@@ -10,6 +10,10 @@
       when: ansible_system_vendor == "QEMU"
 
   tasks:
+    - debug: var=ansible_winrm_server_cert_validation
+    - debug:
+        msg: "ansible_winrm_read_timeout_sec {{ ansible_winrm_read_timeout_sec }}"
+
     - name: Enable Remote Desktop
       win_regedit:
         key: 'HKLM:\System\CurrentControlSet\Control\Terminal Server'
@@ -106,6 +110,7 @@
         reboot: yes
         reboot_timeout: 10000
       register: windows_updates
+      # until: windows_updates is succeeded
 
     - name: Windows reboot
       win_reboot:
