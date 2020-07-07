@@ -1,51 +1,56 @@
-name: ubuntu-desktop
+name: my_windows
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/ubuntu-desktop.yml
+      - .github/workflows/my_windows.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
       - build.sh
-      - http/ubuntu-desktop/**
-      - scripts/linux-common/**
-      - scripts/ubuntu/**
-      - ubuntu-desktop.json
-      - vagrant_init_destroy_boxes.sh
-      - Vagrantfile-linux.template
+      - http/windows-10/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - my_windows.json
   push:
     branches:
       - master
     paths:
-      - .github/workflows/ubuntu-desktop.yml
+      - .github/workflows/my_windows.yml
+      - ansible/roles/ansible-role-virtio-win/**
+      - ansible/win-simple.yml
       - build.sh
-      - http/ubuntu-desktop/**
-      - scripts/linux-common/**
-      - scripts/ubuntu/**
-      - ubuntu-desktop.json
-      - vagrant_init_destroy_boxes.sh
-      - Vagrantfile-linux.template
+      - http/windows-10/**
+      - scripts/win-common/**
+      - Vagrantfile-windows.template
+      - win_iso.sha256
+      - my_windows.json
 
 env:
   ACCELERATOR: hvf
+  # https://github.com/ansible/ansible/issues/32499
+  OBJC_DISABLE_INITIALIZE_FORK_SAFETY: YES
 
 jobs:
-  ubuntu-desktop:
+  my_windows:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
-          - ubuntu-20.04-desktop-amd64-virtualbox
-          - ubuntu-18.04-desktop-amd64-virtualbox
-          - ubuntu-20.04-desktop-amd64-libvirt
-          - ubuntu-18.04-desktop-amd64-libvirt
+          - my_windows-10-enterprise-x64-eval-virtualbox
+          - my_windows-10-enterprise-x64-eval-libvirt
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: true
 
       - name: Install packages
         run: |
-          brew install coreutils gnu-sed packer qemu
+          brew install ansible coreutils gnu-sed packer qemu
+          pip3 install pywinrm
 
       - name: Build image - ${{ matrix.stage }}
         run: |

@@ -36,7 +36,7 @@ jobs:
       fail-fast: false
       matrix:
         stage:
-          # - my_centos-7-x86_64-virtualbox
+          - my_centos-7-x86_64-virtualbox
           - my_centos-7-x86_64-libvirt
     steps:
       - uses: actions/checkout@v2
@@ -48,15 +48,12 @@ jobs:
           brew install ansible coreutils gnu-sed packer qemu
 
       - name: Build image - ${{ matrix.stage }}
-        env:
-          PACKER_LOG: 1
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./build.sh ${{ matrix.stage }}
-          echo $?
 
       - name: Check the created box image - ${{ matrix.stage }}
-        if: ${{ contains( matrix.stage, 'virtualbox' ) }}
+        if: contains( matrix.stage, 'virtualbox' )
         run: |
           export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
