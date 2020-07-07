@@ -224,6 +224,7 @@
       - UpdateRollups
       - Updates
   register: windows_updates
+  until: windows_updates is succeeded
 
 - name: Windows reboot
   win_reboot:

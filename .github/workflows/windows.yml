@@ -1,14 +1,14 @@
-name: windows-2019
+name: windows
 
 on:
   pull_request:
     types: [opened, synchronize]
     paths:
-      - .github/workflows/windows-2019.yml
+      - .github/workflows/windows.yml
       - ansible/roles/ansible-role-virtio-win/**
       - ansible/win-simple.yml
       - build.sh
-      - http/windows-2019/**
+      - http/windows-*/**
       - scripts/win-common/**
       - Vagrantfile-windows.template
       - win_iso.sha256
@@ -17,15 +17,6 @@ on:
     branches:
       - master
     paths:
-      - .github/workflows/windows-2019.yml
-      - ansible/roles/ansible-role-virtio-win/**
-      - ansible/win-simple.yml
-      - build.sh
-      - http/windows-2019/**
-      - scripts/win-common/**
-      - Vagrantfile-windows.template
-      - win_iso.sha256
-      - windows.json
 
 env:
   # https://github.com/ansible/ansible/issues/32499
@@ -33,13 +24,16 @@ env:
   VAGRANT_CLOUD_USER: peru
 
 jobs:
-  windows-2019:
+  windows:
     name: "*"
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         stage:
+          - windows-10-enterprise-x64-eval-virtualbox
+          - windows-server-2012_r2-standard-x64-eval-virtualbox
+          - windows-server-2016-standard-x64-eval-virtualbox
           - windows-server-2019-standard-x64-eval-virtualbox
     steps:
       - name: Check if image is not already built
