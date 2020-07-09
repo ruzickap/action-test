@@ -17,5 +17,5 @@ jobs:
         uses: docker://avtodev/markdown-lint:v1
         with:
 #          config: .markdownlint.yml
-          ignore: CHANGELOG.md
+#          ignore: CHANGELOG.md
           args: '**.md'
