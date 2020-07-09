@@ -5,6 +5,7 @@ on:
     paths:
       - '**.md'
       - .github/workflows/new-markdown-checks.yml
+      - .markdownlint.yml
 
 jobs:
   markdownlint-check:
