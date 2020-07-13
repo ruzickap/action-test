@@ -6,10 +6,10 @@ on:
       - .github/workflows/my_linter.yml
 
 jobs:
-  env-checker:
+  my_linter:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@2
+      - uses: actions/checkout@v2
 
       - name: Check links using container
         uses: ruzickap/action-test@master
