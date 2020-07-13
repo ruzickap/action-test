@@ -16,6 +16,6 @@ jobs:
       - name: markdownlint-cli
         uses: docker://avtodev/markdown-lint:v1
         with:
-#          config: .markdownlint.yml
-#          ignore: CHANGELOG.md
+          config: .markdownlint.yml
+          ignore: CHANGELOG.md
           args: '**.md'

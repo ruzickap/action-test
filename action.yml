@@ -1,5 +1,5 @@
-name: 'My Broken Link Checker'
-description: 'Broken link checker for web pages located localy or remotely'
+name: 'My Markdown Linter'
+description: 'Lint Markdown files'
 author: 'ruzickap'
 runs:
   using: 'docker'
@@ -8,30 +8,30 @@ branding:
   icon: 'list'
   color: 'blue'
 inputs:
-  debug:
-    description: 'Debug mode (set -x)'
-    required: false
-    default: ''
-  cmd_params:
-    description: 'Command line parametrs for muffet'
-    required: false
-    default: ''
-  pages_path:
-    description: 'Relative path to the directory with local web pages'
-    required: false
-    default: ''
-  run_timeout:
-    description: 'Maximum number of seconds that URL checker can be running'
+  config_file:
+    description: 'markdownlint config file'
     required: false
     default: '300'
-  url:
-    description: 'URL which will be checked'
-    required: true
+  debug:
+    description: 'Debug mode'
+    required: false
     default: ''
   exclude:
-    description: 'Exclude files/(sub)directories from beeing checked'
+    description: 'Exclude files or directories'
     required: false
-
+    default: ''
+  fd_cmd_params:
+    description: 'Command line parameters for fd command'
+    required: false
+    default: ''
+  markdownlint_cmd_params:
+    description: 'Command line parameters for markdownlint command'
+    required: false
+    default: ''
+  paths:
+    description: 'Set paths which should be recursively scanned for markdown files (*.md) and linted'
+    required: false
+    default: ''
 outputs:
   output:
-    description: 'Output of the link checker'
+    description: 'Output of the markdownlint'
