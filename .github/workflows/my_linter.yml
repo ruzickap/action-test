@@ -14,11 +14,6 @@ jobs:
       - name: Check links using container
         uses: ruzickap/action-test
         with:
-          paths:
-            - ansible/roles/ansible-role-my_common_defaults
-            - ansible/roles/ansible-role-virtio-win
-          exclude:
-            - CHANGELOG.md
-          cmd_params: "--skip-tls-verification --verbose"
-          run_timeout: 10
+          paths: ("ansible/roles/ansible-role-my_common_defaults" "ansible/roles/ansible-role-virtio-win")
+          exclude: CHANGELOG.md
           debug: true
