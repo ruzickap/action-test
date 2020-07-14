@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -21,18 +21,25 @@ export MARKDOWNLINT_CMD_PARAMS="${INPUT_MARKDOWNLINT_CMD_PARAMS:-}"
 export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
 
 
-function print_error() {
+print_error() {
   echo -e "\e[31m*** ERROR: ${1}\e[m"
 }
 
-function print_info() {
+print_info() {
   echo -e "\e[36m*** INFO: ${1}\e[m"
 }
 
-
-function error_trap() {
+error_trap() {
   print_error "[$(date +'%F %T')] Something went wrong - see the errors above..."
   exit 1
+}
+
+warn() {
+  echo "::warning :: $1"
+}
+
+error() {
+  echo "::error :: $1"
 }
 
 ################
@@ -40,6 +47,9 @@ function error_trap() {
 ################
 
 trap error_trap ERR
+
+error "Input 'root_file' is missing."
+warn "Input 'compiler' and 'args' are both empty. Reset them to default values."
 
 [ -n "${DEBUG}" ] && set -x
 
@@ -62,7 +72,8 @@ fi
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
-"fd" "${FD_CMD_PARAMS[@]}"
+FD="fd"
+"${FD}" "${FD_CMD_PARAMS[@]}"
 
 while IFS= read -r -d '' FILE; do
   print_info "*** $FILE"
