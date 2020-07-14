@@ -59,6 +59,8 @@ if [ -n "${CONFIG_FILE}" ]; then
   MARKDOWNLINT_CMD_PARAMS+=(--config "${CONFIG_FILE}")
 fi
 
+ls -la ansible
+
 fd ${FD_CMD_PARAMS[@]}
 
 fd ${FD_CMD_PARAMS[*]}
