@@ -21,24 +21,13 @@ export RULES="${INPUT_RULES:-}"
 export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
 
 
-print_error() {
-  echo -e "::error ::: ${1}"
-}
-
 print_info() {
   echo -e "\e[36m**[info]: ${1}\e[m"
-}
-
-error_trap() {
-  print_error "Something went wrong - see the errors above..."
-  exit 1
 }
 
 ################
 # Main
 ################
-
-trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
 
