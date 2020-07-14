@@ -39,8 +39,6 @@ function error_trap() {
 # Main
 ################
 
-echo "xxxx ${INPUT_CONFIG_FILE} | ${CONFIG_FILE} | ${MARKDOWNLINT_CMD_PARAMS}"
-
 trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
@@ -61,25 +59,13 @@ if [ -n "${CONFIG_FILE}" ]; then
   MARKDOWNLINT_CMD_PARAMS+=(--config "${CONFIG_FILE}")
 fi
 
-ls -la ansible
-
-fd ${FD_CMD_PARAMS[@]}
-
-fd ${FD_CMD_PARAMS[*]}
-
-echo my
-
-fd -0 --extension md --type f --search-path ansible/roles/ansible-role-my_common_defaults --search-path ansible/roles/ansible-role-virtio-win --exclude CHANGELOG.md
-
-fd --extension md --type f --search-path ansible/roles/ansible-role-my_common_defaults --search-path ansible/roles/ansible-role-virtio-win --exclude CHANGELOG.md
-
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
 while IFS= read -r -d '' FILE; do
   print_info "*** $FILE"
   print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]}"
-  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}"
-done < <(fd ${FD_CMD_PARAMS[@]})
+  markdownlint "${MARKDOWNLINT_CMD_PARAMS[*]}" "${FILE}"
+done < <(fd ${FD_CMD_PARAMS[*]})
 
 print_info "[$(date +'%F %T')] Checks completed..."

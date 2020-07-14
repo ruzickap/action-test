@@ -11,7 +11,7 @@ inputs:
   config_file:
     description: 'markdownlint config file'
     required: false
-    default: '300'
+    default: ''
   debug:
     description: 'Debug mode'
     required: false
