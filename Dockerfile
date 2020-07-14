@@ -14,7 +14,7 @@ ENV MARKDOWNLINT-CLI_VERSION="0.23.2"
 SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 RUN set -eux && \
-    apk --update --no-cache add curl fd jq && \
+    apk --update --no-cache add bash curl fd jq && \
     if [ -z ${MARKDOWNLINT-CLI_VERSION+x} ] ; then \
       npm install --global --production markdownlint-cli@${MARKDOWNLINT-CLI_VERSION} ; \
     else \

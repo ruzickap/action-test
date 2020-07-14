@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 set -euo pipefail
 
@@ -48,6 +48,8 @@ fi
 declare -a MARKDOWNLINT_CMD_PARAMS
 if [ -n "${CONFIG_FILE}" ]; then
   MARKDOWNLINT_CMD_PARAMS+=("--config" "${CONFIG_FILE}")
+elif [ -f .markdownlint.yml ]; then
+  MARKDOWNLINT_CMD_PARAMS+=("--config" ".markdownlint.yml")
 fi
 
 if [ -n "${RULES}" ]; then

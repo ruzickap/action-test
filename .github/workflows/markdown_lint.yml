@@ -1,0 +1,55 @@
+name: markdown_lint
+
+on:
+  push:
+    paths:
+      - .github/workflows/markdown_lint.yml
+      - action.yml
+      - Dockerfile
+      - entrypoint.sh
+
+jobs:
+  markdown_lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Markdown Lint
+        uses: ruzickap/action-test@master
+        with:
+          search_paths: |
+            ansible/roles/ansible-role-my_common_defaults
+            ansible/roles/ansible-role-virtio-win
+          exclude: CHANGELOG.md
+
+      - name: Markdown Lint 2
+        uses: ruzickap/action-test@master
+        with:
+          config_file: /nonexisting
+          search_paths: |
+            ansible/roles/ansible-role-my_common_defaults
+            ansible/roles/ansible-role-virtio-win
+          exclude: CHANGELOG.md
+
+      - name: Markdown Lint 3
+        uses: ruzickap/action-test@master
+        with:
+          config_file: /nonexisting
+          search_paths: |
+            ansible/roles/ansible-role-my_common_defaults
+            ansible/roles/ansible-role-virtio-win
+          exclude: CHANGELOG.md
+          fd_cmd_params: -0 --extension md
+
+      - name: Markdown Lint 4
+        uses: ruzickap/action-test@master
+        with:
+          config_file: /nonexisting
+          search_paths: |
+            ansible/roles/ansible-role-my_common_defaults
+            ansible/roles/ansible-role-virtio-win
+          exclude: CHANGELOG.md
+          rules: /aaa
+
+      - name: Markdown Lint 4
+        uses: ruzickap/action-test@master
