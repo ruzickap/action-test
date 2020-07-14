@@ -12,7 +12,7 @@ export DEBUG=${INPUT_DEBUG:-}
 export EXCLUDE=${INPUT_EXCLUDE:-}
 
 # Command line parameters for fd
-export FD_CMD_PARAMS="${INPUT_FD_CMD_PARAMS:- --extension md --type f --exec-batch }"
+export FD_CMD_PARAMS="${INPUT_FD_CMD_PARAMS:- -0 --extension md --type f }"
 
 # Command line parameters for fd
 export MARKDOWNLINT_CMD_PARAMS="${INPUT_MARKDOWNLINT_CMD_PARAMS:-}"
@@ -61,12 +61,12 @@ fi
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
-IFS=$'\n'
+IFS=$'\0'
 
-for FILE in fd "${FD_CMD_PARAMS[@]}"; do
+for FILE in $(fd "${FD_CMD_PARAMS[@]}"); do
   print_info "*** $FILE"
-  print_info "Running: markdownlint-cli ${MARKDOWNLINT_CMD_PARAMS[*]}"
-  markdownlint-cli "${MARKDOWNLINT_CMD_PARAMS[@]}"
+  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]}"
+  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}"
 done
 
 print_info "[$(date +'%F %T')] Checks completed..."
