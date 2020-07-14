@@ -49,7 +49,7 @@ jobs:
             ansible/roles/ansible-role-my_common_defaults
             ansible/roles/ansible-role-virtio-win
           exclude: CHANGELOG.md
-          rules: /aaa
+          # rules: /aaa # Causing error
 
       - name: Markdown Lint 5
         uses: ruzickap/action-test@master
