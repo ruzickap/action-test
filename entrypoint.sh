@@ -30,7 +30,7 @@ print_info() {
 }
 
 error_trap() {
-  print_error "[$(date +'%F %T')] Something went wrong - see the errors above..."
+  print_error "Something went wrong - see the errors above..."
   exit 1
 }
 
@@ -65,7 +65,7 @@ if [ -n "${RULES}" ]; then
   MARKDOWNLINT_CMD_PARAMS+=("--rules" "${RULES}")
 fi
 
-print_info "[$(date +'%F %T')] Start checking..."
+print_info "Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
 while IFS= read -r -d '' FILE; do
@@ -73,6 +73,6 @@ while IFS= read -r -d '' FILE; do
   markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}" "${FILE}"
 done < <(fd "${FD_CMD_PARAMS[@]}")
 
-print_info "[$(date +'%F %T')] Checks completed..."
+print_info "Checks completed..."
 
 ls -la /zzzzz
