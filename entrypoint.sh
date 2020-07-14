@@ -65,6 +65,12 @@ fd ${FD_CMD_PARAMS[@]}
 
 fd ${FD_CMD_PARAMS[*]}
 
+echo my
+
+fd -0 --extension md --type f --search-path ansible/roles/ansible-role-my_common_defaults --search-path ansible/roles/ansible-role-virtio-win --exclude CHANGELOG.md
+
+fd --extension md --type f --search-path ansible/roles/ansible-role-my_common_defaults --search-path ansible/roles/ansible-role-virtio-win --exclude CHANGELOG.md
+
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
