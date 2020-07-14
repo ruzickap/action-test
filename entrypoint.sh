@@ -22,11 +22,11 @@ export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
 
 
 print_error() {
-  echo -e "::error :: ${1}"
+  echo -e "::error ::: ${1}"
 }
 
 print_info() {
-  echo -e "\e[36m*** INFO: ${1}\e[m"
+  echo -e "\e[36m**[info]: ${1}\e[m"
 }
 
 error_trap() {
@@ -66,12 +66,11 @@ if [ -n "${RULES}" ]; then
 fi
 
 print_info "[$(date +'%F %T')] Start checking..."
-# print_info "Running: fd ${FD_CMD_PARAMS[*]}"
+print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
 while IFS= read -r -d '' FILE; do
-  MARKDOWNLINT_CMD_PARAMS+=("${FILE}")
-  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]}"
-  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}"
+  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]} ${FILE}"
+  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}" "${FILE}"
 done < <(fd "${FD_CMD_PARAMS[@]}")
 
 print_info "[$(date +'%F %T')] Checks completed..."
