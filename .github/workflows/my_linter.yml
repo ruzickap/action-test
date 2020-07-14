@@ -20,4 +20,4 @@ jobs:
             ansible/roles/ansible-role-my_common_defaults
             ansible/roles/ansible-role-virtio-win
           exclude: CHANGELOG.md
-          debug: true
+          # debug: true
