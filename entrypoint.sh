@@ -45,27 +45,29 @@ trap error_trap ERR
 
 if [ -n "${SEARCH_PATHS}" ]; then
   for SEARCH_PATH in ${SEARCH_PATHS}; do
-    FD_CMD_PARAMS+=" --search-path ${SEARCH_PATH}"
+    FD_CMD_PARAMS+=("--search-path ${SEARCH_PATH}")
   done
 fi
 
 if [ -n "${EXCLUDE}" ]; then
   for EXCLUDED in ${EXCLUDE}; do
-    FD_CMD_PARAMS+=" --exclude ${EXCLUDED}"
+    FD_CMD_PARAMS+=("--exclude ${EXCLUDED}")
   done
 fi
 
 if [ -n "${CONFIG_FILE}" ]; then
-  MARKDOWNLINT_CMD_PARAMS+=" --config ${CONFIG_FILE}"
+  MARKDOWNLINT_CMD_PARAMS+=("--config ${CONFIG_FILE}")
 fi
 
 print_info "[$(date +'%F %T')] Start checking..."
-print_info "Running: fd ${FD_CMD_PARAMS}"
+print_info "Running: fd ${FD_CMD_PARAMS[*]}"
+
+fd "${FD_CMD_PARAMS[@]}"
 
 while IFS= read -r -d '' FILE; do
   print_info "*** $FILE"
-  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS} ${FILE}"
-  markdownlint ${MARKDOWNLINT_CMD_PARAMS} "${FILE}"
-done < <(fd ${FD_CMD_PARAMS})
+  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]} ${FILE}"
+  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}" "${FILE}"
+done < <(fd "${FD_CMD_PARAMS[@]}")
 
 print_info "[$(date +'%F %T')] Checks completed..."
