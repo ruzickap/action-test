@@ -40,6 +40,9 @@ function error_trap() {
 
 trap error_trap ERR
 
+echo $PATH
+ls -la /usr/bin/fd /bin/date
+
 [ -n "${DEBUG}" ] && set -x
 
 if [ -n "${PATHS}" ]; then
