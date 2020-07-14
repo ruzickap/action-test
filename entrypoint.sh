@@ -28,6 +28,10 @@ print_info() {
   echo -e "\e[36m*** ${1}\e[m"
 }
 
+error_trap() {
+  print_error "Something went wrong - see the errors above..."
+}
+
 ################
 # Main
 ################
