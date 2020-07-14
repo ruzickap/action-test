@@ -1,7 +1,6 @@
 #!/bin/bash
 
-set -eu
-set -o pipefail
+set -euo pipefail
 
 # Config file for markdownlint
 export CONFIG_FILE=${INPUT_CONFIG_FILE:-}
@@ -39,12 +38,12 @@ function error_trap() {
 # Main
 ################
 
-trap error_trap ERR
+#trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
 
 if [ -n "${SEARCH_PATHS}" ]; then
-  for SEARCH_PATH in ${SEARCH_PATHS}; do
+  for SEARCH_PATH in ${SEARCH_PATHS[*]}; do
     FD_CMD_PARAMS+=(--search-path "${SEARCH_PATH}")
   done
 fi
