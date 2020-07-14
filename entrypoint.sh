@@ -45,23 +45,23 @@ trap error_trap ERR
 IFS=' ' read -r -a FD_CMD_PARAMS <<< "$FD_CMD_PARAMS"
 if [ -n "${SEARCH_PATHS}" ]; then
   for SEARCH_PATH in ${SEARCH_PATHS}; do
-    FD_CMD_PARAMS+=("--search-path ${SEARCH_PATH}")
+    FD_CMD_PARAMS+=("--search-path" "${SEARCH_PATH}")
   done
 fi
 
 if [ -n "${EXCLUDE}" ]; then
   for EXCLUDED in ${EXCLUDE}; do
-    FD_CMD_PARAMS+=("--exclude ${EXCLUDED}")
+    FD_CMD_PARAMS+=("--exclude" "${EXCLUDED}")
   done
 fi
 
-declare -A MARKDOWNLINT_CMD_PARAMS
+declare -a MARKDOWNLINT_CMD_PARAMS
 if [ -n "${CONFIG_FILE}" ]; then
-  MARKDOWNLINT_CMD_PARAMS+=("--config ${CONFIG_FILE}")
+  MARKDOWNLINT_CMD_PARAMS+=("--config" "${CONFIG_FILE}")
 fi
 
 if [ -n "${RULES}" ]; then
-  MARKDOWNLINT_CMD_PARAMS+=("--rules ${RULES}")
+  MARKDOWNLINT_CMD_PARAMS+=("--rules" "${RULES}")
 fi
 
 print_info "[$(date +'%F %T')] Start checking..."
