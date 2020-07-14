@@ -18,7 +18,7 @@ export FD_CMD_PARAMS="${INPUT_FD_CMD_PARAMS:- -0 --extension md --type f }"
 export MARKDOWNLINT_CMD_PARAMS="${INPUT_MARKDOWNLINT_CMD_PARAMS:-}"
 
 # Set files or paths variable containing markdown files
-export PATHS=${INPUT_PATHS:-}
+export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
 
 
 function print_error() {
@@ -45,9 +45,9 @@ ls -la /usr/bin/fd /bin/date
 
 [ -n "${DEBUG}" ] && set -x
 
-if [ -n "${PATHS}" ]; then
-  for PATH in ${PATHS}; do
-    FD_CMD_PARAMS+=(--search-path "${PATH}")
+if [ -n "${SEARCH_PATHS}" ]; then
+  for SEARCH_PATH in ${SEARCH_PATHS}; do
+    FD_CMD_PARAMS+=(--search-path "${SEARCH_PATH}")
   done
 fi
 

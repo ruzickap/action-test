@@ -28,7 +28,7 @@ inputs:
     description: 'Command line parameters for markdownlint command'
     required: false
     default: ''
-  paths:
+  search_paths:
     description: 'Set paths which should be recursively scanned for markdown files (*.md) and linted'
     required: false
     default: ''
