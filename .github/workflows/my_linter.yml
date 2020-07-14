@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - .github/workflows/my_linter.yml
+      - Dockerfile
+      - entrypoint.sh
 
 jobs:
   my_linter:
