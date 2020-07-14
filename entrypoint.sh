@@ -22,7 +22,7 @@ export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
 
 
 print_error() {
-  echo -e "\e[31m*** ERROR: ${1}\e[m"
+  echo -e "::error :: ${1}"
 }
 
 print_info() {
@@ -34,22 +34,11 @@ error_trap() {
   exit 1
 }
 
-warn() {
-  echo "::warning :: $1"
-}
-
-error() {
-  echo "::error :: $1"
-}
-
 ################
 # Main
 ################
 
 trap error_trap ERR
-
-error "Input 'root_file' is missing."
-warn "Input 'compiler' and 'args' are both empty. Reset them to default values."
 
 [ -n "${DEBUG}" ] && set -x
 
@@ -76,7 +65,7 @@ FD="fd"
 "${FD}" "${FD_CMD_PARAMS[@]}"
 
 while IFS= read -r -d '' FILE; do
-  print_info "*** $FILE"
+  print_info "$FILE"
   print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]} ${FILE}"
   markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}" "${FILE}"
 done < <(fd "${FD_CMD_PARAMS[@]}")
