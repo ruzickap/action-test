@@ -39,6 +39,8 @@ function error_trap() {
 # Main
 ################
 
+echo "xxxx ${INPUT_CONFIG_FILE} | ${CONFIG_FILE} | ${MARKDOWNLINT_CMD_PARAMS}"
+
 trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
