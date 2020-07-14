@@ -66,11 +66,12 @@ if [ -n "${RULES}" ]; then
 fi
 
 print_info "[$(date +'%F %T')] Start checking..."
-print_info "Running: fd ${FD_CMD_PARAMS[*]}"
+# print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
 while IFS= read -r -d '' FILE; do
-  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]} ${FILE}"
-  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}" "${FILE}"
+  MARKDOWNLINT_CMD_PARAMS+=("${FILE}")
+  print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]}"
+  markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}"
 done < <(fd "${FD_CMD_PARAMS[@]}")
 
 print_info "[$(date +'%F %T')] Checks completed..."
