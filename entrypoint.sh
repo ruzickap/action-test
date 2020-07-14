@@ -1,6 +1,7 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eu
+set -o pipefail
 
 # Config file for markdownlint
 export CONFIG_FILE=${INPUT_CONFIG_FILE:-}
@@ -39,9 +40,6 @@ function error_trap() {
 ################
 
 trap error_trap ERR
-
-echo $PATH
-ls -la /usr/bin/fd /bin/date
 
 [ -n "${DEBUG}" ] && set -x
 
