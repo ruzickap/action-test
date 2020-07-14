@@ -32,6 +32,3 @@ inputs:
     description: 'Set paths which should be recursively scanned for markdown files (*.md) and linted'
     required: false
     default: ''
-outputs:
-  output:
-    description: 'Output of the markdownlint'

@@ -20,14 +20,19 @@ export RULES="${INPUT_RULES:-}"
 # Set files or paths variable containing markdown files
 export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
 
+print_error() {
+  echo -e "\e[31m*** ERROR: ${1}\e[m"
+}
 
 print_info() {
-  echo -e "\e[36m**[info]: ${1}\e[m"
+  echo -e "\e[36m*** ${1}\e[m"
 }
 
 ################
 # Main
 ################
+
+trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
 

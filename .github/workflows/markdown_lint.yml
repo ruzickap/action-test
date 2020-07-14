@@ -51,5 +51,5 @@ jobs:
           exclude: CHANGELOG.md
           rules: /aaa
 
-      - name: Markdown Lint 4
+      - name: Markdown Lint 5
         uses: ruzickap/action-test@master
