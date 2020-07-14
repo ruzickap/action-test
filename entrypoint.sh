@@ -62,7 +62,7 @@ fi
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
-fd "${FD_CMD_PARAMS[@]}"
+"fd" "${FD_CMD_PARAMS[@]}"
 
 while IFS= read -r -d '' FILE; do
   print_info "*** $FILE"
