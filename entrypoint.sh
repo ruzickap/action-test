@@ -14,8 +14,8 @@ export EXCLUDE=${INPUT_EXCLUDE:-}
 # Command line parameters for fd
 export FD_CMD_PARAMS="${INPUT_FD_CMD_PARAMS:- -0 --extension md --type f}"
 
-# Command line parameters for fd
-export MARKDOWNLINT_CMD_PARAMS="${INPUT_MARKDOWNLINT_CMD_PARAMS:-}"
+# Custom rule files for markdownlint
+export RULES="${INPUT_RULES:-}"
 
 # Set files or paths variable containing markdown files
 export SEARCH_PATHS=${INPUT_SEARCH_PATHS:-}
@@ -42,6 +42,7 @@ trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
 
+IFS=' ' read -r -a FD_CMD_PARAMS <<< "$FD_CMD_PARAMS"
 if [ -n "${SEARCH_PATHS}" ]; then
   for SEARCH_PATH in ${SEARCH_PATHS}; do
     FD_CMD_PARAMS+=("--search-path ${SEARCH_PATH}")
@@ -54,8 +55,13 @@ if [ -n "${EXCLUDE}" ]; then
   done
 fi
 
+declare -A MARKDOWNLINT_CMD_PARAMS
 if [ -n "${CONFIG_FILE}" ]; then
   MARKDOWNLINT_CMD_PARAMS+=("--config ${CONFIG_FILE}")
+fi
+
+if [ -n "${RULES}" ]; then
+  MARKDOWNLINT_CMD_PARAMS+=("--rules ${RULES}")
 fi
 
 print_info "[$(date +'%F %T')] Start checking..."

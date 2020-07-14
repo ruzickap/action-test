@@ -24,8 +24,8 @@ inputs:
     description: 'Command line parameters for fd command'
     required: false
     default: ''
-  markdownlint_cmd_params:
-    description: 'Command line parameters for markdownlint command'
+  rules:
+    description: 'Custom rule files for markdownlint'
     required: false
     default: ''
   search_paths:
