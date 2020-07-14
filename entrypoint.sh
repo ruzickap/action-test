@@ -63,5 +63,3 @@ while IFS= read -r -d '' FILE; do
 done < <(fd "${FD_CMD_PARAMS[@]}")
 
 print_info "Checks completed..."
-
-ls -la /zzzzz
