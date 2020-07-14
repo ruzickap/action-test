@@ -10,25 +10,13 @@ branding:
 inputs:
   config_file:
     description: 'markdownlint config file'
-    required: false
-    default: ''
   debug:
     description: 'Debug mode'
-    required: false
-    default: ''
   exclude:
     description: 'Exclude files or directories'
-    required: false
-    default: ''
   fd_cmd_params:
     description: 'Command line parameters for fd command'
-    required: false
-    default: ''
   rules:
     description: 'Custom rule files for markdownlint'
-    required: false
-    default: ''
   search_paths:
     description: 'Set paths which should be recursively scanned for markdown files (*.md) and linted'
-    required: false
-    default: ''
