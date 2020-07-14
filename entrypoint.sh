@@ -58,7 +58,7 @@ if [ -n "${CONFIG_FILE}" ]; then
   MARKDOWNLINT_CMD_PARAMS+=(--config "${CONFIG_FILE}")
 fi
 
-print_info "[$(date +'%F %T')] Start checking: \"${URL}\""
+print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
 IFS=$'\n'
