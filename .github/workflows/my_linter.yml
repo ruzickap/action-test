@@ -16,6 +16,8 @@ jobs:
       - name: Check links using container
         uses: ruzickap/action-test@master
         with:
-          search_paths: ("ansible/roles/ansible-role-my_common_defaults" "ansible/roles/ansible-role-virtio-win")
+          search_paths: |
+            ansible/roles/ansible-role-my_common_defaults
+            ansible/roles/ansible-role-virtio-win
           exclude: CHANGELOG.md
           debug: true
