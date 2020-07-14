@@ -62,10 +62,12 @@ fi
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
-while IFS=$'\0' read -r -d $'\0' FILE; do
+while IFS= read -r -d '' FILE; do
   print_info "*** $FILE"
   print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]}"
   markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}"
 done < <(fd "${FD_CMD_PARAMS[@]}")
+
+fd "${FD_CMD_PARAMS[@]}"
 
 print_info "[$(date +'%F %T')] Checks completed..."
