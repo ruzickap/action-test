@@ -12,7 +12,7 @@ export DEBUG=${INPUT_DEBUG:-}
 export EXCLUDE=${INPUT_EXCLUDE:-}
 
 # Command line parameters for fd
-export FD_CMD_PARAMS="${INPUT_FD_CMD_PARAMS:- -0 --extension md --type f }"
+export FD_CMD_PARAMS="${INPUT_FD_CMD_PARAMS:- -0 --extension md --type f}"
 
 # Command line parameters for fd
 export MARKDOWNLINT_CMD_PARAMS="${INPUT_MARKDOWNLINT_CMD_PARAMS:-}"
@@ -32,13 +32,14 @@ function print_info() {
 
 function error_trap() {
   print_error "[$(date +'%F %T')] Something went wrong - see the errors above..."
+  exit 1
 }
 
 ################
 # Main
 ################
 
-#trap error_trap ERR
+trap error_trap ERR
 
 [ -n "${DEBUG}" ] && set -x
 
@@ -61,12 +62,10 @@ fi
 print_info "[$(date +'%F %T')] Start checking..."
 print_info "Running: fd ${FD_CMD_PARAMS[*]}"
 
-IFS=$'\0'
-
-for FILE in $(fd "${FD_CMD_PARAMS[@]}"); do
+while IFS=$'\0' read -r -d $'\0' FILE; do
   print_info "*** $FILE"
   print_info "Running: markdownlint ${MARKDOWNLINT_CMD_PARAMS[*]}"
   markdownlint "${MARKDOWNLINT_CMD_PARAMS[@]}"
-done
+done < <(fd "${FD_CMD_PARAMS[@]}")
 
 print_info "[$(date +'%F %T')] Checks completed..."
