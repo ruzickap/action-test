@@ -20,6 +20,16 @@ jobs:
           ignore: CHANGELOG.md
           args: '**.md'
 
+  markdownlint-check-2:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: markdownlint-cli
+        uses: ruzickap/action-my-markdown-linter@master
+        with:
+          exclude: CHANGELOG.md
+
   markdown-spell-check:
     runs-on: ubuntu-18.04
     steps:
