@@ -45,11 +45,3 @@ jobs:
 
   #     - name: Run mdspell
   #       run: find . -type f \( -iname "*.md" ! -name "CHANGELOG.md" \) -exec mdspell --ignore-numbers --ignore-acronyms --report --en-gb {} \;
-
-  # markdown-link-check:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-
-  #     - name: Link Checker
-  #       uses: gaurav-nelson/github-action-markdown-link-check@v1
