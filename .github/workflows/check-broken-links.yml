@@ -18,5 +18,5 @@ jobs:
       - name: Broken link checker
         run: |
           export INPUT_URL="https://google.com"
-          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --max-connections=10"
+          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --max-connections=10 --color=always --one-page-only"
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-my-broken-link-checker/v1/entrypoint.sh | bash
