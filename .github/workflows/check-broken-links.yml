@@ -1,0 +1,22 @@
+name: check-broken-links
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+    paths:
+      - .github/workflows/check-broken-links.yml
+  push:
+    branches:
+      - master
+    paths:
+      - .github/workflows/check-broken-links.yml
+
+jobs:
+  my-broken-link-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Broken link checker
+        run: |
+          export INPUT_URL="https://google.com"
+          export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --max-connections=10"
+          wget -qO- https://raw.githubusercontent.com/ruzickap/action-my-broken-link-checker/v1/entrypoint.sh | bash
