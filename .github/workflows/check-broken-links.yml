@@ -19,4 +19,5 @@ jobs:
         run: |
           export INPUT_URL="https://google.com"
           export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --max-connections=10 --color=always --one-page-only"
+          wget -qO- https://github.com/raviqqe/muffet/releases/download/v2.2.1/muffet_2.2.1_Linux_ARM64.tar.gz | sudo tar xzf - -C /usr/local/bin/ muffet
           wget -qO- https://raw.githubusercontent.com/ruzickap/action-my-broken-link-checker/v1/entrypoint.sh | bash
