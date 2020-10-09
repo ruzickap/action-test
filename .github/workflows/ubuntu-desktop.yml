@@ -36,9 +36,9 @@ jobs:
       fail-fast: false
       matrix:
         stage:
-          - ubuntu-20.04-desktop-amd64-virtualbox
-          - ubuntu-18.04-desktop-amd64-virtualbox
-          - ubuntu-20.04-desktop-amd64-libvirt
+#          - ubuntu-20.04-desktop-amd64-virtualbox
+#          - ubuntu-18.04-desktop-amd64-virtualbox
+#          - ubuntu-20.04-desktop-amd64-libvirt
           - ubuntu-18.04-desktop-amd64-libvirt
     steps:
       - uses: actions/checkout@v2
@@ -46,14 +46,17 @@ jobs:
       - name: Install packages
         run: |
           brew install coreutils gnu-sed packer qemu
+          echo "::add-path::/usr/local/bin:/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}"
+          echo $PATH
 
       - name: Build image - ${{ matrix.stage }}
         run: |
-          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          #export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          echo $PATH
           ./build.sh ${{ matrix.stage }}
 
       - name: Check the created box image - ${{ matrix.stage }}
         if: contains( matrix.stage, 'virtualbox' )
         run: |
-          export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
+          #export PATH=/usr/local/opt/gnu-sed/libexec/gnubin:/usr/local/opt/coreutils/libexec/gnubin:${PATH}
           ./vagrant_init_destroy_boxes.sh /var/tmp/packer-templates-images/${{ matrix.stage }}.box
