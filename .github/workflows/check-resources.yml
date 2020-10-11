@@ -20,17 +20,17 @@ jobs:
           set -x
           sysctl -n hw.ncpu
           system_profiler SPHardwareDataType
+          top -l 1 -s 0 | grep PhysMem
           df -h
           diskutil list
           diskutil info disk0
-          top -l 1 -s 0 | grep PhysMem
   ubuntu:
     runs-on: ubuntu-latest
     steps:
       - name: Show resources
         run: |
-          sudo apt update
-          sudo apt install -y lshw
+          sudo apt update &> /dev/null
+          sudo apt install -y lshw &> /dev/null
           set -x
           df -h
           free -h
