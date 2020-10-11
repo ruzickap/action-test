@@ -15,20 +15,24 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-      - name: Install packages
+      - name: Show resources
         run: |
           set -x
+          sysctl -n hw.ncpu
+          system_profiler SPHardwareDataType
+          df -h
+          diskutil list
+          diskutil info disk0
           top -l 1 -s 0 | grep PhysMem
-          ioreg -l
   ubuntu:
     runs-on: ubuntu-latest
     steps:
       - name: Show resources
         run: |
-          apt update
-          apt install -y lshw
+          sudo apt update
+          sudo apt install -y lshw
           set -x
-          lshw
           df -h
           free -h
           egrep -wo 'vmx|lm|aes' /proc/cpuinfo  | sort | uniq | sed -e 's/aes/Hardware encryption=Yes (&)/g' -e 's/lm/64 bit cpu=Yes (&)/g' -e 's/vmx/Intel hardware virtualization=Yes (&)/g'
+          lshw
