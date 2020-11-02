@@ -14,6 +14,6 @@ jobs:
           echo "payload-whole: ${{ github.event.client_payload }}"
       - run: |
           set -x
-          cat << EOF | jq
+          cat << EOF
           ${{ toJson(github.event.client_payload) }}
           EOF
