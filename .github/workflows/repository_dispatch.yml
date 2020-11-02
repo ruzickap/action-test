@@ -7,6 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - run: |
+          set -x
           echo "field: ${{ github.event.client_payload.foo }}"
           echo "payload: ${{ toJson(github.event.client_payload) }}"
           echo '${{ toJson(github.event.client_payload) }}'
