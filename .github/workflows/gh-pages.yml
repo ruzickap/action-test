@@ -2,7 +2,9 @@ name: gh-pages
 
 on:
   # push:
-  repository_dispatch:
+  # repository_dispatch:
+  schedule:
+    - cron: '0 15 1 1 0'
 
 jobs:
   gh-pages:

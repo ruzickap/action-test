@@ -1,9 +1,9 @@
 name: periodic-broken-link-checks
 
 on:
-  repository_dispatch:
-  # schedule:
-  #   - cron: '0 15 * * 5'
+  # repository_dispatch:
+  schedule:
+    - cron: '0 15 1 1 0'
   # pull_request:
   #   types: [opened, synchronize]
   #   paths:
@@ -38,4 +38,4 @@ jobs:
             export INPUT_URL="https://${GITHUB_REPOSITORY%/*}.github.io/${GITHUB_REPOSITORY##*/}"
           fi
           export INPUT_CMD_PARAMS="--verbose --buffer-size=8192 --max-connections=10 --color=always --exclude=($( echo ${EXCLUDE} | tr ' ' '|' ))"
-          wget -qO- https://raw.githubusercontent.com/ruzickap/action-my-broken-link-checker/v1/entrypoint.sh | bash
+          wget -qO- https://raw.githubusercontent.com/ruzickap/action-my-broken-link-checker/v2/entrypoint.sh | bash

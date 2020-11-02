@@ -2,7 +2,9 @@ name: build - vagrantcloud
 
 on:
   # push:
-  repository_dispatch:
+  # repository_dispatch:
+  schedule:
+    - cron: '0 15 1 1 0'
 
 env:
   PACKER_IMAGES_OUTPUT_DIR: /var/tmp/packer-templates-images
