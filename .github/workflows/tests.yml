@@ -1,7 +1,9 @@
 name: tests
 
 on:
-  repository_dispatch:
+  # repository_dispatch:
+  schedule:
+    - cron: '0 15 1 1 0'
 #  push:
 #    paths:
 #      - tests/**

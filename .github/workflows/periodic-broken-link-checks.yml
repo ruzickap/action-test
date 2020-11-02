@@ -1,9 +1,9 @@
 name: periodic-broken-link-checks
 
 on:
-  repository_dispatch:
-  # schedule:
-  #   - cron: '0 15 * * 5'
+  # repository_dispatch:
+  schedule:
+    - cron: '0 15 1 1 0'
   # pull_request:
   #   types: [opened, synchronize]
   #   paths:

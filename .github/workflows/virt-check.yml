@@ -1,7 +1,9 @@
 name: virt-check
 
 on:
-  repository_dispatch:
+  # repository_dispatch:
+  schedule:
+    - cron: '0 15 1 1 0'
   # pull_request:
   #   types: [opened, synchronize]
   #   paths:
