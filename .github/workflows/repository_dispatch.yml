@@ -17,3 +17,8 @@ jobs:
           cat << EOF
           ${{ toJson(github.event.client_payload) }}
           EOF
+      - run: |
+          set -x
+          cat << EOF | jq
+          ${{ toJson(github.event.client_payload) }}
+          EOF
