@@ -9,5 +9,6 @@ jobs:
       - run: |
           echo "field: ${{ github.event.client_payload.foo }}"
           echo "payload: ${{ toJson(github.event.client_payload) }}"
-          echo ${{ toJson(github.event.client_payload) }} | jq
+          echo '${{ toJson(github.event.client_payload) }}'
+          echo '${{ toJson(github.event.client_payload) }}' | jq
           echo "payload-whole: ${{ github.event.client_payload }}"
