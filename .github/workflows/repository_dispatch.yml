@@ -13,3 +13,7 @@ jobs:
           echo '${{ toJson(github.event.client_payload) }}'
           echo '${{ toJson(github.event.client_payload) }}' | jq
           echo "payload-whole: ${{ github.event.client_payload }}"
+      - run: |
+          cat << EOF | jq
+          ${{ toJson(github.event.client_payload) }}
+          EOF
