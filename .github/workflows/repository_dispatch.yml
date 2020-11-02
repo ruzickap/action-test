@@ -10,6 +10,7 @@ jobs:
           set -x
           echo "field: ${{ github.event.client_payload.foo }}"
           echo "payload: ${{ toJson(github.event.client_payload) }}"
+          echo '{}' | jq
           echo '${{ toJson(github.event.client_payload) }}' | jq
       - run: |
           set -x
