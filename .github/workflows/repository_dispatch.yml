@@ -8,8 +8,6 @@ jobs:
       - name: test
         run: |
           set -x
-          brew update
-          brew upgrade jq
           echo '{}' | jq
           echo "field: ${{ github.event.client_payload.foo }}"
           echo "payload: ${{ toJson(github.event.client_payload) }}"
