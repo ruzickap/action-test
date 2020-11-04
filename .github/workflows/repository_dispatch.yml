@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: test
+        if: github.event_name == 'repository_dispatch' && github.event.client_payload
         run: |
           set -x
           echo '${{ toJson(github.event.client_payload) }}' | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" >> ${GITHUB_ENV}
