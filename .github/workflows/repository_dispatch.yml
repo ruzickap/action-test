@@ -8,19 +8,9 @@ jobs:
       - name: test
         run: |
           set -x
-          echo '{}' | jq
-          echo "field: ${{ github.event.client_payload.foo }}"
-          echo "payload: ${{ toJson(github.event.client_payload) }}"
-          echo '${{ toJson(github.event.client_payload) }}' | jq
+          echo '${{ toJson(github.event.client_payload) }}' | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]" >> ${GITHUB_ENV}
       - name: test2
         run: |
           set -x
-          cat << EOF
-          ${{ toJson(github.event.client_payload) }}
-          EOF
-      - name: test3
-        run: |
-          set -x
-          cat << EOF | jq
-          ${{ toJson(github.event.client_payload) }}
-          EOF
+          echo $aaa
+          echo $foo
