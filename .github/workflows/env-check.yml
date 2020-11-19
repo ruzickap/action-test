@@ -57,3 +57,18 @@ jobs:
           #echo "*** $( echo ${TEST} |  paste -s -d"|" )"
           #export INPUT_CMD_PARAMS=$( echo ${TEST} |  paste -s -d\| )
           #echo $INPUT_CMD_PARAMS
+
+      - name: testzzzzx
+        run: |
+          GITHUB_REPOSITORY2="ansible-role-proxy_settings"
+          ROLE_NAME=$(echo ${GITHUB_REPOSITORY2} | sed 's/ansible-role-\(.*\)/\1/')
+          echo "GALAXY_REPOSITORY=${GITHUB_REPOSITORY2%/*}.${ROLE_NAME}" >> $GITHUB_ENV
+
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+        with:
+          path: '${GALAXY_REPOSITORY}'
+
+      - name: zzz
+        run: |
+          ls -la
