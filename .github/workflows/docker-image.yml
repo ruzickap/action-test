@@ -1,9 +1,9 @@
 name: docker-image
 
 on:
-  # repository_dispatch:
-  schedule:
-    - cron: '0 15 1 1 0'
+  repository_dispatch:
+  #schedule:
+  #    - cron: '0 15 1 1 0'
 #  push:
 #    paths:
 #      - Dockerfile
