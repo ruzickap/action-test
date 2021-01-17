@@ -2,11 +2,11 @@ name: mytest
 
 on:
 #  push:
-#  repository_dispatch:
+  repository_dispatch:
 #  issue_comment:
 #    types: [created]
-  schedule:
-    - cron: '0 15 1 1 0'
+#  schedule:
+#    - cron: '0 15 1 1 0'
 
 env:
   test: "12345"
