@@ -21,12 +21,17 @@ jobs:
       - name: lspcu
         run: |
           set -x
-          df -h
           lscpu
           egrep -o '(vmx|svm)' /proc/cpuinfo | sort | uniq
           egrep -wo 'vmx|lm|aes' /proc/cpuinfo  | sort | uniq | sed -e 's/aes/Hardware encryption=Yes (&)/g' -e 's/lm/64 bit cpu=Yes (&)/g' -e 's/vmx/Intel hardware virtualization=Yes (&)/g'
-          apt list --installed
-          dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+          # apt list --installed
+          # dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n
+          df -h
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          df -h
+          curl https://raw.githubusercontent.com/apache/flink/master/tools/azure-pipelines/free_disk_space.sh | bash -eu
+          df -h
 
 
   virt-check-mac:
