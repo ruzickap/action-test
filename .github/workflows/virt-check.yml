@@ -41,12 +41,13 @@ jobs:
 
 
   virt-check-mac:
-    runs-on: macos-11.0
+    # runs-on: macos-11.0
+    runs-on: macos-latest
     steps:
       - name: sysctl
         run: |
           set -x
-          df -h
+          df -h /
           sysctl kern.hv_support
           sysctl -a | grep machdep.cpu.features
           sysctl -a | grep -o VMX
