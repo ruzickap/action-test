@@ -51,3 +51,4 @@ jobs:
           sysctl kern.hv_support
           sysctl -a | grep machdep.cpu.features
           sysctl -a | grep -o VMX
+          brew list
