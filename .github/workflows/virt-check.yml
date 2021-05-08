@@ -47,8 +47,8 @@ jobs:
           fi
 
   virt-check-mac:
-    # runs-on: macos-11.0
-    runs-on: macos-latest
+    runs-on: macos-11.0
+    # runs-on: macos-latest
     steps:
       - name: sysctl
         run: |
