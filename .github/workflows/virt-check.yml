@@ -62,9 +62,9 @@ jobs:
           df -h /
           #sudo du -sh /* 2>/dev/null || true
           #sudo du -sh /usr 2>/dev/null || true
-          sudo ls -lh /Applications
+          brew list
           df -h /
-          sudo uninstall file:///Applications/R.app
+          sudo rm -rf Applications/{Firefox,Google Chrome}.app
           df -h /
           brew install findutils
           set +x
