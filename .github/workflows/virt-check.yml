@@ -65,12 +65,10 @@ jobs:
           df -h /
           brew install findutils
           set +x
-          brew list --formula | xargs -n1 -P8 -I {} \
+          brew list --formula | xargs  -P8 -I {} \
             sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
             sort -h -r -k2 - | column -t | grep MB | sort -k2 -g
-          brew list --casks | xargs -n1 -P8 -I {} \
-            sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
-            sort -h -r -k2 - | column -t | grep MB | sort -k2 -g
+          brew list --casks
 
       - name: accelerator
         run: |
