@@ -60,9 +60,9 @@ jobs:
           df -h /
           brew uninstall ant aws-sam-cli aspell azure-cli cmake gcc gcc@8 gcc@9 gradle helm icu4c maven mongodb-community mongodb-database-tools node@14 openjdk php postgresql python@3.8 selenium-server-standalone
           df -h /
-          sudo du -sh /* 2>/dev/null
-          sudo du -sh /usr/* 2>/dev/null
-          sudo du -sh /Applications/* 2>/dev/null
+          sudo du -sh /* 2>/dev/null || true
+          sudo du -sh /usr 2>/dev/null || true
+          sudo du -sh /Applications/* 2>/dev/null || true
           brew install findutils
           set +x
           brew list --formula | xargs -n1 -P8 -I {} \
