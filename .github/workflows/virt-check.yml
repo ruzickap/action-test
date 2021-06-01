@@ -47,8 +47,8 @@ jobs:
           fi
 
   virt-check-mac:
-    runs-on: macos-11.0
-    # runs-on: macos-latest
+    # runs-on: macos-11.0
+    runs-on: macos-latest
     steps:
       - name: sysctl
         run: |
@@ -61,6 +61,7 @@ jobs:
           brew uninstall ant aws-sam-cli aspell azure-cli cmake gcc gcc@8 gcc@9 gradle helm icu4c maven mongodb-community mongodb-database-tools node@14 openjdk php postgresql python@3.8 selenium-server-standalone
           df -h /
           set +x
+          sudo du -sh /* 2>/dev/null
           brew install findutils
           brew list --formula | xargs -n1 -P8 -I {} \
             sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
