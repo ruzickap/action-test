@@ -62,15 +62,15 @@ jobs:
           df -h /
           brew uninstall --cask chromedriver firefox google-chrome julia microsoft-auto-update microsoft-edge powershell r session-manager-plugin soundflower
           df -h /
-          #sudo du -sh /* 2>/dev/null || true
-          #sudo du -sh /usr 2>/dev/null || true
+          sudo du -sh / 2>/dev/null || true
+          sudo du -sh /usr 2>/dev/null || true
           df -h /
           brew install findutils
+          brew list --casks
           set +x
           brew list --formula | xargs  -P8 -I {} \
             sh -c "brew info {} | egrep '[0-9]* files, ' | sed 's/^.*[0-9]* files, \(.*\)).*$/{} \1/'" | \
             sort -h -r -k2 - | column -t | grep MB | sort -k2 -g
-          brew list --casks
 
       - name: accelerator
         run: |
