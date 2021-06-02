@@ -62,7 +62,9 @@ jobs:
           brew uninstall --cask chromedriver firefox google-chrome julia microsoft-auto-update microsoft-edge powershell r session-manager-plugin soundflower
           df -h /
           sudo du -sh /* 2>/dev/null || true
-          sudo du -sh /usr/local/* 2>/dev/null || true
+          sudo du -sh /usr/local/Cellar/* 2>/dev/null || true
+          sudo du -sh /Users/runner/hostedtoolcache/* || true
+          sudo du -sh /Users/runner/Library/* || true
           sudo du -sh /Users/runner/* 2>/dev/null || true
           df -h /
           brew cleanup -s
