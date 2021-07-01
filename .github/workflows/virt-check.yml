@@ -57,7 +57,7 @@ jobs:
           sysctl -a | grep machdep.cpu.features
           sysctl -a | grep -o VMX
           df -h /
-          brew uninstall --formula ant aws-sam-cli aspell azure-cli cmake gcc gcc@8 gcc@9 gradle helm icu4c maven mongodb-community mongodb-database-tools node@14 openjdk php postgresql python@3.8 selenium-server-standalone
+          brew uninstall --formula ant aws-sam-cli aspell azure-cli cmake gcc gcc@9 gradle helm icu4c maven mongosh mongodb-community mongodb-database-tools node@14 openjdk php postgresql python@3.8 selenium-server-standalone
           df -h /
           brew uninstall --cask chromedriver firefox google-chrome julia microsoft-auto-update microsoft-edge powershell r session-manager-plugin soundflower
           # sudo du -sh /* 2>/dev/null || true
